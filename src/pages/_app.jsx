@@ -1,6 +1,4 @@
-import { useRouter } from 'next/router'
-import useStore from '@/helpers/store'
-import { useEffect, Children } from 'react'
+import { Children } from 'react'
 import dynamic from 'next/dynamic'
 import Dom from '@/components/layout/_dom'
 
@@ -20,8 +18,6 @@ function Layout({ dom }) {
 }
 
 function App({ Component, pageProps }) {
-  const router = useRouter()
-
   let r3fArr = []
   let compArr = []
 
@@ -32,10 +28,6 @@ function App({ Component, pageProps }) {
       compArr.push(child)
     }
   })
-
-  useEffect(() => {
-    useStore.setState({ router })
-  }, [router])
 
   return (
     <>
