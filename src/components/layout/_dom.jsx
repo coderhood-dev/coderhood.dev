@@ -1,25 +1,17 @@
 import useStore from '@/helpers/store'
-import Head from 'next/head'
+import { Header } from '@/components/header/Header'
 import { useRef } from 'react'
 
-const HeaderRouteTitle = () => {
-  const title = useStore((s) => s.title)
-  return (
-    <Head>
-      <title>{title}</title>
-    </Head>
-  )
-}
-const Dom = ({ children }) => {
+const Dom = ({ dom }) => {
   const ref = useRef(null)
   useStore.setState({ dom: ref })
   return (
     <div
-      className='absolute top-0 left-0 z-10 w-screen h-screen overflow-hidden dom'
+      className='absolute top-0 left-0 z-10 w-screen h-screen overflow-y-scroll dom'
       ref={ref}
     >
-      <HeaderRouteTitle />
-      {children}
+      <Header />
+      {dom}
     </div>
   )
 }
