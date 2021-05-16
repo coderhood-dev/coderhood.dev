@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import useStore from '@/helpers/store'
 import { useEffect, Children } from 'react'
-import Header from '../config'
 import dynamic from 'next/dynamic'
 import Dom from '@/components/layout/_dom'
 
@@ -17,15 +16,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 function Layout({ dom }) {
-  return (
-    <>
-      <Header />
-      {dom && <Dom>{dom}</Dom>}
-    </>
-  )
+  return <>{dom && <Dom>{dom}</Dom>}</>
 }
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   const router = useRouter()
 
   let r3fArr = []
@@ -51,4 +45,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App
