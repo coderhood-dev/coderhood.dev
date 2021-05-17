@@ -7,6 +7,9 @@ module.exports = {
   // purge: ['./src/pages/**/*.jsx', './src/components/**/*.jsx'], // remove unused styles in production
   darkMode: 'media', // or 'media' or 'class'
   theme: {
+    screens: {
+      sm: '640px',
+    },
     fontFamily: {
       display: 'Poppins',
       sans: 'Poppins',
