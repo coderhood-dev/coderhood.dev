@@ -24,11 +24,11 @@ const Academy = ({ modules }) => {
   useStore.setState({ title: 'Coderhood Academy' })
   return (
     <>
-      <div className='flex flex-col min-h-screen p-20'>
-        <h1 className='text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-900'>
+      <div className='flex flex-col min-h-screen p-6 sm:p-20'>
+        <h1 className='text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-gray-700 to-gray-900'>
           Coderhood Academy 🎓
         </h1>
-        <p className='pt-5 text-gray-600'>
+        <p className='pt-5 text-xs text-gray-600 sm:text-sm'>
           El material que preparamos esta pensado para que puedas aprender lo
           necesario para ser un Desarrollador Full Stack en aproximadamente 6
           meses. La modalidad va a ser la siguiente, dos veces por semana vamos
