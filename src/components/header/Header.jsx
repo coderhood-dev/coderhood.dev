@@ -14,7 +14,7 @@ export const Header = () => {
       <Head title={title} />
       <header className='flex items-center justify-between h-20 pl-4 pr-8'>
         <Link href='/'>
-          <a className='flex'>
+          <a className='flex w-32 sm:w-60'>
             <Image
               src='/img/logo-full.png'
               alt='Coderhood logo'
@@ -41,7 +41,9 @@ export const Header = () => {
                 >
                   <Link href='/academy'>
                     <a>
-                      <p className='p-4 font-bold text-white'>🎓 Academy</p>
+                      <p className='p-2 text-xs font-bold text-white sm:p-4'>
+                        🎓 Academy
+                      </p>
                     </a>
                   </Link>
                 </motion.li>

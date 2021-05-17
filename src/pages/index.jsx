@@ -9,13 +9,13 @@ const Home = ({ modules }) => {
     <>
       <div className='min-h-screen'>
         {/* hero */}
-        <section className='flex items-center h-screen p-20 pt-0'>
+        <section className='flex items-center h-screen p-4 pt-0 sm:p-20'>
           <div className='flex flex-col max-w-4xl gap-y-4'>
-            <h1 className='text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 font-display'>
+            <h1 className='text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 font-display'>
               Compartimos conocimiento,
               <br /> Aprendemos juntos
             </h1>
-            <h3 className='text-gray-600'>
+            <h3 className='text-sm text-gray-600 sm:text-lg'>
               Somos una comunidad de personas en tech que aprende y comparte
               conocimiento. No sabemos todo, el mundo tech es enorme y lleva una
               vida de aprendizaje, pero mientras vamos aprendiendo creemos que
