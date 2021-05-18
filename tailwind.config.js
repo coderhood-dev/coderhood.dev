@@ -4,7 +4,6 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
-  // purge: ['./src/pages/**/*.jsx', './src/components/**/*.jsx'], // remove unused styles in production
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     screens: {
@@ -26,6 +25,7 @@ module.exports = {
     extend: {
       borderWidth: ['hover', 'focus'],
       ringWidth: ['hover', 'active'],
+      textColor: ['dark'],
     },
   },
   plugins: [],
