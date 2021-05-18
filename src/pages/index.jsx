@@ -1,8 +1,4 @@
-import dynamic from 'next/dynamic'
-
-const Box = dynamic(() => import('@/components/canvas/Box'), {
-  ssr: false,
-})
+import { Dots } from '@/components/dots/Dots'
 
 const Home = ({ modules }) => {
   return (
@@ -15,7 +11,7 @@ const Home = ({ modules }) => {
               Compartimos conocimiento,
               <br /> Aprendemos juntos
             </h1>
-            <h3 className='text-sm text-gray-600 sm:text-lg'>
+            <h3 className='text-sm font-thin text-gray-700 dark:text-gray-100 sm:text-lg'>
               Somos una comunidad de personas en tech que aprende y comparte
               conocimiento. No sabemos todo, el mundo tech es enorme y lleva una
               vida de aprendizaje, pero mientras vamos aprendiendo creemos que
@@ -29,7 +25,7 @@ const Home = ({ modules }) => {
           </div>
         </section>
       </div>
-      <Box r3f route='/box' />
+      <Dots r3f />
     </>
   )
 }
