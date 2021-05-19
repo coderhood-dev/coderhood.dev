@@ -1,11 +1,31 @@
+import { useRef, useEffect } from 'react'
 import { Dots } from '@/components/dots/Dots'
+import { Bubble } from '@/components/bubble/Bubble'
+// import Packery from 'packery'
+// import dynamic from 'next/dynamic'
+
+// const Packery = dynamic(() => import('packery'), {
+//   ssr: false,
+// })
 
 const Home = ({ modules }) => {
+  const bubblesContainerRef = useRef(null)
+
+  // console.log('Packery', Packery)
+
+  // useEffect(() => {
+  //   if (bubblesContainerRef.current) {
+  //     new Packery(bubblesContainerRef.current, {
+  //       itemSelector: '.bubble',
+  //       gutter: 5,
+  //     })
+  //   }
+  // }, [bubblesContainerRef])
   return (
     <>
-      <div className='min-h-screen'>
+      <div className='flex min-h-screen'>
         {/* hero */}
-        <section className='flex items-center h-screen p-4 pt-0 sm:p-20'>
+        <section className='flex items-center w-3/5 h-screen p-4 pt-0 sm:p-20'>
           <div className='flex flex-col max-w-4xl gap-y-4 bg-opacity-60'>
             <h1 className='text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 font-display'>
               Compartimos conocimiento,
@@ -25,6 +45,25 @@ const Home = ({ modules }) => {
               </span>
             </h3>
           </div>
+        </section>
+
+        {/* bubbles */}
+        <section className='relative w-2/5 ' ref={bubblesContainerRef}>
+          <Bubble
+            size='small'
+            img='/img/sasuke.jpeg'
+            style={{ position: 'absolute', right: '2rem', top: '11rem' }}
+          />
+          <Bubble
+            size='small'
+            img='/img/naruto.png'
+            style={{ position: 'absolute', right: '16rem', top: '9rem' }}
+          />
+          <Bubble
+            size='big'
+            img='/img/kakashi.jpeg'
+            style={{ position: 'absolute', right: '8rem', top: '0.5rem' }}
+          />
         </section>
       </div>
       <Dots r3f />
