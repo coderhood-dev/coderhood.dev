@@ -62,7 +62,7 @@ const opacityKeyframes = [
   0.4,
 ]
 
-export const Bubble = ({ size, img, style }) => {
+export const Bubble = ({ size, img, animate, style }) => {
   const sizeClasses = {
     small: 'w-20 h-20',
     medium: 'w-30 h-30',
@@ -71,17 +71,17 @@ export const Bubble = ({ size, img, style }) => {
   return (
     <motion.div
       style={style}
-      animate={{ y: 20, x: 10 }}
+      animate={animate}
       transition={{
         repeat: Infinity,
-        duration: 2,
+        duration: 5,
         repeatType: 'reverse',
       }}
     >
       <div className='relative flex items-center justify-center'>
         {size === 'big' && (
           <>
-            <motion.div
+            {/* <motion.div
               animate={{
                 width: lightWaveKeyframes,
                 height: lightWaveKeyframes,
@@ -94,7 +94,7 @@ export const Bubble = ({ size, img, style }) => {
                 repeatDelay: 1,
               }}
               className='absolute w-20 h-20 border-2 border-yellow-300 rounded-full'
-            />
+            /> */}
             <motion.div
               animate={{
                 width: mainWaveKeyframes,

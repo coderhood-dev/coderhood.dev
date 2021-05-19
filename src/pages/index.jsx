@@ -52,17 +52,20 @@ const Home = ({ modules }) => {
           <Bubble
             size='small'
             img='/img/sasuke.jpeg'
-            style={{ position: 'absolute', right: '2rem', top: '11rem' }}
+            style={{ position: 'absolute', right: '3rem', top: '10rem' }}
+            animate={{ y: [10, 0, 5, -10, 0], x: [5, 0, 7, -5, 0] }}
           />
           <Bubble
             size='small'
             img='/img/naruto.png'
-            style={{ position: 'absolute', right: '16rem', top: '9rem' }}
+            style={{ position: 'absolute', right: '18rem', top: '9rem' }}
+            animate={{ y: [7, 0, -3, 5, 0], x: [-5, 0, -10, 5, 0] }}
           />
           <Bubble
             size='big'
             img='/img/kakashi.jpeg'
             style={{ position: 'absolute', right: '8rem', top: '0.5rem' }}
+            animate={{ y: [20, 0, -5, 10, 0], x: [10, 0, -7, 1, 0] }}
           />
         </section>
       </div>
