@@ -3,8 +3,6 @@ import { Preload } from '@react-three/drei'
 import { A11yUserPreferences } from '@react-three/a11y'
 import useStore from '@/helpers/store'
 
-// import { Cursor } from '@/components/cursor/Cursor'
-
 const homeCanvasConfig = {
   orthographic: true,
   colorManagement: false, // not working
@@ -26,7 +24,6 @@ const LCanvas = ({ children }) => {
       onCreated={(state) => state.events.connect(dom.current)}
       {...homeCanvasConfig}
     >
-      {/* <Cursor /> */}
       <A11yUserPreferences>
         <Preload all />
         {children}

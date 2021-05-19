@@ -9,7 +9,7 @@ import { Bubble } from '@/components/bubble/Bubble'
 // })
 
 const Home = ({ modules }) => {
-  const bubblesContainerRef = useRef(null)
+  // const bubblesContainerRef = useRef(null)
 
   // console.log('Packery', Packery)
 
@@ -48,7 +48,7 @@ const Home = ({ modules }) => {
         </section>
 
         {/* bubbles */}
-        <section className='relative w-2/5 ' ref={bubblesContainerRef}>
+        <section className='relative w-2/5 '>
           <Bubble
             size='small'
             img='/img/sasuke.jpeg'
