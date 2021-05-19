@@ -1,4 +1,4 @@
-import { Children, useEffect } from 'react'
+import { Children } from 'react'
 import dynamic from 'next/dynamic'
 import Dom from '@/components/layout/_dom'
 
@@ -29,13 +29,11 @@ function App({ Component, pageProps }) {
     }
   })
 
-  useEffect(() => {
+  if (process.browser) {
     document.body.style.cursor = `url('data:image/svg+xml;base64,${btoa(
       '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="10" fill="#E8B059"/></svg>'
     )}'), auto`
-
-    return () => {}
-  }, [])
+  }
 
   return (
     <>
