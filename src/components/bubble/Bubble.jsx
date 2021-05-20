@@ -62,7 +62,7 @@ const opacityKeyframes = [
   0.4,
 ]
 
-export const Bubble = ({ size, img, animate, style }) => {
+export const Bubble = ({ isTalking, size, img, animate, style }) => {
   const sizeClasses = {
     small: 'w-20 h-20',
     medium: 'w-30 h-30',
@@ -80,35 +80,19 @@ export const Bubble = ({ size, img, animate, style }) => {
     >
       <div className='relative flex items-center justify-center'>
         {size === 'big' && (
-          <>
-            {/* <motion.div
-              animate={{
-                width: lightWaveKeyframes,
-                height: lightWaveKeyframes,
-                opacity: opacityKeyframes,
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 3,
-                repeatType: 'loop',
-                repeatDelay: 1,
-              }}
-              className='absolute w-20 h-20 border-2 border-yellow-300 rounded-full'
-            /> */}
-            <motion.div
-              animate={{
-                width: mainWaveKeyframes,
-                height: mainWaveKeyframes,
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 3,
-                repeatType: 'loop',
-                repeatDelay: 1,
-              }}
-              className='absolute w-40 h-40 bg-yellow-500 rounded-full'
-            />
-          </>
+          <motion.div
+            animate={{
+              width: mainWaveKeyframes,
+              height: mainWaveKeyframes,
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 3,
+              repeatType: 'loop',
+              repeatDelay: 1,
+            }}
+            className='absolute w-40 h-40 bg-yellow-500 rounded-full'
+          />
         )}
         <motion.div className={`${sizeClasses} overflow-hidden rounded-full`}>
           <Image
@@ -124,3 +108,18 @@ export const Bubble = ({ size, img, animate, style }) => {
     </motion.div>
   )
 }
+
+/* <motion.div
+  animate={{
+    width: lightWaveKeyframes,
+    height: lightWaveKeyframes,
+    opacity: opacityKeyframes,
+  }}
+  transition={{
+    repeat: Infinity,
+    duration: 3,
+    repeatType: 'loop',
+    repeatDelay: 1,
+  }}
+  className='absolute w-20 h-20 border-2 border-yellow-300 rounded-full'
+/> */

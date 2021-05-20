@@ -23,9 +23,9 @@ const Home = ({ modules }) => {
   // }, [bubblesContainerRef])
   return (
     <>
-      <div className='flex min-h-screen'>
+      <div className='flex flex-col-reverse min-h-screen sm:flex-row'>
         {/* hero */}
-        <section className='flex items-center w-3/5 h-screen p-4 pt-0 sm:p-20'>
+        <section className='flex items-center w-full h-screen p-4 pt-0 sm:w-3/5 sm:p-20'>
           <div className='flex flex-col max-w-4xl gap-y-4 bg-opacity-60'>
             <h1 className='text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 font-display'>
               Compartimos conocimiento,
@@ -48,7 +48,7 @@ const Home = ({ modules }) => {
         </section>
 
         {/* bubbles */}
-        <section className='relative w-2/5 '>
+        <section className='relative w-full sm:w-2/5 '>
           <Bubble
             size='small'
             img='/img/sasuke.jpeg'
