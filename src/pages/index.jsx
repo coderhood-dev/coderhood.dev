@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { Dots } from '@/components/dots/Dots'
-import { Bubble } from '@/components/bubble/Bubble'
+import { Bubbles } from '@/components/bubbles/Bubbles'
+import { learningBubbles } from '@/data/learningBubbles'
 // import Packery from 'packery'
 // import dynamic from 'next/dynamic'
 
@@ -48,25 +49,8 @@ const Home = ({ modules }) => {
         </section>
 
         {/* bubbles */}
-        <section className='relative w-full sm:w-2/5 '>
-          <Bubble
-            size='small'
-            img='/img/sasuke.jpeg'
-            style={{ position: 'absolute', right: '3rem', top: '10rem' }}
-            animate={{ y: [10, 0, 5, -10, 0], x: [5, 0, 7, -5, 0] }}
-          />
-          <Bubble
-            size='small'
-            img='/img/naruto.png'
-            style={{ position: 'absolute', right: '18rem', top: '9rem' }}
-            animate={{ y: [7, 0, -3, 5, 0], x: [-5, 0, -10, 5, 0] }}
-          />
-          <Bubble
-            size='big'
-            img='/img/kakashi.jpeg'
-            style={{ position: 'absolute', right: '8rem', top: '0.5rem' }}
-            animate={{ y: [20, 0, -5, 10, 0], x: [10, 0, -7, 1, 0] }}
-          />
+        <section className='w-full sm:w-2/5 '>
+          <Bubbles bubbles={learningBubbles} />
         </section>
       </div>
       <Dots r3f />
