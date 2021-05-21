@@ -2,65 +2,66 @@ import { useEffect } from 'react'
 import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
+// const lightWaveKeyframes = [
+//   '9rem',
+//   '10rem',
+//   '12.5rem',
+//   '10rem',
+//   '12rem',
+//   '10rem',
+//   '13rem',
+//   '10rem',
+//   // '12rem',
+//   // '10rem',
+//   '15rem',
+//   '10rem',
+//   '12rem',
+//   '10rem',
+//   '14rem',
+//   '10rem',
+//   '9rem',
+//   // '12rem',
+//   // '15rem',
+//   // '12rem',
+//   // '13rem',
+//   // '12.5rem',
+//   // '14rem',
+//   // '9rem',
+// ]
+// const opacityKeyframes = [
+//   0.4,
+//   1,
+//   0.4,
+//   1,
+//   0.4,
+//   1,
+//   0.4,
+//   1,
+//   0.4,
+//   1,
+//   0.4,
+//   1,
+//   0.4,
+//   1,
+//   0.4,
+// ]
+
 const mainWaveKeyframes = [
-  '7rem',
-  '8.5rem',
-  '8rem',
-  '9rem',
-  '8rem',
-  '11rem',
-  '8rem',
-  '10rem',
-  '8rem',
-  '11rem',
-  '8rem',
-  '9rem',
-  '8.5rem',
-  '10rem',
-  '7rem',
-]
-const lightWaveKeyframes = [
-  '9rem',
-  '10rem',
-  '12.5rem',
-  '10rem',
-  '12rem',
-  '10rem',
-  '13rem',
-  '10rem',
-  // '12rem',
-  // '10rem',
-  '15rem',
-  '10rem',
-  '12rem',
-  '10rem',
-  '14rem',
-  '10rem',
-  '9rem',
-  // '12rem',
-  // '15rem',
-  // '12rem',
-  // '13rem',
-  // '12.5rem',
-  // '14rem',
-  // '9rem',
-]
-const opacityKeyframes = [
-  0.4,
-  1,
-  0.4,
-  1,
-  0.4,
-  1,
-  0.4,
-  1,
-  0.4,
-  1,
-  0.4,
-  1,
-  0.4,
-  1,
-  0.4,
+  '100%',
+  '110%',
+  '103%',
+  '110%',
+  '102%',
+  '120%',
+  '105%',
+  '125%',
+  '102%',
+  '110%',
+  '100%',
+  '115%',
+  '105%',
+  '115%',
+  '100%',
 ]
 
 export const Bubble = ({ status, img, animate, position }) => {
@@ -68,34 +69,21 @@ export const Bubble = ({ status, img, animate, position }) => {
 
   const size = {
     1: '4rem',
-    2: '6rem',
-    3: '8rem',
-    4: '8rem',
+    2: '5rem',
+    3: '6rem',
+    4: '7rem',
     5: '8rem',
   }[status]
-  const isVisible = status > 0 && status !== Infinity
+  const isVisible = status > 0 && status <= 5
   const isTalking = status === 3 || status === 4
 
-  // const bubbleVariants = {
-  //   // exit: {
-  //   //   width: 0,
-  //   //   height: 0,
-  //   //   transition: { duration: 1 },
-  //   // },
-  //   animate:
-  //     width: '5rem',
-  //     height: '5rem',
-  //     ...animate,
-  //   },
-  // }
-
   const waveVariants = {
-    initial: { width: '0rem', height: '0rem' },
+    initial: { width: 0, height: 0 },
     animate: {
       width: mainWaveKeyframes,
       height: mainWaveKeyframes,
     },
-    exit: { width: '0rem', height: '0rem' },
+    exit: { width: 0, height: 0 },
   }
 
   useEffect(() => {
@@ -159,6 +147,7 @@ export const Bubble = ({ status, img, animate, position }) => {
                 width={240}
                 quality={65}
                 objectFit='cover'
+                priority
               />
             </motion.div>
           </div>
@@ -167,18 +156,3 @@ export const Bubble = ({ status, img, animate, position }) => {
     </AnimatePresence>
   )
 }
-
-/* <motion.div
-  animate={{
-    width: lightWaveKeyframes,
-    height: lightWaveKeyframes,
-    opacity: opacityKeyframes,
-  }}
-  transition={{
-    repeat: Infinity,
-    duration: 3,
-    repeatType: 'loop',
-    repeatDelay: 1,
-  }}
-  className='absolute w-20 h-20 border-2 border-yellow-300 rounded-full'
-/> */
