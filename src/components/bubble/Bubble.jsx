@@ -2,21 +2,21 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 const mainWaveKeyframes = [
+  '7rem',
+  '8.5rem',
+  '8rem',
   '9rem',
-  '10.5rem',
-  '10rem',
+  '8rem',
   '11rem',
+  '8rem',
   '10rem',
-  '13rem',
-  '10rem',
-  '12rem',
-  '10rem',
-  '13rem',
-  '10rem',
+  '8rem',
   '11rem',
-  '10.5rem',
-  '12rem',
+  '8rem',
   '9rem',
+  '8.5rem',
+  '10rem',
+  '7rem',
 ]
 const lightWaveKeyframes = [
   '9rem',
@@ -64,9 +64,11 @@ const opacityKeyframes = [
 
 export const Bubble = ({ status, img, animate, position }) => {
   const size = {
-    1: '5rem',
-    2: '7.5rem',
-    3: '10rem',
+    1: '4rem',
+    2: '6rem',
+    3: '8rem',
+    4: '8rem',
+    5: '8rem',
   }[status]
   const isVisible = status > 0 && status !== Infinity
   const isTalking = isVisible && (status === 3 || status === 4)
@@ -77,7 +79,7 @@ export const Bubble = ({ status, img, animate, position }) => {
   //   //   height: 0,
   //   //   transition: { duration: 1 },
   //   // },
-  //   animate: {
+  //   animate:
   //     width: '5rem',
   //     height: '5rem',
   //     ...animate,
@@ -90,9 +92,7 @@ export const Bubble = ({ status, img, animate, position }) => {
         <motion.div
           className='absolute'
           style={position}
-          animate={{ animate }}
-          // initial={{ width: 0, height: 0 }}
-          // exit={{ width: 0, height: 0 }}
+          animate={{ ...animate }}
           transition={{
             width: { type: 'spring', stiffness: 100, duration: 2 },
             height: { type: 'spring', stiffness: 100, duration: 2 },
@@ -104,6 +104,7 @@ export const Bubble = ({ status, img, animate, position }) => {
           <div className='relative flex items-center justify-center'>
             {isTalking && (
               <motion.div
+                initial={{ width: '8rem', height: '8rem' }}
                 animate={{
                   width: mainWaveKeyframes,
                   height: mainWaveKeyframes,
@@ -114,7 +115,7 @@ export const Bubble = ({ status, img, animate, position }) => {
                   repeatType: 'loop',
                   repeatDelay: 1,
                 }}
-                className='absolute w-40 h-40 bg-yellow-500 rounded-full'
+                className='absolute bg-yellow-500 rounded-full w-30 h-30'
               />
             )}
             <motion.div
@@ -123,7 +124,8 @@ export const Bubble = ({ status, img, animate, position }) => {
                 height: size,
               }}
               initial={{ width: 0, height: 0 }}
-              exit={{ width: 0, height: 0 }} // transition: { duration: 1 },
+              exit={{ width: 0, height: 0 }}
+              transition={{ duration: 1 }}
               className='overflow-hidden rounded-full'
             >
               <Image

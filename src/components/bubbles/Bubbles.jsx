@@ -18,7 +18,7 @@ export const Bubbles = ({ bubbles: initialState }) => {
   //   return null
   // }
 
-  useInterval(() => {
+  const handlePress = () => {
     const newBubblesState = bubbles.map(({ status, ...b }) => {
       let newStatus = status
 
@@ -34,11 +34,15 @@ export const Bubbles = ({ bubbles: initialState }) => {
     })
 
     setBubbles(newBubblesState)
+  }
+
+  useInterval(() => {
+    handlePress()
   }, 3000)
 
   console.log('bubbles', bubbles)
   return (
-    <div className='relative w-full h-full'>
+    <div className='relative w-full h-full' onClick={handlePress}>
       {bubbles.map((bubble) => (
         <Bubble key={bubble.img} {...bubble} />
       ))}

@@ -14,13 +14,13 @@ export const learningBubbles = [
   {
     status: 1,
     img: '/img/naruto.png',
-    position: { right: '18rem', top: '9rem' },
+    position: { right: '15rem', top: '9rem' },
     animate: { y: [7, 0, -3, 5, 0], x: [-5, 0, -10, 5, 0] },
   },
   {
     status: 0,
     img: '/img/konohamaru.png',
-    position: { right: '16rem', top: '14rem' },
+    position: { right: '12rem', top: '20rem' },
     animate: { y: [7, 0, -3, 5, 0], x: [-5, 0, -10, 5, 0] },
   },
 ]
