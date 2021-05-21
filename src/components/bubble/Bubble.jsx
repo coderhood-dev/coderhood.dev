@@ -1,4 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect } from 'react'
+import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 const mainWaveKeyframes = [
@@ -63,6 +64,8 @@ const opacityKeyframes = [
 ]
 
 export const Bubble = ({ status, img, animate, position }) => {
+  const waveControls = useAnimation()
+
   const size = {
     1: '4rem',
     2: '6rem',
@@ -71,7 +74,7 @@ export const Bubble = ({ status, img, animate, position }) => {
     5: '8rem',
   }[status]
   const isVisible = status > 0 && status !== Infinity
-  const isTalking = isVisible && (status === 3 || status === 4)
+  const isTalking = status === 3 || status === 4
 
   // const bubbleVariants = {
   //   // exit: {
@@ -86,38 +89,59 @@ export const Bubble = ({ status, img, animate, position }) => {
   //   },
   // }
 
+  const waveVariants = {
+    initial: { width: '0rem', height: '0rem' },
+    animate: {
+      width: mainWaveKeyframes,
+      height: mainWaveKeyframes,
+    },
+    exit: { width: '0rem', height: '0rem' },
+  }
+
+  useEffect(() => {
+    const doWaveAnimations = async () => {
+      if (isTalking) {
+        await waveControls.start('animate', {
+          repeat: Infinity,
+          duration: 4,
+          repeatType: 'loop',
+          repeatDelay: 1,
+          delay: 1,
+        })
+      } else {
+        waveControls.start('exit', {
+          duration: 2,
+        })
+      }
+    }
+    doWaveAnimations()
+  }, [isTalking, waveControls])
+
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
           className='absolute'
           style={position}
-          animate={{ ...animate }}
+          animate={animate}
           transition={{
-            width: { type: 'spring', stiffness: 100, duration: 2 },
-            height: { type: 'spring', stiffness: 100, duration: 2 },
+            right: { type: 'spring', stiffness: 100, duration: 2 },
             repeat: Infinity,
             duration: 5,
             repeatType: 'reverse',
           }}
         >
           <div className='relative flex items-center justify-center'>
-            {isTalking && (
-              <motion.div
-                initial={{ width: '8rem', height: '8rem' }}
-                animate={{
-                  width: mainWaveKeyframes,
-                  height: mainWaveKeyframes,
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 3,
-                  repeatType: 'loop',
-                  repeatDelay: 1,
-                }}
-                className='absolute bg-yellow-500 rounded-full w-30 h-30'
-              />
-            )}
+            <AnimatePresence exitBeforeEnter>
+              {isTalking && (
+                <motion.div
+                  initial='initial'
+                  animate={waveControls}
+                  variants={waveVariants}
+                  className='absolute bg-yellow-500 rounded-full'
+                />
+              )}
+            </AnimatePresence>
             <motion.div
               animate={{
                 width: size,

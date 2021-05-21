@@ -38,7 +38,7 @@ export const Bubbles = ({ bubbles: initialState }) => {
 
   useInterval(() => {
     handlePress()
-  }, 3000)
+  }, 5000)
 
   console.log('bubbles', bubbles)
   return (
