@@ -5,7 +5,20 @@ export const Lesson = ({ lesson }) => {
   const title = `Clase ${id}`
   return (
     <>
-      <div className='flex flex-col items-center justify-center w-full min-h-screen p-10 rounded-lg'>
+      <div className='flex flex-col items-center justify-start w-full min-h-screen rounded-lg'>
+        <div
+          className='relative w-full overflow-hidden'
+          style={{ paddingTop: '56.25%' }}
+        >
+          <iframe
+            className='absolute top-0 bottom-0 left-0 right-0 w-full h-full'
+            src='https://www.youtube.com/embed/T_otbeKpdCE'
+            title={`Coderhood Academy - clase ${id}`}
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+          ></iframe>
+        </div>
         <h1 className='mb-10 text-2xl text-gray-700'>{title}</h1>
         {pdf ? (
           <a

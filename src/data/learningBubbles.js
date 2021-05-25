@@ -42,11 +42,3 @@ export const learningBubbles = [
     animate: { y: [7, 0, -3, 5, 0], x: [-5, 0, -10, 5, 0] },
   },
 ]
-
-// <= 0 = not born yet
-// 1 = small
-// 2 = medium
-// 3 = big
-// 4 = big
-// 5 = big
-// > 5 = waiting to reborn

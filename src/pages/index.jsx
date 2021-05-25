@@ -54,10 +54,6 @@ const Home = ({ modules }) => {
         </section>
       </div>
       <Dots r3f />
-      {/* <mesh r3f>
-        <circleGeometry args={[5, 32, 32]} />
-        <meshBasicMaterial />
-      </mesh> */}
     </>
   )
 }
