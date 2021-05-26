@@ -1,4 +1,4 @@
-export const securityHeaders = [
+module.exports = [
   {
     key: 'X-Frame-Options',
     value: 'DENY',

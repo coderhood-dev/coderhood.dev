@@ -1,4 +1,4 @@
-import { securityHeaders } from '@/lib/security'
+const securityHeaders = require('./src/lib/security')
 
 const plugins = require('next-compose-plugins')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
