@@ -1,10 +1,13 @@
-import { getPathContent, getUrlContent } from '@/helpers/github'
-import useStore from '@/helpers/store'
+import Link from 'next/link'
+
+import useStore from '@/lib/store'
+import { getFolderContent } from '@/lib/mdx'
+import { parseFileName } from '@/lib/string'
 import { Lesson } from '@/components/lesson/Lesson'
 
-const Modules = ({ module, lessons }) => {
+const Modules = ({ title, lessons }) => {
   const lesson = useStore((state) => state.lesson)
-  useStore.setState({ title: module })
+  useStore.setState({ title })
   return (
     <>
       <div className='flex h-full bg-white'>
@@ -14,28 +17,31 @@ const Modules = ({ module, lessons }) => {
               className='pb-10 pl-10 pr-4 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-900'
               onClick={() => useStore.setState({ lesson: null })}
             >
-              {module}
+              {title}
             </h3>
           </a>
+
           {lessons.map((l) => (
             <a
               className='cursor-pointer'
               onClick={() => useStore.setState({ lesson: l })}
-              key={l.id}
+              key={l.name}
             >
               <p
                 className={`px-10 py-1 my-1 text-lg hover:bg-gray-100 ${
-                  lesson && l.id === lesson.id
+                  lesson && l.name === lesson.name
                     ? 'text-yellow-500'
                     : 'text-gray-700'
                 }`}
-              >{`Clase ${l.id}`}</p>
+              >
+                {l.title}
+              </p>
             </a>
           ))}
         </div>
         <div className='w-4/5 h-full shadow-2xl'>
           {lesson ? (
-            <Lesson key={lesson.id} lesson={lesson} />
+            <Lesson key={lesson.name} lesson={lesson} />
           ) : (
             <div className='flex items-center justify-center h-full'>
               <p className='text-center text-gray-700'>
@@ -52,45 +58,28 @@ const Modules = ({ module, lessons }) => {
 }
 
 export const getStaticPaths = async () => {
-  const modulesMetadata = await getPathContent('/contents/modulos')
+  const content = await getFolderContent('academy')
 
-  const paths = modulesMetadata.map(
-    (m) => `/academy/${m.name.split(/-(.+)/)[1]}`
-  )
+  const paths = content.map((m) => `/academy/${m.split(/-(.+)/)[1]}`)
 
   return { paths, fallback: false }
 }
 
-export const getStaticProps = async ({ params: { module } }) => {
-  const modulesMetadata = await getPathContent('/contents/modulos')
+export const getStaticProps = async ({ params: { module: moduleShort } }) => {
+  const content = await getFolderContent('academy')
 
-  const moduleMetadata = modulesMetadata.find((m) => m.name.includes(module))
+  const module = content.find((m) => m.includes(moduleShort))
+  const { title } = parseFileName(module)
 
-  const moduleFolder = await getUrlContent(moduleMetadata.url)
+  const moduleFiles = await getFolderContent(`academy/${module}`)
 
-  let lessons = []
-  for (const file of moduleFolder) {
-    const lastLesson = lessons[lessons.length - 1]
-    const id = file.name.split('-')[0]
-
-    const lesson = { id }
-    if (file.name.includes('.mdx')) {
-      lesson.mdx = await fetch(file.download_url).then((data) => data.text())
-    }
-    if (file.name.includes('.pdf')) {
-      lesson.pdf = file.download_url
-    }
-
-    if (!lastLesson || (lastLesson && lastLesson.id < id)) {
-      lessons.push(lesson)
-    } else {
-      const updatedLesson = { ...lastLesson, ...lesson }
-      lessons[lessons.length - 1] = updatedLesson
-    }
-  }
+  const lessons = moduleFiles
+    .filter((m) => !m.includes('.'))
+    .map((m) => parseFileName(m))
+  console.log('lessons', lessons, module)
 
   return {
-    props: { module, lessons },
+    props: { title, lessons },
   }
 }
 

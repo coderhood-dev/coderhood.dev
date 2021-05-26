@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-import { getPathContent } from '@/helpers/github'
-import useStore from '@/helpers/store'
-import { capitalize } from '@/helpers/string'
+import { getFolderContent } from '@/lib/mdx'
+import useStore from '@/lib/store'
+import { capitalize } from '@/lib/string'
 
 const listVariants = {
   initial: { opacity: 0 },
@@ -51,7 +51,7 @@ const Academy = ({ modules }) => {
         <h3 className='pt-16 pb-5 text-3xl font-extrabold'>Módulos</h3>
         <motion.ul variants={listVariants} initial='initial' animate='animate'>
           {modules.map((module) => (
-            <motion.li key={module.url} variants={itemVariants}>
+            <motion.li key={module.name} variants={itemVariants}>
               <Link href={`/academy/${module.name}`}>
                 <a>
                   <p className='p-4 text-lg text-gray-600'>{`📓 ${module.title}`}</p>
@@ -68,18 +68,15 @@ const Academy = ({ modules }) => {
 export default Academy
 
 export async function getStaticProps() {
-  const modulesMetadata = await getPathContent('/contents/modulos')
+  const content = await getFolderContent('academy')
 
-  console.log('modulesMetadata', modulesMetadata)
-
-  const modules = modulesMetadata.map((m) => {
-    const name = m.name.split(/-(.+)/)[1]
+  const modules = content.map((module) => {
+    const name = module.split(/-(.+)/)[1]
     const words = name.split('-')
     const [fistWord, ...others] = words
     const title = [capitalize(fistWord), ...others].join(' ')
-    const url = m.url
 
-    return { name, title, url }
+    return { title, name }
   })
 
   return {
