@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import useStore from '@/lib/store'
 import { getFolderContent } from '@/lib/mdx'
@@ -8,6 +9,9 @@ import { Lesson } from '@/components/lesson/Lesson'
 const Modules = ({ title, lessons }) => {
   const lesson = useStore((state) => state.lesson)
   useStore.setState({ title })
+
+  const { asPath } = useRouter()
+
   return (
     <>
       <div className='flex h-full bg-white'>
@@ -20,24 +24,28 @@ const Modules = ({ title, lessons }) => {
               {title}
             </h3>
           </a>
-
-          {lessons.map((l) => (
-            <a
-              className='cursor-pointer'
-              onClick={() => useStore.setState({ lesson: l })}
-              key={l.name}
-            >
-              <p
-                className={`px-10 py-1 my-1 text-lg hover:bg-gray-100 ${
-                  lesson && l.name === lesson.name
-                    ? 'text-yellow-500'
-                    : 'text-gray-700'
-                }`}
-              >
-                {l.title}
-              </p>
-            </a>
-          ))}
+          <ul>
+            {lessons.map((l) => (
+              <li key={l.name}>
+                <Link href={`${asPath}/${l.name}`}>
+                  <a
+                    className='cursor-pointer'
+                    onClick={() => useStore.setState({ lesson: l })}
+                  >
+                    <p
+                      className={`px-10 py-1 my-1 text-lg hover:bg-gray-100 ${
+                        lesson && l.name === lesson.name
+                          ? 'text-yellow-500'
+                          : 'text-gray-700'
+                      }`}
+                    >
+                      {l.title}
+                    </p>
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
         <div className='w-4/5 h-full shadow-2xl'>
           {lesson ? (
