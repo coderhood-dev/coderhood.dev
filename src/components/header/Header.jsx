@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { Head } from '@/components/head/Head'
-import useStore from '@/helpers/store'
+import useStore from '@/lib/store'
 
 export const Header = () => {
   const title = useStore((s) => s.title)

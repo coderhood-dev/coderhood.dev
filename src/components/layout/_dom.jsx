@@ -1,4 +1,4 @@
-import useStore from '@/helpers/store'
+import useStore from '@/lib/store'
 import { Header } from '@/components/header/Header'
 import { useRef } from 'react'
 
