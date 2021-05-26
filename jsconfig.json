@@ -5,9 +5,11 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@/data/*": ["data/*"]
     }
   },
-  "include": ["./src/**/*", "./pages/**/*"],
+  "include": ["./src/**/*", "./pages/**/*", "data"],
   "exclude": ["node_modules"]
 }
+ 
