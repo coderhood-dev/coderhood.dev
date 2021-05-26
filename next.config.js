@@ -1,3 +1,5 @@
+import { securityHeaders } from '@/lib/security'
+
 const plugins = require('next-compose-plugins')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -28,6 +30,14 @@ const nextConfig =
     ? {
         future: {
           webpack5: true,
+        },
+        async headers() {
+          return [
+            {
+              source: '/(.*)',
+              headers: securityHeaders,
+            },
+          ]
         },
         webpack(config, { webpack, dev, isServer }) {
           config.plugins.push(
