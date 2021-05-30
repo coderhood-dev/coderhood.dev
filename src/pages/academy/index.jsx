@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-import { getFolderContent } from '@/lib/mdx'
+import { getFolderContent } from '@/lib/files'
 import useStore from '@/lib/store'
 import { capitalize } from '@/lib/string'
 
