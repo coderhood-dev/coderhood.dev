@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Bubble } from '@/components/bubble/Bubble'
+import { Bubble } from '@/components/Bubble'
 import { useInterval } from '@/hooks/useInterval'
 
 export const Bubbles = ({ bubbles: initialState }) => {
@@ -8,7 +8,6 @@ export const Bubbles = ({ bubbles: initialState }) => {
   const updateBubbles = () => {
     const lastBubbleFinished = bubbles[bubbles.length - 1].status > 4
 
-    console.log('lastBubbleFinished', lastBubbleFinished)
     const nextBubblesState = lastBubbleFinished
       ? initialState
       : bubbles.map(({ status, ...b }) => ({

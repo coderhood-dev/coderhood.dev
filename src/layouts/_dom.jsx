@@ -1,5 +1,5 @@
 import useStore from '@/lib/store'
-import { Header } from '@/components/header/Header'
+import { Header } from '@/components/Header'
 import { useRef } from 'react'
 
 const Dom = ({ children }) => {

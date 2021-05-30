@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { Head } from '@/components/head/Head'
+import { Head } from '@/components/Head'
 import useStore from '@/lib/store'
 
 export const Header = () => {
