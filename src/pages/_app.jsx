@@ -1,16 +1,16 @@
 import { Children } from 'react'
 import dynamic from 'next/dynamic'
-import Dom from '@/components/layout/_dom'
+import Dom from '@/layouts/_dom'
 
 import '@/styles/index.css'
 
 let LCanvas = null
 if (process.env.NODE_ENV === 'production') {
-  LCanvas = dynamic(() => import('@/components/layout/_canvas'), {
+  LCanvas = dynamic(() => import('@/layouts/_canvas'), {
     ssr: false,
   })
 } else {
-  LCanvas = require('@/components/layout/_canvas').default
+  LCanvas = require('@/layouts/_canvas').default
 }
 
 function Layout({ dom }) {

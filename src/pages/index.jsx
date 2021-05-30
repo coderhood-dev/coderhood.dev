@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
-import { Dots } from '@/components/dots/Dots'
-import { Bubbles } from '@/components/bubbles/Bubbles'
+import { Dots } from '@/components/Dots'
+import { Bubbles } from '@/components/Bubbles'
 import { learningBubbles } from '@/data/learningBubbles'
 // import Packery from 'packery'
 // import dynamic from 'next/dynamic'
@@ -11,8 +11,6 @@ import { learningBubbles } from '@/data/learningBubbles'
 
 const Home = ({ modules }) => {
   // const bubblesContainerRef = useRef(null)
-
-  // console.log('Packery', Packery)
 
   // useEffect(() => {
   //   if (bubblesContainerRef.current) {
