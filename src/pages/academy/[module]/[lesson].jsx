@@ -1,14 +1,20 @@
-import useStore from '@/lib/store'
-import { getFolderContent } from '@/lib/mdx'
-import { Lesson } from '@/components/lesson/Lesson'
+import { MDXRemote } from 'next-mdx-remote'
 
-const Pepe = () => {
+import useStore from '@/lib/store'
+import { getFolderContent, getLesson, getLessons } from '@/lib/files'
+import { LessonLayout } from '@/layouts/Lesson'
+
+const LessonPage = ({ mdxSource, frontMatter, lessons }) => {
   return (
     <>
-      <div className='p-10 text-xl text-gray-700'>Pepe</div>
+      <LessonLayout frontMatter={frontMatter} lessons={lessons}>
+        <MDXRemote
+          {...mdxSource}
+          // components={}
+        />
+      </LessonLayout>
     </>
   )
-  // const lesson = useStore((state) => state.lesson)
   // useStore.setState({ title: module })
   // return (
   //   <>
@@ -66,7 +72,7 @@ export const getStaticPaths = async (props) => {
     const lessons = await getFolderContent(`academy/${module}`)
 
     lessons.forEach((lesson) => {
-      // only add paths for folders, not files like readme.mdx
+      // in the module folder there will be folders for lessons and one readme.mdx, we don't want it
       if (!lesson.includes('.')) {
         const lessonName = lesson.split(/-(.+)/)[1]
 
@@ -75,48 +81,18 @@ export const getStaticPaths = async (props) => {
     })
   }
 
-  console.log('paths', paths)
-
   return { paths, fallback: false }
 }
 
 export const getStaticProps = async ({ params }) => {
-  console.log('getStaticProps', params)
-  // const content = await getFolderContent('academy')
+  const { module: moduleURL, lesson: lessonURL } = params
 
-  // const module = content.find((m) => m.includes(moduleShort))
-
-  // const lessons = await getFolderContent(`academy/${module}`)
-
-  // '1-datos-y-algoritmos',
-  // '2-estructuras-de-datos',
-  // '3-modularizacion-y-funciones',
-  // '4-estructuras-de-datos'
-
-  // let lessons = []
-  // for (const file of moduleFolder) {
-  //   const lastLesson = lessons[lessons.length - 1]
-  //   const id = file.name.split('-')[0]
-
-  //   const lesson = { id }
-  //   if (file.name.includes('.mdx')) {
-  //     lesson.mdx = await fetch(file.download_url).then((data) => data.text())
-  //   }
-  //   if (file.name.includes('.pdf')) {
-  //     lesson.pdf = file.download_url
-  //   }
-
-  //   if (!lastLesson || (lastLesson && lastLesson.id < id)) {
-  //     lessons.push(lesson)
-  //   } else {
-  //     const updatedLesson = { ...lastLesson, ...lesson }
-  //     lessons[lessons.length - 1] = updatedLesson
-  //   }
-  // }
+  const lesson = await getLesson(lessonURL, moduleURL)
+  const lessons = await getLessons(moduleURL)
 
   return {
-    props: { params },
+    props: { ...lesson, lessons },
   }
 }
 
-export default Pepe
+export default LessonPage

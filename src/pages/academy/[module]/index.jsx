@@ -1,64 +1,25 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-
 import useStore from '@/lib/store'
-import { getFolderContent } from '@/lib/mdx'
-import { parseFileName } from '@/lib/string'
-import { Lesson } from '@/components/lesson/Lesson'
+import { getLessons, getFolderContent, getCompleteName } from '@/lib/files'
+import { getTitleFromFile } from '@/lib/string'
+import { Sidebar } from '@/components/Sidebar'
 
 const Modules = ({ title, lessons }) => {
-  const lesson = useStore((state) => state.lesson)
   useStore.setState({ title })
-
-  const { asPath } = useRouter()
 
   return (
     <>
       <div className='flex h-full bg-white'>
         <div className='w-1/5 py-10'>
-          <a className='cursor-pointer'>
-            <h3
-              className='pb-10 pl-10 pr-4 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-900'
-              onClick={() => useStore.setState({ lesson: null })}
-            >
-              {title}
-            </h3>
-          </a>
-          <ul>
-            {lessons.map((l) => (
-              <li key={l.name}>
-                <Link href={`${asPath}/${l.name}`}>
-                  <a
-                    className='cursor-pointer'
-                    onClick={() => useStore.setState({ lesson: l })}
-                  >
-                    <p
-                      className={`px-10 py-1 my-1 text-lg hover:bg-gray-100 ${
-                        lesson && l.name === lesson.name
-                          ? 'text-yellow-500'
-                          : 'text-gray-700'
-                      }`}
-                    >
-                      {l.title}
-                    </p>
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Sidebar title={title} items={lessons} />
         </div>
         <div className='w-4/5 h-full shadow-2xl'>
-          {lesson ? (
-            <Lesson key={lesson.name} lesson={lesson} />
-          ) : (
-            <div className='flex items-center justify-center h-full'>
-              <p className='text-center text-gray-700'>
-                Selecciona una leccion para ver su contenido.
-                <br /> En una futura update aca se va a cargar el README.md del
-                módulo.
-              </p>
-            </div>
-          )}
+          <div className='flex items-center justify-center h-full'>
+            <p className='text-center text-gray-700'>
+              Selecciona una leccion para ver su contenido.
+              <br /> En una futura update aca se va a cargar el README.md del
+              módulo.
+            </p>
+          </div>
         </div>
       </div>
     </>
@@ -73,18 +34,11 @@ export const getStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
-export const getStaticProps = async ({ params: { module: moduleShort } }) => {
-  const content = await getFolderContent('academy')
+export const getStaticProps = async ({ params: { module: moduleURL } }) => {
+  const lessons = await getLessons(moduleURL)
+  const module = await getCompleteName(moduleURL, 'academy')
 
-  const module = content.find((m) => m.includes(moduleShort))
-  const { title } = parseFileName(module)
-
-  const moduleFiles = await getFolderContent(`academy/${module}`)
-
-  const lessons = moduleFiles
-    .filter((m) => !m.includes('.'))
-    .map((m) => parseFileName(m))
-  console.log('lessons', lessons, module)
+  const title = getTitleFromFile(module)
 
   return {
     props: { title, lessons },
