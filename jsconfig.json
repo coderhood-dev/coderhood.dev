@@ -9,7 +9,7 @@
       "@/data/*": ["public/data/*"]
     }
   },
-  "include": ["./src/**/*", "./pages/**/*", "public/data"],
+  "include": ["./src/**/*", "./pages/**/*", "./public/**/*"],
   "exclude": ["node_modules"]
 }
  
