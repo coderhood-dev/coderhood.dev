@@ -3,7 +3,7 @@ import { parseISO, format } from 'date-fns'
 import { Sidebar } from '@/components/Sidebar'
 import { LessonVideo } from '@/components/LessonVideo'
 
-export const LessonLayout = ({ frontMatter, pdfUrl, lessons, children }) => {
+export const LessonLayout = ({ frontMatter, pdfURL, lessons, children }) => {
   const {
     title,
     publishedAt,
@@ -21,14 +21,13 @@ export const LessonLayout = ({ frontMatter, pdfUrl, lessons, children }) => {
         <div>
           <LessonVideo videoURL={youtubeURL} title={title} />
           <article className='flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16'>
-            <h1 className='mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white'>
+            <h1 className='mb-4 text-3xl font-bold tracking-tight md:text-5xl '>
               {title}
             </h1>
-            {pdfUrl ? (
+            {pdfURL ? (
               <a
                 className='bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50'
-                href={pdfUrl}
-                download
+                href='/pdf.pdf'
               >
                 <p className='p-4 font-bold text-white'>
                   ⚡️ Descarga el pdf de la clase

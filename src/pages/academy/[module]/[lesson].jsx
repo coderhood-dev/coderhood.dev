@@ -4,10 +4,10 @@ import useStore from '@/lib/store'
 import { getFolderContent, getLesson, getLessons } from '@/lib/files'
 import { LessonLayout } from '@/layouts/Lesson'
 
-const LessonPage = ({ mdxSource, frontMatter, lessons }) => {
+const LessonPage = ({ pdfURL, mdxSource, frontMatter, lessons }) => {
   return (
     <>
-      <LessonLayout frontMatter={frontMatter} lessons={lessons}>
+      <LessonLayout frontMatter={frontMatter} lessons={lessons} pdfURL={pdfURL}>
         <MDXRemote
           {...mdxSource}
           // components={}

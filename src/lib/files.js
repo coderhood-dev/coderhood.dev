@@ -8,21 +8,28 @@ import { buildLessonStrings } from '@/lib/string'
 const root = process.cwd()
 
 export async function getFolderContent(url) {
-  return fs.readdirSync(path.join(root, 'data', url))
+  return fs.readdirSync(path.join(root, 'public/data', url))
 }
 
 export async function getCompleteName(shortName, folder) {
-  const modules = await getFolderContent(folder)
-  const module = modules.find((m) => m.includes(shortName))
-
-  return module
+  const content = await getFolderContent(folder)
+  return content.find((m) => m.includes(shortName))
 }
 
 export async function getLesson(lessonURL, moduleURL) {
   const moduleName = await getCompleteName(moduleURL, 'academy')
   const lessonName = await getCompleteName(lessonURL, `academy/${moduleName}`)
 
-  return await getMDX(`academy/${moduleName}/${lessonName}/readme.mdx`)
+  const lessonPath = `academy/${moduleName}/${lessonName}`
+  const lessonContent = await getFolderContent(lessonPath)
+
+  const mdx = await getMDX(`academy/${moduleName}/${lessonName}/readme.mdx`)
+
+  const pdfFile = lessonContent.find((file) => file.includes('.pdf'))
+  const pdfURL =
+    pdfFile && `/data/academy/${moduleName}/${lessonName}/${pdfFile}`
+
+  return { ...mdx, pdfURL }
 }
 
 export async function getLessons(moduleURL) {
@@ -49,7 +56,7 @@ export async function getLessons(moduleURL) {
 }
 
 export async function getMDX(url) {
-  const source = fs.readFileSync(path.join(root, 'data', url), 'utf8')
+  const source = fs.readFileSync(path.join(root, 'public/data', url), 'utf8')
 
   const { data, content } = matter(source)
   const mdxSource = await serialize(content)

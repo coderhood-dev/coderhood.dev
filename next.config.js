@@ -31,6 +31,7 @@ const nextConfig =
         future: {
           webpack5: true,
         },
+        // TODO: chequear si esto realmente esta funcionando en https://securityheaders.com/?q=coderhood.dev&followRedirects=on
         async headers() {
           return [
             {

@@ -6,10 +6,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@/data/*": ["data/*"]
+      "@/data/*": ["public/data/*"]
     }
   },
-  "include": ["./src/**/*", "./pages/**/*", "data"],
+  "include": ["./src/**/*", "./pages/**/*", "public/data"],
   "exclude": ["node_modules"]
 }
  
