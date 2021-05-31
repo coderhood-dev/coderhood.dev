@@ -27,7 +27,8 @@ export const LessonLayout = ({ frontMatter, pdfURL, lessons, children }) => {
             {pdfURL ? (
               <a
                 className='bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50'
-                href='/pdf.pdf'
+                href='https://github.com/coderhood-dev/coderhood.dev/blob/master/public/data/academy/0-introduccion/1-como-funciona-el-internet/como-funciona-el-internet.pdf'
+                download
               >
                 <p className='p-4 font-bold text-white'>
                   ⚡️ Descarga el pdf de la clase

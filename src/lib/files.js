@@ -26,8 +26,9 @@ export async function getLesson(lessonURL, moduleURL) {
   const mdx = await getMDX(`academy/${moduleName}/${lessonName}/readme.mdx`)
 
   const pdfFile = lessonContent.find((file) => file.includes('.pdf'))
-  const pdfURL =
-    pdfFile && `/data/academy/${moduleName}/${lessonName}/${pdfFile}`
+  const pdfURL = pdfFile
+    ? `/data/academy/${moduleName}/${lessonName}/${pdfFile}`
+    : null
 
   return { ...mdx, pdfURL }
 }
