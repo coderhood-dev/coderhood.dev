@@ -4,6 +4,14 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang='es'>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              var DEV_TOOLS = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;            
+              if (typeof DEV_TOOLS === "object") DEV_TOOLS.inject = function () {};
+            `,
+          }}
+        />
         <Head>
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link

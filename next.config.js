@@ -31,15 +31,15 @@ const nextConfig =
         future: {
           webpack5: true,
         },
-        // TODO: chequear si esto realmente esta funcionando en https://securityheaders.com/?q=coderhood.dev&followRedirects=on
-        async headers() {
-          return [
-            {
-              source: '/(.*)',
-              headers: securityHeaders,
-            },
-          ]
-        },
+        // // TODO: chequear si esto realmente esta funcionando en https://securityheaders.com/?q=coderhood.dev&followRedirects=on
+        // async headers() {
+        //   return [
+        //     {
+        //       source: '/(.*)',
+        //       headers: securityHeaders,
+        //     },
+        //   ]
+        // },
         webpack(config, { webpack, dev, isServer }) {
           config.plugins.push(
             new webpack.ProvidePlugin({
