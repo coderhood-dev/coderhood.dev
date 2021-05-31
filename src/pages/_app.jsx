@@ -41,8 +41,8 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
 
   return (
     <>
-      {compArr && <Layout dom={compArr} />}
       {r3fArr && <LCanvas>{r3fArr}</LCanvas>}
+      {compArr && <Layout dom={compArr} />}
     </>
   )
 }
