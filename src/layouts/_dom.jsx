@@ -7,7 +7,7 @@ const Dom = ({ children }) => {
 
   return (
     <div
-      className='absolute top-0 left-0 z-10 w-screen h-screen overflow-y-scroll dom'
+      className='absolute top-0 left-0 z-10 w-full h-screen overflow-y-scroll dom'
       ref={ref}
     >
       {children}
