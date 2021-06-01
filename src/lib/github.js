@@ -7,11 +7,19 @@ const headers = {
 const config = { headers }
 
 export const getPathContent = async (path) => {
-  return await fetch(`${process.env.REPO_URL}${path}`, config).then((r) =>
-    r.json()
-  )
+  return await fetch(
+    `${process.env.REPO_URL}/contents/public/data/academy${path}`,
+    config
+  ).then((r) => r.json())
 }
 
-export const getUrlContent = async (url) => {
+export const githubFetchURL = async (url) => {
   return await fetch(url, config).then((r) => r.json())
+}
+
+export const getUrlContent = async (path) => {
+  const modulesMetadata = await getPathContent(path)
+  const moduleMetadata = modulesMetadata.find((m) => m.name.includes(module))
+
+  const moduleFolder = await githubFetchURL(moduleMetadata.url)
 }

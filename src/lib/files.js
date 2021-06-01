@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import { buildLessonStrings } from '@/lib/string'
+import { getPathContent, githubFetchURL, getUrlContent } from '@/lib/github'
 
 const root = process.cwd()
 
@@ -25,10 +26,15 @@ export async function getLesson(lessonURL, moduleURL) {
 
   const mdx = await getMDX(`academy/${moduleName}/${lessonName}/readme.mdx`)
 
-  const pdfFile = lessonContent.find((file) => file.includes('.pdf'))
-  const pdfURL = pdfFile
-    ? `/data/academy/${moduleName}/${lessonName}/${pdfFile}`
-    : null
+  const pdfAvailable = lessonContent.some((file) => file.includes('.pdf'))
+  let pdfURL = null
+
+  console.log('pdfAvailable', pdfAvailable)
+
+  if (pdfAvailable) {
+    // const pdfURL = `/data/academy/${moduleName}/${lessonName}/${pdfFile}`
+    pdfURL = await getPDF(moduleName, lessonName)
+  }
 
   return { ...mdx, pdfURL }
 }
@@ -54,6 +60,18 @@ export async function getLessons(moduleURL) {
   }
 
   return lessons // [{ url: string, title: string }]
+}
+
+export async function getPDF(moduleName, lessonName) {
+  const url = `${process.env.REPO_URL}/contents/public/data/academy/${moduleName}/${lessonName}?ref=master`
+
+  const lessonFiles = await fetch(url, {
+    headers: { Authorization: `token ${process.env.GITHUB_OAUTH_TOKEN}` },
+  }).then((r) => r.json())
+
+  const { download_url } = lessonFiles.find(({ name }) => name.includes('.pdf'))
+
+  return download_url
 }
 
 export async function getMDX(url) {

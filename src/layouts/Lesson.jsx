@@ -27,7 +27,7 @@ export const LessonLayout = ({ frontMatter, pdfURL, lessons, children }) => {
             {pdfURL ? (
               <a
                 className='bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50'
-                href='https://github.com/coderhood-dev/coderhood.dev/blob/master/public/data/academy/0-introduccion/1-como-funciona-el-internet/como-funciona-el-internet.pdf'
+                href='https://raw.githubusercontent.com/coderhood-dev/coderhood.dev/master/public/data/academy/1-fundamentos/1-datos-y-algoritmos/estructuras-de-datos.pdf'
                 download
               >
                 <p className='p-4 font-bold text-white'>
