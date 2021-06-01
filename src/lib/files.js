@@ -4,7 +4,6 @@ import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import { buildLessonStrings } from '@/lib/string'
-import { getPathContent, githubFetchURL, getUrlContent } from '@/lib/github'
 
 const root = process.cwd()
 
@@ -74,7 +73,6 @@ export async function getPDF(moduleName, lessonName) {
   }).then((r) => r.json())
 
   if (githubLessonFiles) {
-    console.log('githubLessonFiles', githubLessonFiles, githubURL)
     const pdfFile = githubLessonFiles.find(({ name }) => name.includes('.pdf'))
 
     return pdfFile ? pdfFile.download_url : null
