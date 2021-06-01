@@ -6,7 +6,7 @@ export const Sidebar = ({ title, items }) => {
   return (
     <aside className='w-full h-full'>
       <a className='cursor-pointer'>
-        <h3 className='pb-10 pl-10 pr-4 text-2xl font-extrabold text-gray-900'>
+        <h3 className='pb-5 pl-10 pr-4 text-xl font-extrabold text-gray-900 dark:text-white'>
           {title}
         </h3>
       </a>
@@ -17,7 +17,9 @@ export const Sidebar = ({ title, items }) => {
               <a className='cursor-pointer'>
                 <p
                   className={`px-10 py-1 my-1 text-sm hover:bg-gray-100 ${
-                    asPath === item.url ? 'text-yellow-500' : 'text-gray-700'
+                    asPath === item.url
+                      ? 'text-yellow-500'
+                      : 'text-gray-700 dark:text-gray-400'
                   }`}
                 >
                   {item.title}

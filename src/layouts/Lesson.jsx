@@ -3,15 +3,14 @@ import { parseISO, format } from 'date-fns'
 import { Sidebar } from '@/components/Sidebar'
 import { LessonVideo } from '@/components/LessonVideo'
 
-export const LessonLayout = ({ frontMatter, pdfURL, lessons, children }) => {
-  const {
-    title,
-    publishedAt,
-    author,
-    summary,
-    readingTime,
-    youtubeURL,
-  } = frontMatter
+export const LessonLayout = ({
+  title,
+  frontMatter,
+  pdfURL,
+  lessons,
+  children,
+}) => {
+  const { publishedAt, author, summary, readingTime, youtubeURL } = frontMatter
   return (
     <>
       <div className='flex'>

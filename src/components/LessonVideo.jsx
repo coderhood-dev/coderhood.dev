@@ -2,7 +2,7 @@ export const LessonVideo = ({ videoURL, title }) => {
   console.log('videoURL', videoURL)
   if (!videoURL) {
     return (
-      <aside className='p-4 m-2 bg-gray-800 rounded-xl'>
+      <aside className='p-4 m-2 bg-gray-300 dark:bg-gray-700 rounded-xl'>
         <p className='text-sm'>
           Al parecer todavía no hay un video asignado a la clase, si el video de
           Youtube ya está listo podés agregar el link al documento de la clase

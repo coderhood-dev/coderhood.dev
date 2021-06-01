@@ -1,12 +1,26 @@
 import { MDXRemote } from 'next-mdx-remote'
 
-import { getFolderContent, getLesson, getLessons } from '@/lib/files'
+import useStore from '@/lib/store'
+import {
+  getFolderContent,
+  getLesson,
+  getLessons,
+  getCompleteName,
+} from '@/lib/files'
+import { getTitleFromFile } from '@/lib/string'
 import { LessonLayout } from '@/layouts/Lesson'
 
-const LessonPage = ({ pdfURL, mdxSource, frontMatter, lessons }) => {
+const LessonPage = ({ title, pdfURL, mdxSource, frontMatter, lessons }) => {
+  useStore.setState({ title })
+
   return (
     <>
-      <LessonLayout frontMatter={frontMatter} lessons={lessons} pdfURL={pdfURL}>
+      <LessonLayout
+        frontMatter={frontMatter}
+        lessons={lessons}
+        pdfURL={pdfURL}
+        title={title}
+      >
         <MDXRemote
           {...mdxSource}
           components={{
@@ -47,8 +61,11 @@ export const getStaticProps = async ({ params }) => {
   const lesson = await getLesson(lessonURL, moduleURL)
   const lessons = await getLessons(moduleURL)
 
+  const moduleName = await getCompleteName(moduleURL, 'academy')
+  const title = getTitleFromFile(moduleName)
+
   return {
-    props: { ...lesson, lessons },
+    props: { ...lesson, title, lessons },
   }
 }
 
