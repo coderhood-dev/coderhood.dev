@@ -1,27 +1,31 @@
-import useStore from '@/lib/store'
-import { getLessons, getFolderContent, getCompleteName } from '@/lib/files'
-import { getTitleFromFile } from '@/lib/string'
-import { Sidebar } from '@/components/Sidebar'
+import { MDXRemote } from 'next-mdx-remote'
 
-const Modules = ({ title, lessons }) => {
+import useStore from '@/lib/store'
+import { getTitleFromFile } from '@/lib/string'
+import { ModuleLayout } from '@/layouts/Module'
+import {
+  getModule,
+  getLessons,
+  getFolderContent,
+  getCompleteName,
+} from '@/lib/files'
+
+const Modules = ({ mdxSource, title, lessons, frontMatter }) => {
   useStore.setState({ title })
+  console.log('mdxSource', mdxSource)
+  console.log('frontMatter', frontMatter)
 
   return (
     <>
-      <div className='flex h-full bg-white'>
-        <div className='w-1/5 py-10'>
-          <Sidebar title={title} items={lessons} />
-        </div>
-        <div className='w-4/5 h-full shadow-2xl'>
-          <div className='flex items-center justify-center h-full'>
-            <p className='text-center text-gray-700'>
-              Selecciona una leccion para ver su contenido.
-              <br /> En una futura update aca se va a cargar el README.md del
-              módulo.
-            </p>
-          </div>
-        </div>
-      </div>
+      <ModuleLayout frontMatter={frontMatter} title={title} lessons={lessons}>
+        <MDXRemote
+          {...mdxSource}
+          components={{
+            Steps: ({ children }) => <ul>{children}</ul>,
+            Image: ({ children, ...props }) => <img {...props}>{children}</img>,
+          }}
+        />
+      </ModuleLayout>
     </>
   )
 }
@@ -36,12 +40,14 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { module: moduleURL } }) => {
   const lessons = await getLessons(moduleURL)
-  const module = await getCompleteName(moduleURL, 'academy')
+  const moduleName = await getCompleteName(moduleURL, 'academy')
 
-  const title = getTitleFromFile(module)
+  const title = getTitleFromFile(moduleName)
+
+  const module = await getModule(moduleName)
 
   return {
-    props: { title, lessons },
+    props: { ...module, title, lessons },
   }
 }
 

@@ -16,6 +16,14 @@ export async function getCompleteName(shortName, folder) {
   return content.find((m) => m.includes(shortName))
 }
 
+export async function getModule(moduleName) {
+  const url = `academy/${moduleName}/readme.mdx`
+  console.log('url', url)
+  const mdx = await getMDX(url)
+
+  return { ...mdx }
+}
+
 export async function getLesson(lessonURL, moduleURL) {
   const moduleName = await getCompleteName(moduleURL, 'academy')
   const lessonName = await getCompleteName(lessonURL, `academy/${moduleName}`)
