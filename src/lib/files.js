@@ -74,6 +74,7 @@ export async function getPDF(moduleName, lessonName) {
   }).then((r) => r.json())
 
   if (githubLessonFiles) {
+    console.log('githubLessonFiles', githubLessonFiles)
     const pdfFile = githubLessonFiles.find(({ name }) => name.includes('.pdf'))
 
     return pdfFile ? pdfFile.download_url : null
