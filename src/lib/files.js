@@ -29,10 +29,7 @@ export async function getLesson(lessonURL, moduleURL) {
   const pdfAvailable = lessonContent.some((file) => file.includes('.pdf'))
   let pdfURL = null
 
-  console.log('pdfAvailable', pdfAvailable)
-
   if (pdfAvailable) {
-    // const pdfURL = `/data/academy/${moduleName}/${lessonName}/${pdfFile}`
     pdfURL = await getPDF(moduleName, lessonName)
   }
 
@@ -53,6 +50,8 @@ export async function getLessons(moduleURL) {
     const lessonPath = `academy/${moduleName}/${lesson}`
     const lessonContent = await getFolderContent(lessonPath)
 
+    // TODO: chequear si existe el archivo en github, no local
+    // este chequeo local hace que si se accede a un pdf que no esta en github en local rompa
     if (lessonContent.includes('readme.mdx')) {
       const l = buildLessonStrings(lesson, `/academy/${moduleURL}`)
       lessons.push(l)

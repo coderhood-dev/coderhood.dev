@@ -18,7 +18,7 @@ export const LessonLayout = ({ frontMatter, pdfURL, lessons, children }) => {
         <div className='w-1/5 py-10'>
           <Sidebar title={title} items={lessons} />
         </div>
-        <div>
+        <div className='overflow-y-scroll'>
           <LessonVideo videoURL={youtubeURL} title={title} />
           <article className='flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16'>
             <h1 className='mb-4 text-3xl font-bold tracking-tight md:text-5xl '>
@@ -27,7 +27,7 @@ export const LessonLayout = ({ frontMatter, pdfURL, lessons, children }) => {
             {pdfURL ? (
               <a
                 className='bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50'
-                href='https://raw.githubusercontent.com/coderhood-dev/coderhood.dev/master/public/data/academy/1-fundamentos/1-datos-y-algoritmos/estructuras-de-datos.pdf'
+                href={pdfURL}
                 download
               >
                 <p className='p-4 font-bold text-white'>
