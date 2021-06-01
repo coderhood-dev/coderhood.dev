@@ -15,10 +15,10 @@ export const LessonLayout = ({ frontMatter, pdfURL, lessons, children }) => {
   return (
     <>
       <div className='flex'>
-        <div className='w-1/5 py-10'>
+        <div className='py-10' style={{ width: '30%' }}>
           <Sidebar title={title} items={lessons} />
         </div>
-        <div className='overflow-y-scroll'>
+        <div className='h-full' style={{ flex: 1 }}>
           <LessonVideo videoURL={youtubeURL} title={title} />
           <article className='flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16'>
             <h1 className='mb-4 text-3xl font-bold tracking-tight md:text-5xl '>

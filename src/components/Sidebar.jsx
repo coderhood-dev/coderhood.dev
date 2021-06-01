@@ -16,7 +16,7 @@ export const Sidebar = ({ title, items }) => {
             <Link href={item.url}>
               <a className='cursor-pointer'>
                 <p
-                  className={`px-10 py-1 my-1 text-lg hover:bg-gray-100 ${
+                  className={`px-10 py-1 my-1 text-sm hover:bg-gray-100 ${
                     asPath === item.url ? 'text-yellow-500' : 'text-gray-700'
                   }`}
                 >

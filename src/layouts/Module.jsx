@@ -2,11 +2,12 @@ import { Sidebar } from '@/components/Sidebar'
 
 export const ModuleLayout = ({ frontMatter, title, lessons, children }) => {
   return (
-    <div className='flex'>
-      <div className='w-1/5 py-10'>
+    <div className='flex items-stretch'>
+      <div className='py-10' style={{ width: '30%' }}>
         <Sidebar title={title} items={lessons} />
       </div>
-      <div className='w-4/5 h-full shadow-2xl'>
+      <div className='h-full' style={{ flex: 1 }}>
+        Module
         <article>
           <div className='w-full prose dark:prose-dark max-w-none'>
             {children}
