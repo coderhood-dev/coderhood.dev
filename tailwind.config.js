@@ -1,9 +1,17 @@
 module.exports = {
   mode: 'jit',
-  purge: [
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
-  ],
+  purge: {
+    enabled: false,
+    preserveHtmlElements: false,
+    content: [
+      './src/pages/**/*.{js,ts,jsx,tsx}',
+      './src/components/**/*.{js,ts,jsx,tsx}',
+      './src/layouts/**/*.{js,ts,jsx,tsx}',
+    ],
+    options: {
+      safelist: ['width'],
+    },
+  },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     screens: {
