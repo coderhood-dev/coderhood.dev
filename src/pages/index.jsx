@@ -1,11 +1,12 @@
 import { Dots } from '@/components/Dots'
 import { Bubbles } from '@/components/Bubbles'
+import { Container } from '@/components/Container'
 import { learningBubbles } from '@/data/learningBubbles'
 
 const Home = ({ modules }) => {
   return (
     <>
-      <div className='flex flex-col-reverse h-full sm:flex-row'>
+      <Container className='flex-col-reverse sm:flex-row'>
         {/* hero */}
         <section className='flex items-center w-full h-full p-4 pt-0 sm:w-3/5 sm:p-20'>
           <div className='flex flex-col max-w-4xl gap-y-4 bg-opacity-60'>
@@ -33,7 +34,7 @@ const Home = ({ modules }) => {
         <section className='w-full sm:w-2/5 '>
           <Bubbles bubbles={learningBubbles} />
         </section>
-      </div>
+      </Container>
       <Dots r3f />
     </>
   )

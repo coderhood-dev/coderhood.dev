@@ -1,8 +1,9 @@
 import { Sidebar } from '@/components/Sidebar'
+import { Container } from '@/components/Container'
 
 export const ModuleLayout = ({ frontMatter, title, lessons, children }) => {
   return (
-    <div className='flex h-full'>
+    <Container>
       <div className='w-1/4 py-10'>
         <Sidebar title={title} items={lessons} itemSelected={title.url} />
       </div>
@@ -13,6 +14,6 @@ export const ModuleLayout = ({ frontMatter, title, lessons, children }) => {
           </div>
         </article>
       </div>
-    </div>
+    </Container>
   )
 }
