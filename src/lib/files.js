@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 
-import { buildLessonStrings } from '@/lib/string'
+import { buildLessonStrings, getTitleFromFile } from '@/lib/string'
 
 const root = process.cwd()
 
@@ -55,6 +55,15 @@ export async function getLessons(moduleURL) {
   }
 
   return lessons // [{ url: string, title: string }]
+}
+
+export async function getModuleTitle(moduleURL) {
+  const moduleName = await getCompleteName(moduleURL, 'academy')
+
+  return {
+    text: getTitleFromFile(moduleName),
+    url: `/academy/${moduleURL}`,
+  }
 }
 
 export async function getMDX(url) {

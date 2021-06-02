@@ -1,19 +1,17 @@
 import { MDXRemote } from 'next-mdx-remote'
 
 import useStore from '@/lib/store'
-import { getTitleFromFile } from '@/lib/string'
 import { ModuleLayout } from '@/layouts/Module'
 import {
   getModule,
   getLessons,
   getFolderContent,
   getCompleteName,
+  getModuleTitle,
 } from '@/lib/files'
 
-const Modules = ({ mdxSource, title, lessons, frontMatter }) => {
-  useStore.setState({ title })
-  console.log('mdxSource', mdxSource)
-  console.log('frontMatter', frontMatter)
+const Module = ({ mdxSource, title, lessons, frontMatter }) => {
+  useStore.setState({ title: title.text })
 
   return (
     <>
@@ -39,11 +37,10 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { module: moduleURL } }) => {
-  const lessons = await getLessons(moduleURL)
   const moduleName = await getCompleteName(moduleURL, 'academy')
 
-  const title = getTitleFromFile(moduleName)
-
+  const lessons = await getLessons(moduleURL)
+  const title = await getModuleTitle(moduleURL)
   const module = await getModule(moduleName)
 
   return {
@@ -51,4 +48,4 @@ export const getStaticProps = async ({ params: { module: moduleURL } }) => {
   }
 }
 
-export default Modules
+export default Module

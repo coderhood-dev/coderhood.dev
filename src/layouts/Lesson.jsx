@@ -1,4 +1,5 @@
 import { parseISO, format } from 'date-fns'
+import { useRouter } from 'next/router'
 
 import { Sidebar } from '@/components/Sidebar'
 import { LessonVideo } from '@/components/LessonVideo'
@@ -10,18 +11,19 @@ export const LessonLayout = ({
   lessons,
   children,
 }) => {
+  const { asPath } = useRouter()
   const { publishedAt, author, summary, readingTime, youtubeURL } = frontMatter
   return (
     <>
       <div className='flex'>
         <div className='w-1/4 py-10'>
-          <Sidebar title={title} items={lessons} />
+          <Sidebar title={title} items={lessons} itemSelected={asPath} />
         </div>
         <div className='w-3/4 h-full'>
           <LessonVideo videoURL={youtubeURL} title={title} />
           <article className='flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16'>
             <h1 className='mb-4 text-3xl font-bold tracking-tight md:text-5xl '>
-              {title}
+              {title.text}
             </h1>
             {pdfURL ? (
               <a

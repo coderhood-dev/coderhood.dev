@@ -5,13 +5,12 @@ import {
   getFolderContent,
   getLesson,
   getLessons,
-  getCompleteName,
+  getModuleTitle,
 } from '@/lib/files'
-import { getTitleFromFile } from '@/lib/string'
 import { LessonLayout } from '@/layouts/Lesson'
 
 const LessonPage = ({ title, pdfURL, mdxSource, frontMatter, lessons }) => {
-  useStore.setState({ title })
+  useStore.setState({ title: title.text })
 
   return (
     <>
@@ -60,9 +59,7 @@ export const getStaticProps = async ({ params }) => {
 
   const lesson = await getLesson(lessonURL, moduleURL)
   const lessons = await getLessons(moduleURL)
-
-  const moduleName = await getCompleteName(moduleURL, 'academy')
-  const title = getTitleFromFile(moduleName)
+  const title = await getModuleTitle(moduleURL)
 
   return {
     props: { ...lesson, title, lessons },

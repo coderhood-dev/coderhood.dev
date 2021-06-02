@@ -25,6 +25,6 @@ export const buildLessonStrings = (url, urlPrefix) => {
   const name = url.split(/-(.+)/)[1]
   return {
     url: `${urlPrefix}/${name}`,
-    title: getTitleFromKebab(name),
+    text: getTitleFromKebab(name),
   }
 }
