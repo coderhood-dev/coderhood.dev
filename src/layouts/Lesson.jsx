@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import { Sidebar } from '@/components/Sidebar'
 import { LessonVideo } from '@/components/LessonVideo'
+import { Container } from '@/components/Container'
 
 export const LessonLayout = ({
   title,
@@ -15,11 +16,11 @@ export const LessonLayout = ({
   const { publishedAt, author, summary, readingTime, youtubeURL } = frontMatter
   return (
     <>
-      <div className='flex'>
+      <Container>
         <div className='w-1/4 py-10'>
           <Sidebar title={title} items={lessons} itemSelected={asPath} />
         </div>
-        <div className='w-3/4 h-full'>
+        <div className='w-3/4 h-full overflow-y-scroll'>
           <LessonVideo videoURL={youtubeURL} title={title} />
           <article className='flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16'>
             <h1 className='mb-4 text-3xl font-bold tracking-tight md:text-5xl '>
@@ -55,7 +56,7 @@ export const LessonLayout = ({
             </div>
           </article>
         </div>
-      </div>
+      </Container>
     </>
   )
 }

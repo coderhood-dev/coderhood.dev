@@ -1,7 +1,6 @@
 import { Children } from 'react'
 import dynamic from 'next/dynamic'
 import Dom from '@/layouts/_dom'
-import { Header } from '@/components/Header'
 
 import '@/styles/index.css'
 
@@ -15,16 +14,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 function Layout({ dom }) {
-  return (
-    <>
-      {dom && (
-        <Dom>
-          <Header />
-          {dom}
-        </Dom>
-      )}
-    </>
-  )
+  return <>{dom && <Dom>{dom}</Dom>}</>
 }
 
 const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {

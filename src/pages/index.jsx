@@ -1,30 +1,13 @@
-import { useRef, useEffect } from 'react'
 import { Dots } from '@/components/Dots'
 import { Bubbles } from '@/components/Bubbles'
 import { learningBubbles } from '@/data/learningBubbles'
-// import Packery from 'packery'
-// import dynamic from 'next/dynamic'
-
-// const Packery = dynamic(() => import('packery'), {
-//   ssr: false,
-// })
 
 const Home = ({ modules }) => {
-  // const bubblesContainerRef = useRef(null)
-
-  // useEffect(() => {
-  //   if (bubblesContainerRef.current) {
-  //     new Packery(bubblesContainerRef.current, {
-  //       itemSelector: '.bubble',
-  //       gutter: 5,
-  //     })
-  //   }
-  // }, [bubblesContainerRef])
   return (
     <>
-      <div className='flex flex-col-reverse min-h-screen sm:flex-row'>
+      <div className='flex flex-col-reverse h-full sm:flex-row'>
         {/* hero */}
-        <section className='flex items-center w-full h-screen p-4 pt-0 sm:w-3/5 sm:p-20'>
+        <section className='flex items-center w-full h-full p-4 pt-0 sm:w-3/5 sm:p-20'>
           <div className='flex flex-col max-w-4xl gap-y-4 bg-opacity-60'>
             <h1 className='text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 font-display'>
               Compartimos conocimiento,
