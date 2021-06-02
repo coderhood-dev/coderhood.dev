@@ -12,7 +12,7 @@ export const Header = () => {
   return (
     <>
       <Head title={title} />
-      <header className='flex items-center justify-between h-20 pl-4 pr-8'>
+      <header className='flex items-center justify-between h-20 pl-4 pr-8 border-b border-gray-900'>
         <Link href='/'>
           <a className='flex w-32 sm:w-60'>
             <Image

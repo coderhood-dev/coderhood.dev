@@ -6,11 +6,11 @@ export const Sidebar = ({ title, items, itemSelected }) => {
       ? 'text-yellow-500'
       : 'text-gray-900 dark:text-white'
   return (
-    <aside className='w-full h-full overflow-y-scroll'>
+    <aside className='h-full py-5 pr-10 overflow-y-scroll'>
       <Link href={title.url}>
         <a className='cursor-pointer'>
           <h3
-            className={`pb-2 pl-10 pr-4 text-xl font-extrabold ${titleColor} `}
+            className={`pb-2 pl-5 pr-4 text-xl font-extrabold ${titleColor} `}
           >
             {title.text}
           </h3>
@@ -27,7 +27,7 @@ export const Sidebar = ({ title, items, itemSelected }) => {
               <Link href={item.url}>
                 <a className='cursor-pointer'>
                   <p
-                    className={`px-10 py-1 my-1 text-sm hover:bg-gray-100 ${itemColor}`}
+                    className={`px-5 py-1 my-1 text-sm hover:bg-gray-100 ${itemColor}`}
                   >
                     {item.text}
                   </p>

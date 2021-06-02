@@ -4,15 +4,19 @@ import { Container } from '@/components/Container'
 export const ModuleLayout = ({ frontMatter, title, lessons, children }) => {
   return (
     <Container>
-      <div className='w-1/4 py-10'>
-        <Sidebar title={title} items={lessons} itemSelected={title.url} />
+      <div className='w-1/4'>
+        <div className='flex justify-end h-full'>
+          <Sidebar title={title} items={lessons} itemSelected={title.url} />
+        </div>
       </div>
       <div className='w-3/4 h-full'>
-        <article>
-          <div className='w-full prose dark:prose-dark max-w-none'>
-            {children}
-          </div>
-        </article>
+        <div className='max-w-7xl'>
+          <article>
+            <div className='w-full prose dark:prose-dark max-w-none'>
+              {children}
+            </div>
+          </article>
+        </div>
       </div>
     </Container>
   )
