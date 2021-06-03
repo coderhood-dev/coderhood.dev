@@ -12,7 +12,7 @@ export const ModuleLayout = ({ frontMatter, title, lessons, children }) => {
       <div className='w-3/4 h-full'>
         <div className='max-w-7xl'>
           <article>
-            <div className='w-full prose dark:prose-dark max-w-none'>
+            <div className='w-full prose dark:prose-dark lg:prose-xl max-w-none'>
               {children}
             </div>
           </article>
