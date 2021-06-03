@@ -36,5 +36,5 @@ module.exports = {
       overflow: ['dark'],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
