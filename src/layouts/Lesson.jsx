@@ -54,7 +54,7 @@ export const LessonLayout = ({
               <h1 className='mb-4 text-3xl font-bold md:text-5xl '>
                 {title.text}
               </h1>
-              <div className='w-full prose dark:prose-dark max-w-none'>
+              <div className='w-full prose dark:prose-dark lg:prose-xl max-w-none'>
                 {children}
               </div>
             </article>
