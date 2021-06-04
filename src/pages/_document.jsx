@@ -98,7 +98,7 @@ class MyDocument extends Document {
           <meta name='theme-color' content='#000' />
           <link rel='shortcut icon' href='/icons/favicon.ico' />
         </Head>
-        <body className='text-black bg-white dark:bg-black dark:text-white'>
+        <body className='text-black bg-white dark:bg-gray-900 dark:text-white'>
           <Main />
           <NextScript />
         </body>

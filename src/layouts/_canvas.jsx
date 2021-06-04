@@ -7,7 +7,7 @@ const homeCanvasConfig = {
   orthographic: true,
   colorManagement: false, // not working
   camera: {
-    zoom: 20,
+    zoom: 40,
   },
 }
 

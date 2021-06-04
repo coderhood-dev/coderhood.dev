@@ -1,6 +1,6 @@
-import { Dots } from '@/components/Dots'
 import { Bubbles } from '@/components/Bubbles'
 import { Container } from '@/components/Container'
+import { CubesAnimation } from '@/components/CubesAnimation'
 import { learningBubbles } from '@/data/learningBubbles'
 
 const Home = ({ modules }) => {
@@ -15,7 +15,7 @@ const Home = ({ modules }) => {
               <br /> Aprendemos juntos
             </h1>
             <h3 className='text-sm font-light text-gray-700 dark:text-gray-100 sm:text-lg'>
-              <span className='bg-white dark:bg-black'>
+              <span className='bg-white dark:bg-gray-900'>
                 Somos una comunidad de personas en tech que aprende y comparte
                 conocimiento. No sabemos todo, el mundo tech es enorme y lleva
                 una vida de aprendizaje, pero mientras vamos aprendiendo creemos
@@ -35,7 +35,7 @@ const Home = ({ modules }) => {
           <Bubbles bubbles={learningBubbles} />
         </section>
       </Container>
-      <Dots r3f />
+      {/* <CubesAnimation r3f /> */}
     </>
   )
 }
