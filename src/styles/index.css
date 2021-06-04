@@ -16,3 +16,15 @@
     padding: 0;
   }
 }
+
+html[class*="dark"] .dot-background {
+  background: radial-gradient(#c2c2c2 4%, transparent 4%), black;
+  background-size:25px 25px;
+}
+
+html[class*="light"] .dot-background {
+  background: radial-gradient(#000000 6%, transparent 6%), #FAFAFA;
+  background-size:25px 25px;
+}
+
+
