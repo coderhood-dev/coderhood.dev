@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: {
-    enabled: false,
+    enabled: true,
     preserveHtmlElements: false,
     content: [
       './src/pages/**/*.{js,ts,jsx,tsx}',
@@ -9,7 +9,7 @@ module.exports = {
       './src/layouts/**/*.{js,ts,jsx,tsx}',
     ],
   },
-  darkMode: 'media', // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
     screens: {
       sm: '640px',

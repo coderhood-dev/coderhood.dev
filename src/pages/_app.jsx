@@ -1,5 +1,7 @@
 import { Children } from 'react'
 import dynamic from 'next/dynamic'
+import { ThemeProvider } from 'next-themes'
+
 import Dom from '@/layouts/_dom'
 
 import '@/styles/index.css'
@@ -46,7 +48,9 @@ function App({ Component, pageProps }) {
 
   return (
     <>
-      <ForwardPropsToR3fComponent comp={Component} pageProps={pageProps} />
+      <ThemeProvider attribute='class'>
+        <ForwardPropsToR3fComponent comp={Component} pageProps={pageProps} />
+      </ThemeProvider>
     </>
   )
 }
