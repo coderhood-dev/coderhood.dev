@@ -24,7 +24,7 @@ export const Sidebar = ({ title, items, itemSelected }) => {
       </Link>
 
       <AnimateSharedLayout>
-        <ul>
+        <ul className='flex flex-col items-start'>
           {items.map((item) => {
             const itemColor =
               itemSelected === item.url
@@ -49,7 +49,7 @@ export const Sidebar = ({ title, items, itemSelected }) => {
 
                   <a className='relative cursor-pointer'>
                     <p
-                      className={`px-5 py-1 my-1 text-sm hover:bg-gray-800 hover:rounded ${itemColor}`}
+                      className={`px-5 py-1 my-1 text-sm ${itemColor} hover:text-white`}
                     >
                       {item.text}
                     </p>
