@@ -13,7 +13,7 @@ export const ThemeSwitcher = () => {
     <button
       aria-label='Toggle Dark Mode'
       type='button'
-      className='flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded dark:bg-gray-800'
+      className='flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded dark:bg-gray-800 focus:outline-none focus:ring-2 ring-yellow-500 ring-opacity-50'
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
     >
       {mounted && (
@@ -40,8 +40,8 @@ export const ThemeSwitcher = () => {
                   rotate: 0,
                   pathLength: 1,
                 }}
-                exit={{ x: 20 }}
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                exit={{ x: 20, rotate: 45 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
                 strokeLinecap='round'
                 strokeLinejoin='round'
                 strokeWidth={2}
@@ -62,8 +62,8 @@ export const ThemeSwitcher = () => {
                   rotate: 0,
                   pathLength: 1,
                 }}
-                exit={{ x: 20 }}
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                exit={{ x: 20, rotate: 45 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
                 strokeLinecap='round'
                 strokeLinejoin='round'
                 strokeWidth={2}
