@@ -6,7 +6,7 @@ export const LessonVideo = ({ videoURL, title }) => {
   const [logoRotation, setLogoRotation] = useState(0)
 
   return (
-    <div className={`relative flex justify-center w-full px-10 dot-background`}>
+    <div className={`relative flex justify-center w-full px-10 bg-black`}>
       <div className='w-full max-w-4xl'>
         <div
           className='relative flex justify-end w-full overflow-hidden'
