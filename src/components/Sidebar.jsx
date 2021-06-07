@@ -1,4 +1,10 @@
 import Link from 'next/link'
+import {
+  motion,
+  useTransform,
+  AnimateSharedLayout,
+  AnimatePresence,
+} from 'framer-motion'
 
 export const Sidebar = ({ title, items, itemSelected }) => {
   const titleColor =
@@ -16,27 +22,44 @@ export const Sidebar = ({ title, items, itemSelected }) => {
           </h3>
         </a>
       </Link>
-      <ul>
-        {items.map((item) => {
-          const itemColor =
-            itemSelected === item.url
-              ? 'text-yellow-500'
-              : 'text-gray-700 dark:text-gray-400'
-          return (
-            <li key={item.url}>
-              <Link href={item.url}>
-                <a className='cursor-pointer'>
-                  <p
-                    className={`px-5 py-1 my-1 text-sm hover:bg-gray-100 ${itemColor}`}
-                  >
-                    {item.text}
-                  </p>
-                </a>
+
+      <AnimateSharedLayout>
+        <ul>
+          {items.map((item) => {
+            const itemColor =
+              itemSelected === item.url
+                ? 'text-white'
+                : 'text-gray-700 dark:text-gray-400'
+            return (
+              <Link key={item.url} href={item.url}>
+                <motion.li className='relative'>
+                  {itemSelected === item.url && (
+                    <motion.div
+                      layoutId='underline'
+                      className='absolute top-0 w-full h-full bg-yellow-500 rounded'
+                      // width='full'
+                      // height='full'
+                      // position='absolute'
+                      // borderRadius={4}
+                      // borderStyle='dashed'
+                      // borderWidth={ ? 1 : 0}
+                      // top={0}
+                    />
+                  )}
+
+                  <a className='relative cursor-pointer'>
+                    <p
+                      className={`px-5 py-1 my-1 text-sm hover:bg-gray-800 hover:rounded ${itemColor}`}
+                    >
+                      {item.text}
+                    </p>
+                  </a>
+                </motion.li>
               </Link>
-            </li>
-          )
-        })}
-      </ul>
+            )
+          })}
+        </ul>
+      </AnimateSharedLayout>
     </aside>
   )
 }
