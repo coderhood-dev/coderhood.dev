@@ -25,7 +25,7 @@ const Academy = ({ modules }) => {
   useStore.setState({ title: 'Coderhood Academy' })
   return (
     <>
-      <Container>
+      <Container title='academy'>
         <div className='flex flex-col min-h-screen p-6 sm:p-20'>
           <h1 className='text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-gray-700 to-gray-900'>
             Coderhood Academy 🎓

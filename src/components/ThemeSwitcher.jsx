@@ -2,9 +2,17 @@ import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import useStore from '@/lib/store'
+
 export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
+
+  const theme = useStore((state) => state.theme)
+
+  useStore.setState({
+    theme: resolvedTheme === 'dark' ? 'light' : 'dark',
+  })
 
   // After mounting, we have access to the theme
   useEffect(() => setMounted(true), [])
@@ -14,7 +22,15 @@ export const ThemeSwitcher = () => {
       aria-label='Toggle Dark Mode'
       type='button'
       className='flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded dark:bg-gray-800 focus:outline-none focus:ring-2 ring-yellow-500 ring-opacity-50'
-      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      onClick={() => {
+        useStore.setState({
+          algo: theme === 'dark' ? 'light' : 'dark',
+        })
+
+        setTimeout(() => {
+          setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+        }, 600)
+      }}
     >
       {mounted && (
         <svg

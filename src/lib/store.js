@@ -5,6 +5,7 @@ const useStore = create((set) => {
     router: {},
     dom: null,
     lesson: null,
+    algo: 'dark',
   }
 })
 
