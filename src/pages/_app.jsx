@@ -31,7 +31,6 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
     }
   })
 
-  const title = compArr[0].props.title
   return (
     <>
       {r3fArr && <LCanvas>{r3fArr}</LCanvas>}
