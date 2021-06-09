@@ -29,7 +29,7 @@ const Dom = ({ children }) => {
   //   },
   // }
 
-  const key = children[0].props.title + algo
+  const key = children[0]?.props?.title + algo
   console.log(key)
   return (
     <div
