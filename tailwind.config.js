@@ -43,6 +43,17 @@ module.exports = {
             'h1,h2,h3,h4': {
               color: theme('colors.gray.100'),
             },
+            code: {
+              backgroundColor: theme('colors.gray.800'),
+              '&:before': { color: theme('colors.gray.800') },
+              '&:after': { color: theme('colors.gray.800') },
+              color: theme('colors.gray.100'),
+            },
+            pre: {
+              code: {
+                backgroundColor: theme('colors.gray.800'),
+              },
+            },
             hr: { borderColor: theme('colors.gray.700') },
             ol: {
               li: {

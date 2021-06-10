@@ -8,9 +8,9 @@ const Dom = ({ children }) => {
   const ref = useRef(null)
   useStore.setState({ dom: ref })
 
-  const algo = useStore((state) => state.algo)
+  const auxTheme = useStore((state) => state.algo)
 
-  const key = children[0] ? children[0].props.title + algo : algo
+  const key = children[0] ? children[0].props.title + auxTheme : auxTheme
   return (
     <div
       className='absolute top-0 left-0 z-10 w-full h-screen overflow-hidden dom'
