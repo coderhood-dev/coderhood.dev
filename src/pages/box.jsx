@@ -6,7 +6,6 @@ const Box = dynamic(() => import('@/components/Box'), {
 })
 
 const Page = () => {
-  useStore.setState({ title: 'Box' })
   return (
     <>
       <Box r3f route='/' />
