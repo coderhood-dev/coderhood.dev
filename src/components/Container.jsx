@@ -7,9 +7,9 @@ export const Container = ({ title, children, column, className }) => {
       <motion.div
         className={`w-full h-full`}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { delay: 0.3 } }}
+        animate={{ opacity: 1, transition: { delay: 0.2 } }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
       >
         <Header />
         <main className={`h-full flex ${className}`}>{children}</main>

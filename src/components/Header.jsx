@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { Head } from '@/components/Head'
-import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 import useStore from '@/lib/store'
 
 export const Header = () => {
@@ -14,7 +13,7 @@ export const Header = () => {
   return (
     <>
       <Head title={title} />
-      <header className='flex items-center justify-between h-20 pl-10 pr-8 border-b dark:border-b-0'>
+      <header className='flex items-center justify-between h-20 pl-10 pr-16 border-b dark:border-b-0'>
         <Link href='/'>
           <a className='flex w-32 sm:w-60'>
             <Image
@@ -52,7 +51,6 @@ export const Header = () => {
               )}
             </AnimatePresence>
           </ul>
-          <ThemeSwitcher />
         </nav>
       </header>
     </>

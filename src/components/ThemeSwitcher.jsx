@@ -4,8 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 import useStore from '@/lib/store'
 
-export const ThemeSwitcher = () => {
+export const ThemeSwitcher = ({ className }) => {
   const [mounted, setMounted] = useState(false)
+  const [{ scale, margin, zIndex }, setStyle] = useState({
+    scale: 1,
+    margin: '1.25rem',
+    zIndex: 1,
+  })
   const { resolvedTheme, setTheme } = useTheme()
 
   const theme = useStore((state) => state.theme)
@@ -18,19 +23,25 @@ export const ThemeSwitcher = () => {
   useEffect(() => setMounted(true), [])
 
   return (
-    <button
+    <motion.button
       aria-label='Toggle Dark Mode'
       type='button'
-      className='flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded dark:bg-gray-800 focus:outline-none focus:ring-2 ring-yellow-500 ring-opacity-50'
+      className={`flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded dark:bg-gray-800 focus:outline-none focus:ring-2 ring-yellow-500 ring-opacity-50 ${className}`}
       onClick={() => {
+        setStyle({ scale: 2, margin: '3rem', zIndex: 20 })
+        setTimeout(() => {
+          setStyle({ scale: 1, margin: '1.25rem', zIndex: 1 })
+        }, 800)
+
         useStore.setState({
           algo: theme === 'dark' ? 'light' : 'dark',
         })
 
         setTimeout(() => {
           setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-        }, 600)
+        }, 400)
       }}
+      animate={{ scale, margin, zIndex }}
     >
       {mounted && (
         <svg
@@ -89,6 +100,6 @@ export const ThemeSwitcher = () => {
           </AnimatePresence>
         </svg>
       )}
-    </button>
+    </motion.button>
   )
 }
