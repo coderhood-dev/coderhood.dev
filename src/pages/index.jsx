@@ -1,19 +1,33 @@
+import dynamic from 'next/dynamic'
+import { motion } from 'framer-motion'
+
 import { Bubbles } from '@/components/Bubbles'
 import { Container } from '@/components/Container'
-import { CubesAnimation } from '@/components/CubesAnimation'
 import { learningBubbles } from '@/data/learningBubbles'
 
+const CubesAnimation = dynamic(() => import('@/components/CubesAnimation'), {
+  ssr: false,
+})
+
 const Home = ({ modules }) => {
+  // console.log('CubesAnimation', CubesAnimation)
   return (
     <>
       <Container title='home' className='flex-col-reverse sm:flex-row'>
         {/* hero */}
         <section className='flex items-center w-full h-full p-4 pt-0 sm:w-3/5 sm:p-20'>
           <div className='flex flex-col max-w-4xl gap-y-4 bg-opacity-60'>
-            <h1 className='text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 font-display'>
-              Compartimos conocimiento,
-              <br /> Aprendemos juntos
-            </h1>
+            <div className='relative overflow-hidden'>
+              <motion.h1
+                className='text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 font-display'
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.3, delay: 0.5, ease: 'easeInOut' }}
+              >
+                Compartimos conocimiento,
+                <br /> Aprendemos juntos
+              </motion.h1>
+            </div>
             <h3 className='text-sm font-light text-gray-700 dark:text-gray-100 sm:text-lg'>
               <span className='bg-white dark:bg-gray-900'>
                 Somos una comunidad de personas en tech que aprende y comparte
@@ -31,9 +45,9 @@ const Home = ({ modules }) => {
         </section>
 
         {/* bubbles */}
-        <section className='w-full sm:w-2/5 '>
+        {/* <section className='w-full sm:w-2/5 '>
           <Bubbles bubbles={learningBubbles} />
-        </section>
+        </section> */}
       </Container>
       {/* <CubesAnimation r3f /> */}
     </>
