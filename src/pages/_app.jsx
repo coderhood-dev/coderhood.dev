@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { ThemeProvider } from 'next-themes'
 
 import Dom from '@/layouts/_dom'
+import { AuthProvider } from '@/context/Auth'
 
 import '@/styles/index.css'
 
@@ -49,7 +50,9 @@ function App({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider attribute='class'>
-        <ForwardPropsToR3fComponent comp={Component} pageProps={pageProps} />
+        <AuthProvider>
+          <ForwardPropsToR3fComponent comp={Component} pageProps={pageProps} />
+        </AuthProvider>
       </ThemeProvider>
     </>
   )

@@ -1,16 +1,29 @@
+import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 
 import { Bubbles } from '@/components/Bubbles'
 import { Container } from '@/components/Container'
 import { learningBubbles } from '@/data/learningBubbles'
+import { Auth } from '@/components/Auth'
+import { Account } from '@/components/Account'
+import { supabase } from '@/lib/supabaseClient'
 
 const CubesAnimation = dynamic(() => import('@/components/CubesAnimation'), {
   ssr: false,
 })
 
 const Home = ({ modules }) => {
-  // console.log('CubesAnimation', CubesAnimation)
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
   return (
     <>
       <Container title='home' className='flex-col-reverse sm:flex-row'>
@@ -48,6 +61,11 @@ const Home = ({ modules }) => {
         {/* <section className='w-full sm:w-2/5 '>
           <Bubbles bubbles={learningBubbles} />
         </section> */}
+        {!session ? (
+          <Auth />
+        ) : (
+          <Account key={session.user.id} session={session} />
+        )}
       </Container>
       {/* <CubesAnimation r3f /> */}
     </>

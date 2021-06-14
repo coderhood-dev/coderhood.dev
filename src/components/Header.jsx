@@ -5,10 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 import { Head } from '@/components/Head'
 import useStore from '@/lib/store'
+import { useAuth } from '@/hooks/useAuth'
 
 export const Header = () => {
   const title = useStore((s) => s.title)
   const { asPath } = useRouter()
+
+  const { user } = useAuth()
+  console.log(`user: ${JSON.stringify(user, null, 2)}`)
 
   return (
     <>
@@ -50,6 +54,7 @@ export const Header = () => {
                 </motion.li>
               )}
             </AnimatePresence>
+            {user?.email}
           </ul>
         </nav>
       </header>
