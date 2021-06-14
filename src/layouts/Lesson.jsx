@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { Sidebar } from '@/components/Sidebar'
 import { LessonVideo } from '@/components/LessonVideo'
 import { Container } from '@/components/Container'
+import { Author } from '@/components/Author'
 
 export const LessonLayout = ({
   title,
@@ -27,16 +28,17 @@ export const LessonLayout = ({
           {/* <div className='bg-red-300 max-w-7xl'> */}
           <div className='flex justify-between p-10'>
             <div className='flex'>
-              <p className='ml-2 text-sm text-gray-700 dark:text-gray-300'>
+              <Author author={author} />
+              {/* <p className='ml-2 text-sm text-gray-700 dark:text-gray-300'>
                 {author}
-              </p>
+              </p> */}
               <p className='ml-2 text-sm text-gray-700 dark:text-gray-300'>
                 {publishedAt && format(parseISO(publishedAt), 'MMMM dd, yyyy')}
               </p>
             </div>
             {pdfURL ? (
               <a
-                className='bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50'
+                className='self-start bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50'
                 href={pdfURL}
                 download
               >
