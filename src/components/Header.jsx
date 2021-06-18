@@ -1,18 +1,17 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { Head } from '@/components/Head'
+import { HeaderItem } from '@/components/HeaderItem'
 import useStore from '@/lib/store'
 import { useAuth } from '@/hooks/useAuth'
 
 export const Header = () => {
   const title = useStore((s) => s.title)
-  const { asPath } = useRouter()
 
   const { user } = useAuth()
-  console.log(`user: ${JSON.stringify(user, null, 2)}`)
+  const profileTitle = user?.email || 'Profile'
 
   return (
     <>
@@ -37,31 +36,9 @@ export const Header = () => {
           )}
         </div>
         <nav className='flex pl-10'>
-          <ul>
-            <AnimatePresence>
-              {asPath !== '/academy' && (
-                <motion.li
-                  className='mr-5 bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50'
-                  initial={{ x: 250 }}
-                  animate={{ x: 0 }}
-                  exit={{ x: 250, transition: { delay: 0.2, duration: 0.7 } }}
-                  transition={{
-                    duration: 1,
-                    delay: 0.5,
-                    type: 'spring',
-                  }}
-                >
-                  <Link href='/academy'>
-                    <a>
-                      <p className='p-2 text-xs font-bold text-white sm:p-4'>
-                        🎓 Academy
-                      </p>
-                    </a>
-                  </Link>
-                </motion.li>
-              )}
-            </AnimatePresence>
-            {user?.email}
+          <ul className='flex'>
+            <HeaderItem url='/academy'>🎓 Academy</HeaderItem>
+            <HeaderItem url='/profile'>{`🧠 ${profileTitle}`}</HeaderItem>
           </ul>
         </nav>
       </header>

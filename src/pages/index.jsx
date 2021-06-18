@@ -5,8 +5,10 @@ import { motion } from 'framer-motion'
 import { Bubbles } from '@/components/Bubbles'
 import { Container } from '@/components/Container'
 import { learningBubbles } from '@/data/learningBubbles'
-import { Auth } from '@/components/Auth'
+import { useAuth } from '@/hooks/useAuth'
 import { Account } from '@/components/Account'
+// import { Auth } from '@/components/Auth/_Signin'
+import { AuthModal } from '@/components/Auth'
 import { supabase } from '@/lib/supabaseClient'
 
 const CubesAnimation = dynamic(() => import('@/components/CubesAnimation'), {
@@ -14,15 +16,8 @@ const CubesAnimation = dynamic(() => import('@/components/CubesAnimation'), {
 })
 
 const Home = ({ modules }) => {
-  const [session, setSession] = useState(null)
-
-  useEffect(() => {
-    setSession(supabase.auth.session())
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
+  const { session, user } = useAuth()
+  let [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
@@ -61,11 +56,16 @@ const Home = ({ modules }) => {
         {/* <section className='w-full sm:w-2/5 '>
           <Bubbles bubbles={learningBubbles} />
         </section> */}
-        {!session ? (
-          <Auth />
-        ) : (
-          <Account key={session.user.id} session={session} />
-        )}
+        {/* {user ? <Account key={session.user.id} session={session} /> : <Auth />} */}
+
+        {/* Modal */}
+        <button
+          onClick={() => setIsOpen(true)}
+          className='absolute top-0 left-0 p-5 m-5 bg-yellow-500'
+        >
+          Modal
+        </button>
+        <AuthModal open={isOpen} onClose={() => setIsOpen(false)} />
       </Container>
       {/* <CubesAnimation r3f /> */}
     </>

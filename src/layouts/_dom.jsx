@@ -1,5 +1,5 @@
 import useStore from '@/lib/store'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { ThemeSwitcher } from '@/components/ThemeSwitcher'
@@ -16,6 +16,7 @@ const Dom = ({ children }) => {
       className='absolute top-0 left-0 z-10 w-full h-screen overflow-hidden dom'
       ref={ref}
     >
+      {/* Screen */}
       <ThemeSwitcher className='fixed top-0 right-0' />
       <AnimatePresence exitBeforeEnter>
         <motion.div key={key} className='h-full'>
@@ -27,6 +28,7 @@ const Dom = ({ children }) => {
             exit={{ x: 0 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
           ></motion.div>
+
           {children}
         </motion.div>
       </AnimatePresence>

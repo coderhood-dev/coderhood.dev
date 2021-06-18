@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@code-surfer/themes": "^3.1.1",
+    "@headlessui/react": "^1.2.0",
     "@react-three/a11y": "^2.0.2",
     "@react-three/drei": "^4.3.3",
     "@react-three/fiber": "^6.1.2",

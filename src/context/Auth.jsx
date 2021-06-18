@@ -10,12 +10,28 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const session = supabase.auth.session()
     setState({ session, user: session?.user ?? null })
-  }, [])
 
-  supabase.auth.onAuthStateChange((event, session) => {
-    console.log(`Supbase auth event: ${event}`, session)
-    setState({ session, user: session?.user ?? null })
-  })
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setState({
+          session,
+          user: session?.user ?? null,
+        })
+
+        // set cookie
+        fetch('/api/authCookie', {
+          method: 'POST',
+          headers: new Headers({ 'Content-Type': 'application/json' }),
+          credentials: 'same-origin',
+          body: JSON.stringify({ event, session }),
+        }).then((res) => res.json())
+      }
+    )
+
+    return () => {
+      authListener.unsubscribe()
+    }
+  }, [])
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>
 }
