@@ -29,9 +29,10 @@ export async function getLesson(lessonURL, moduleURL) {
   const lessonName = await getCompleteName(lessonURL, `academy/${moduleName}`)
 
   const mdx = await getMDX(`academy/${moduleName}/${lessonName}/readme.mdx`)
-  const pdfURL = await getPDF(moduleName, lessonName)
+  // const pdfURL = await getPDF(moduleName, lessonName)
 
-  return { ...mdx, pdfURL }
+  return { ...mdx }
+  // return { ...mdx, pdfURL }
 }
 
 export async function getLessons(moduleURL) {
@@ -90,6 +91,7 @@ export async function getPDF(moduleName, lessonName) {
   }).then((r) => r.json())
 
   if (githubLessonFiles) {
+    console.log(githubLessonFiles, typeof githubLessonFiles)
     const pdfFile = githubLessonFiles.find(({ name }) => name.includes('.pdf'))
 
     return pdfFile ? pdfFile.download_url : null
