@@ -2,7 +2,7 @@
 title: 'Datos y algoritmos'
 publishedAt: '2021-06-24'
 author: 'Tomas'
-summary: 'Vamos a ver cómo guardar el progreso de nuestros proyectos y las ventajas de los sistemas de control de versiones. Hay que aprender a usar la consola. Veremos como publicar y guardar nuestros proyectos en la nube para accederlos y descargarlos donde queramos, que otros puedan verlo.'
+summary: 'Vamos a ver cómo guardar el progreso de nuestros proyectos y las ventajas de los sistemas de control de versiones. Hay que aprender a usar la consola. Veremos cómo publicar y guardar nuestros proyectos en la nube para accederlos y descargarlos donde queramos, que otros puedan verlo.'
 youtubeURL: 'https://www.youtube.com/watch?v=wVXEjhvdJg0&t=6s'
 ---
 
@@ -106,17 +106,17 @@ Y peor todavía, podemos copiar la carpeta y nunca más encontrar cuál era la q
 ```
 Documentos
 ├── proyecto
-│   ├── ejercicio1.js
-│   ├── ...
-│   └── informe.doc
+│   ├── ejercicio1.js
+│   ├── ...
+│   └── informe.doc
 ├── proyecto_corregido
-│   ├── ejercicio1_ANDA.js
-│   ├── ...
-│   └── informe_final.doc
+│   ├── ejercicio1_ANDA.js
+│   ├── ...
+│   └── informe_final.doc
 └── proyecto_final
     ├── ejercicio1.js
-    ├── ...
-    └── informe_final_final_B.doc
+    ├── ...
+    └── informe_final_final_B.doc
 ```
 
 ---
@@ -148,7 +148,7 @@ Los archivos pueden estar en tres estados distintos:
 
 ### Los tres estados
 
-**Confirmado (committed)**: 
+**Confirmado (committed)**:
 * significa que los archivos están almacenados de manera segura en el repositorio.
 
 **Modificado (modified)**:
@@ -167,7 +167,7 @@ Los _commits_ son paquetes de modificaciones, una parte fundamental de git.
 La historia del repositorio está conformada por una cadena de _commits_, es decir, una cadena de paquetes de modificaciones.
 
 <Image
-  src='/images/2-git/1-git-init/basic-branching-1.png' 
+  src='/images/2-git/1-git-init/basic-branching-1.png'
   alt="Cadena de commits"
 />
 
@@ -295,7 +295,7 @@ Es la dirección a un archivo o carpeta desde otra carpeta
 
 ### Más comandos (o programas) 🤯
 
-- `mv <origen> <destino>`: (move) mueve un archivo, tambiEen se usa para renombrar un archivo
+- `mv <origen> <destino>`: (move) mueve un archivo, también se usa para renombrar un archivo
 
   - `mv Downloads\archivo.txt Documents\repos\info.txt`: mueve el archivo `archivo.txt` ubicado en `Downloads` a la carpeta `Documents\repos\` cambiandole el nombre a `info.txt`
 
@@ -397,8 +397,8 @@ No commits yet
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	README.md
-	script.js
+        README.md
+        script.js
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
@@ -437,11 +437,11 @@ No commits yet
 
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
-	new file:   README.md
+        new file:   README.md
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	script.js
+        script.js
 ```
 
 dice que estoy en la rama _master_, todavía no hay commits,
@@ -462,16 +462,16 @@ No commits yet
 
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
-	new file:   README.md
+        new file:   README.md
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   README.md
+        modified:   README.md
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	script.js
+        script.js
 ```
 
 En `README.md` hay _cambios_ preparados (staged) para el próximo commit y cambios que no están staged.
@@ -489,11 +489,11 @@ No commits yet
 
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
-	new file:   README.md
+        new file:   README.md
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	script.js
+        script.js
 ```
 
 > ##### 💥 el `$` al principio de los comandos no va en la consola
@@ -691,7 +691,7 @@ $ git add README.md
 $ git status
 ```
 
-#### editar `README.md` y volver a praperar los cambios
+#### editar `README.md` y volver a preparar los cambios
 
 ```
 $ echo "# Hola mi repo" > README.md
