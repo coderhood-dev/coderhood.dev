@@ -2,7 +2,7 @@
 title: 'Datos y algoritmos'
 publishedAt: '2021-06-24'
 author: 'Tomas'
-summary: 'Vamos a ver como guardar el progreso de nuestros proyectos y las ventajas de los sistemas de control de versiones. Hay que aprender a usar la consola. Veremos como publicar y guardar nuestros proyectos en la nube para accederlos y descargarlos donde queramos, que otros puedan verlo.'
+summary: 'Vamos a ver cómo guardar el progreso de nuestros proyectos y las ventajas de los sistemas de control de versiones. Hay que aprender a usar la consola. Veremos como publicar y guardar nuestros proyectos en la nube para accederlos y descargarlos donde queramos, que otros puedan verlo.'
 youtubeURL: 'https://www.youtube.com/watch?v=wVXEjhvdJg0&t=6s'
 ---
 
@@ -29,16 +29,16 @@ import { themes, Image } from 'mdx-deck'
 
 ### Version control system (VCS)
 
-Es un programa o herramienta que nos permite getionar los cambios que suceden en un proyecto a lo largo del tiempo, crea una "historia" del proyecto
+Es un programa o herramienta que nos permite gestionar los cambios que suceden en un proyecto a lo largo del tiempo, crea una "historia" del proyecto
 
 Los cambios pueden ser:
 
 - agregar un archivo
 - eliminar un archivo
-- editar un archivo (modificar el codigo fuente de nuestro proyecto)
+- editar un archivo (modificar el código fuente de nuestro proyecto)
 - agregar una carpeta
 
-Tambien guarda quien es el autor de los cambios, la fecha
+También guarda quién es el autor de los cambios, la fecha y un mensaje.
 
 ---
 
@@ -56,7 +56,7 @@ Documentos
     └── practica.pdf
 ```
 
-Luego se nos ocurre una mejor manera de hacer el ejercicio2, pero como el que tenemos ya anda, no queremos perderlo...
+Luego se nos ocurre una mejor manera de hacer el ejercicio2, pero como el que tenemos ya funciona, no queremos perderlo...
 
 ```
 Documentos
@@ -69,7 +69,7 @@ Documentos
     └── practica.pdf
 ```
 
-Más tarde le pedimos a un amigo que revise el informe y nos lo devuelve con cambios...
+Más tarde le pedimos a un amigo que revise el informe y nos lo devuelva con cambios...
 
 ```
 Documentos
@@ -101,7 +101,7 @@ Documentos
     └── informe_final_corrgido.doc
 ```
 
-Y peor todavia, podemos copiar la carpeta y nunca mas encontrar cual era la que teniamos que entregar 🤯
+Y peor todavía, podemos copiar la carpeta y nunca más encontrar cuál era la que teníamos que entregar 🤯
 
 ```
 Documentos
@@ -121,12 +121,12 @@ Documentos
 
 ---
 
-### Solucion
+### Solución
 
-#### Sitemas de control de versiones 💜
+#### Sistemas de control de versiones 💜
 
-1. estan para evitar duplicar informacion lo mas posible
-2. gestionar los cambios en el proyecto de forma mas inteligente
+1. están para evitar duplicar información
+2. gestionar los cambios en el proyecto de forma más inteligente
 3. facilitar el trabajo en equipo en un mismo proyecto y hasta en un mismo archivo
 
 ---
@@ -135,9 +135,9 @@ Documentos
 
 > ##### Es un sistema de control de versiones 😛
 
-En git, a un proyecto lo llamamos _repocitorio_ y es una carpeta que contiene todos los archivos y otras carpetas del proyecto.
+En git, a un proyecto lo llamamos _repositorio_ y es una carpeta que contiene todos los archivos y otras carpetas del proyecto.
 
-Git se encarga de rastrear (track) y controlar el historial de todos los archivos dentro del _repocitorio_.
+Git se encarga de rastrear (track) y controlar el historial de todos los archivos dentro del _repositorio_.
 
 Los archivos pueden estar en tres estados distintos:
   * confirmado (committed)
@@ -149,7 +149,7 @@ Los archivos pueden estar en tres estados distintos:
 ### Los tres estados
 
 **Confirmado (committed)**: 
-* significa que los archivos están almacenados de manera segura en el repocitorio.
+* significa que los archivos están almacenados de manera segura en el repositorio.
 
 **Modificado (modified)**:
 * significa que has modificado el archivo pero todavía no fue confirmado.
@@ -162,9 +162,9 @@ Los archivos pueden estar en tres estados distintos:
 
 ### Paquetes de modificaciones
 
-Los _commits_ con son una parte fundamental de git.
+Los _commits_ son paquetes de modificaciones, una parte fundamental de git.
 
-La historia del repocitorio esta conformada por una cadena de _commits_, es decir, una cadena de paquetes de modificaciones.
+La historia del repositorio está conformada por una cadena de _commits_, es decir, una cadena de paquetes de modificaciones.
 
 <Image
   src='/images/2-git/1-git-init/basic-branching-1.png' 
@@ -178,27 +178,27 @@ La historia del repocitorio esta conformada por una cadena de _commits_, es deci
 
 ### Terminal
 
-linea de comandos (CLI), consola, terminal o _shell_ es una interfaz para comuncarnos con la computadora ejecutando programas
+Línea de comandos (CLI), consola, terminal o _shell_ es una interfaz para comunicarnos con la computadora ejecutando programas
 
 <Image
   src='/images/2-git/1-git-init/CLI-GUI-NUI_evolucion_de_interfaces_de_usuario.png'
   alt="CLI, GUI, NUI, evolución de interfaces de usuario"
 />
 
-1. CLI: intefaz de linea de comando, o Command Line Interface
-1. GUI: integaz grafica de usuario, o Graphic User Interface
-1. NUI: intefaz natural de usuario, Natural User Interface
+1. CLI: interfaz de línea de comando, o Command Line Interface
+1. GUI: interfaz gráfica de usuario, o Graphic User Interface
+1. NUI: interfaz natural de usuario, Natural User Interface
 
 ### Distintas terminales
 
-ya viene instalada en el sistema operatido, pero cada uno tiene la suya:
+ya viene instalada en el sistema operativo, pero cada uno tiene la suya:
 
 - Windows
   - CMD
 - GNU/Linux y macOS (unix-like)
   - bash
 
-> #### Primer problema ⚠️
+> #### ⚠️
 >
 > ##### git funciona en **bash** o terminales para sistemas operativos unix-like
 
@@ -210,12 +210,12 @@ Hay que instalar **bash** en el OS ([Operating system](https://es.wikipedia.org/
 
 #### [Git for Windows](https://gitforwindows.org/)
 
-  1. boton de `Download`
+  1. botón de `Download`
   2. la cosa se pone rara, pero hay que hacer scroll a la parte de `Assets`
-  3. descargar el intalador `Git-2.31.1-32-bit.exe` o `PortableGit-2.31.1-32-bit.7z.exe`
+  3. descargar el instalador `Git-2.31.1-32-bit.exe` o `PortableGit-2.31.1-32-bit.7z.exe`
 
 #### [Cmder](https://cmder.net/)
-Una mejor opcion y mi recomendada ✨
+Una mejor opción y mi recomendada ✨
   1. hacer scroll
   2. boton `Download Full` que dice `(with Git for Windows)`
 
@@ -226,35 +226,35 @@ Una mejor opcion y mi recomendada ✨
 vamos a empezar a ejecutar programas para interactuar con la terminal:
 
 - `pwd`: (print working directory) muestra en que directorio o carpeta estamos
-- `ls`: (list) lista o muestra el contenido de la carpta actual
+- `ls`: (list) lista o muestra el contenido de la carpeta actual
 - `cd`: (change directory) nos permite movernos o cambiar a otra carpeta
 
 > #### ¿que es el [prompt](https://es.wikipedia.org/wiki/Prompt)? 🤔
 >
-> ##### caracter o conjunto de caracteres que se muestran en una línea de comandos para indicar que está a la espera de órdenes.
+> ##### carácter o conjunto de caracteres que se muestran en una línea de comandos para indicar que está a la espera de órdenes.
 >
 > ##### suele dar info de donde estamos
 
-### Parametros, argumentos, opciones o flags
+### Parámetros, argumentos, opciones o flags
 
-- `ls -l`: `-l` es una opcion o flag que se le agrega a `ls` para decirle que muestre la version larga (long)
-- `ls -a`: `-a` muestra todo (all) los que hay en la carpeta, incluidos achivos ocultos (o que empiezan con `.`)
-- `ls <carpeta o path>`: le pasamos el nombre de una carpeta como parametro y nos muestra el contenido esa carpeta
+- `ls -l`: `-l` es una opción o flag que se le agrega a `ls` para decirle que muestre la versión larga (long)
+- `ls -a`: `-a` muestra todo (all) los que hay en la carpeta, incluidos archivos ocultos (o que empiezan con `.`)
+- `ls <carpeta o path>`: le pasamos el nombre de una carpeta como parámetro y nos muestra el contenido esa carpeta
 
   - `ls Academy`: muestra el contenido del directorio `Academy`
 
-- `cd <carpeta o path>`: nos envia a la carpeta
+- `cd <carpeta o path>`: nos envía a la carpeta
   - `cd Academy`:
 
 ---
 
 ### [Path o Ruta](<https://es.wikipedia.org/wiki/Ruta_(inform%C3%A1tica)>)
 
-Es la ruta o ubicacion de un archivo o carpeta, puede ser **absoluta** o **relativo**
+Es la ruta o ubicación de un archivo o carpeta, puede ser **absoluto** o **relativo**
 
 #### Path absoluto
 
-Es la ruta _completa_ a la carpeta o archivo en cuastion, **es unica!**
+Es la ruta _completa_ a la carpeta o archivo en cuestión, **es único!**
 
 - en windows:
   - `C:\Users\tomasdisk\Documents\repos\`
@@ -265,7 +265,7 @@ Es la ruta _completa_ a la carpeta o archivo en cuastion, **es unica!**
 
 #### Path relativo
 
-Es la direccion a un archivo o carpeta desde otra carpeta
+Es la dirección a un archivo o carpeta desde otra carpeta
 
 - en windows:
   - `Documents\repos\`
@@ -278,8 +278,8 @@ Es la direccion a un archivo o carpeta desde otra carpeta
 > #### Info 💡
 >
 > - path `.`: es la carpeta actual, donde estamos ahora, podemos ver cual es con `pwd`
-> - path `..`: es la carpeta que contiene a la actual, si hacemos `cd ..` nos envia a la carpeta previa
-> - path `~`: es la carpeta de nuestro usuario, `cd ~` nos envia a la carpeta esa
+> - path `..`: es la carpeta que contiene a la actual, si hacemos `cd ..` nos envía a la carpeta previa
+> - path `~`: es la carpeta de nuestro usuario, `cd ~` nos envía a esa carpeta
 
 ---
 
@@ -295,11 +295,11 @@ Es la direccion a un archivo o carpeta desde otra carpeta
 
 ### Más comandos (o programas) 🤯
 
-- `mv <origen> <destino>`: (move) mueve un archivo, tambien se usa para renombrar un archivo
+- `mv <origen> <destino>`: (move) mueve un archivo, tambiEen se usa para renombrar un archivo
 
-  - `mv Downloads\archivo.txt Documents\repos\info.txt`: mueve el archivo `archivo.txt` ubuncado en `Downloads` a la carpeta `Documents\repos\` cambiandole el nombre a `info.txt`
+  - `mv Downloads\archivo.txt Documents\repos\info.txt`: mueve el archivo `archivo.txt` ubicado en `Downloads` a la carpeta `Documents\repos\` cambiandole el nombre a `info.txt`
 
-- `rm <archivo>`: (remove) elimina un archivo o carpeta si se usa el flag `-r` de recursión
+- `rm <archivo>`: (remove) elimina un archivo, o una carpeta si se usa el flag `-r` de recursión
   - `rm Documents\repos\info.txt`: elimina el archivo `info.txt` en el directorio `Documents\repos\`
   - `rm -r Documents\repos`: elimina la carpeta `Documents\repos\` y todos los archivos y carpetas que contenga
 
@@ -309,23 +309,23 @@ Es la direccion a un archivo o carpeta desde otra carpeta
 
 #### Recordemos
 
-Un repocitorio es una carpeta (con archivos y subcarpetas dentro) controlada por git para getionar los cambios y el historial de su contenido. Hay dos formas de crear un repocitorio.
+Un repositorio es una carpeta (con archivos y subcarpetas dentro) controlada por git para gestionar los cambios y el historial de su contenido. Hay dos formas de crear un repositorio.
 
 Vamos a
 
 1. crear una carpeta
 
 ```
-mkdir mi-repocitorio
+mkdir mi-repositorio
 ```
 
 2. nos metemos adentro
 
 ```
-cd mi-repocitorio
+cd mi-repositorio
 ```
 
-3. vamos convertirla en un repocitorio usando git
+3. vamos convertirla en un repositorio usando git
 
 ```
 git init
@@ -337,7 +337,7 @@ git init
 
 ### Un nuevo mejor amigo `git status`
 
-Este comando lo vamos a usar todo el tiempo, nos va a mostrar el estado actual del repocitorio
+Este comando lo vamos a usar todo el tiempo, nos va a mostrar el estado actual del repositorio
 
 ```
 git status
@@ -353,7 +353,7 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-dice que estoy en la rama _master_, todavia no hay commits y no hay nada para commitear.
+dice que estoy en la rama _master_, todavía no hay commits y no hay nada para commitear.
 
 > #### Info:
 >
@@ -365,13 +365,13 @@ dice que estoy en la rama _master_, todavia no hay commits y no hay nada para co
 
 Vamos a crear algunos archivos (`README.md` y `script.js`) en el repo para luego agregarlos a la historia de git.
 
-Ahora si hago `ls` en al carpeta del repo, me va a mostrar los archivos recien creados
+Ahora si hago `ls` en al carpeta del repo, me va a mostrar los archivos recién creados
 
 ```
 README.md  script.js
 ```
 
-pero `git status` va a mostar como git ve al repo
+pero `git status` va a mostrar como git ve al repo
 
 ```
 $ git status
@@ -385,7 +385,7 @@ $ git status
 
 ### git status
 
-`git status` no va a mostar como git ve al repo
+`git status` no va a mostrar como git ve al repo
 
 > ##### 💥 el `$` no va en la consola
 
@@ -403,21 +403,19 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-dice que estoy en la rama _master_, todavia no hay commits,
+dice que estoy en la rama _master_, todavía no hay commits,
 
 **hay 2 archivos sin trackear** y no hay nada agregado para commitear.
 
-Usar `git add` para tracker 🤔
+Usar `git add` para rastrear (track) 🤔
 
 ---
 
 ### git add
 
-_recordar working_directory_
-
 **hay 2 archivos sin rastrear!**
 
-`git add <file>...` va a preparar nuestros archivos para ser incluido en el proximo commit
+`git add <file>...` va a preparar nuestros archivos para ser incluido en el próximo commit
 
 voy a _stagear_ el archivo `README.md`
 
@@ -425,11 +423,11 @@ voy a _stagear_ el archivo `README.md`
 $ git add README.md
 ```
 
-ahora los cambios que tenemos en el archivo estan preparados para entrar en el proximo paquete.
+ahora los cambios que tenemos en el archivo están preparados (staged) para entrar en el próximo paquete.
 
 ---
 
-### Como vamos?
+### ¿Cómo vamos?
 
 ```
 $ git status
@@ -446,7 +444,7 @@ Untracked files:
 	script.js
 ```
 
-dice que estoy en la rama _master_, todavia no hay commits,
+dice que estoy en la rama _master_, todavía no hay commits,
 
 **hay 1 _cambio_ para commitear** y 1 archivo sin trackear.
 
@@ -476,7 +474,7 @@ Untracked files:
 	script.js
 ```
 
-En `README.md` hay _cambios_ preparados (staged) para el proximo commit y cambios que no estan staged (preparados).
+En `README.md` hay _cambios_ preparados (staged) para el próximo commit y cambios que no están staged.
 
 ---
 
@@ -498,15 +496,15 @@ Untracked files:
 	script.js
 ```
 
-> ##### 💥 el `$` al pricipio de los comando no va en la consola
+> ##### 💥 el `$` al principio de los comandos no va en la consola
 >
-> ##### esta para que se entienda que se ejecutan de a uno a la vez
+> ##### está para que se entienda que se ejecutan de a uno a la vez
 
 ---
 
-### Mas formas de usar `git add`
+### Más formas de usar `git add`
 
-Con `add` podemos preparar para el proximo _commit_ de a carpetas enteras o de a varios archivos a la vez.
+Con `add` podemos preparar para el próximo _commit_ carpetas enteras o varios archivos a la vez.
 
 ```
 git add .
@@ -514,30 +512,30 @@ git add <carpeta>
 git add <archivo_1> <archibo_2>
 ```
 
-> ##### Con `.` estamos agregando la carpeta donde estemos pocicionados en la consola.
+> ##### Con `.` estamos agregando la carpeta donde estemos posicionados en la consola.
 
 ---
 
 ### Mi primer commit
 
-Llego el momento de crear el primer commit con los cambios ya preparados!
+Llegó el momento de crear el primer commit con los cambios ya preparados!
 
 ```
 $ git commit -m "Primer commit de mi primer repo :D"
 ```
 
-Asi creamos un commit con el mensaje `Primer commit de mi primer repo :D`
+Así creamos un commit con el mensaje `Primer commit de mi primer repo :D`
 
 > ##### ℹ️ Info:
 >
-> 1. #####  Si no agregamos el flag `-m` para definir el mensaje desde el comando, git nos va a abrir el editor que tengamos configurardo por defecto (vim, nano, code, etc).
+> 1. #####  Si no agregamos el flag `-m` para definir el mensaje desde el comando, git nos va a abrir el editor que tengamos configurado por defecto (vim, nano, code, etc).
 >
-> 1. ##### Git se va a quedar esperando a que guardemos y cerremos el archivos del mensaje.
+> 1. ##### Git se va a quedar esperando hasta que guardamos y cerramos el archivo del mensaje.
 >
-> 1. ##### Si no agregasmo un mensaje la creacion del commit se va a abrotar!
+> 1. ##### Si no agregamos un mensaje a la creación del commit, este se va a abortar!
 
 ---
-### Ciclo de vide de un rachivo 🌟
+### Ciclo de vida de un archivo 🌟
 
 Para pensar...
 
@@ -551,13 +549,13 @@ Para pensar...
 ## GitHub
 
 * Crearse una cuenta
-* Crear un repocitorio nuevo
+* Crear un repositorio nuevo
 
 ---
 
 ### git remote add
 
-Usando el comando `remote` conectamos nuestro repo con un repocitorio remoto desde donde podemos traer o enviar cambios (_commits_) del proyecto.
+Usando el comando `remote` conectamos nuestro repo con un repositorio remoto desde donde podemos traer o enviar cambios (_commits_) del proyecto.
 
 ```
 $ git remote add <nombre> <repo_url>
@@ -572,15 +570,15 @@ Lo siguiente cambia el nombre de la rama principal a `main`, antes de eso se lla
 ```
 $ git branch -M main
 ```
-> ##### 🤔 Por ahora solo es necesario saber que existe una rama principal llamada _master_, pero este nombre puede ser cambaiado.
+> ##### 🤔 Por ahora solo es necesario saber que existe una rama principal llamada _master_, pero este nombre puede ser cambiado.
 >
-> ##### La proxima clase veremos com usar las _ramas_ de git. 🔀
+> ##### La próxima clase veremos cómo usar las _ramas_ de git. 🔀
 
 ---
 
 ### git push
 
-Para publicar nuestros commits (paquetes de cambios) usamso `git push`, todos los cambiso que no esten dentro de un commit no son publicados.
+Para publicar nuestros commits (paquetes de cambios) usamos `git push`, todos los cambios que no estén dentro de un commit no son publicados.
 
 ```
 git push <remote> <branch>
@@ -594,9 +592,9 @@ Por lo tanto
 $ git push -u origin main
 ```
 
-El flag `-u` solo va a ser necesaio pa primera vez, es para que git entienda que nuestra rama local `main` hace referencia a la _rama_ `main` del _remote_ `origin`.
+El flag `-u` solo va a ser necesario la primera vez, es para que git entienda que nuestra rama local `main` hace referencia a la _rama_ `main` del _remote_ `origin`.
 
-Con esto, la sengunda vez podemos hacer solo `git push` y git ya sabe a que _rama_ y _remote_ enviar nuestros commits.
+Con esto, la segunda vez podemos hacer solo `git push` y git ya sabe a que _rama_ y _remote_ enviar nuestros commits.
 
 > ##### 🔒 Nos va a pedir usuario y contraseña, solo va a funcionar si tenemos permisos de escritura para el repo
 
@@ -604,14 +602,14 @@ Con esto, la sengunda vez podemos hacer solo `git push` y git ya sabe a que _ram
 
 ### git clone
 
-La segunda forma de crear un repocitorio 😸
+La segunda forma de crear un repositorio 😸
 
 ```
 $ git clone <repo_url>
 $ git clone https://github.com/coderhood-dev/coderhood.dev.git
 ```
 
-Este comando nos va a crear una carpeta llamada `coderhood.dev` y dentro va a descargar toda la info del _repocitorio remoto_
+Este comando nos va a crear una carpeta llamada `coderhood.dev` y dentro va a descargar toda la info del _repositorio remoto_.
 
 <Image
   src='/images/2-git/1-git-init/github-clone-https.png'
@@ -620,13 +618,13 @@ Este comando nos va a crear una carpeta llamada `coderhood.dev` y dentro va a de
 
 ---
 
-### Ultimo comando
+### Último comando
 
 ```
 $ git log
 ```
 
-Se lo usa para obtener informacion de la historia de commits del repo.
+Se usa para obtener información de la historia de commits del repo.
 
 ```
 git log --oneline
@@ -643,7 +641,7 @@ git log --stat
 
 - Crear un repo
 - agregar y editar varios archivos
-- preparatlos (_stagearlos_)
+- prepararlos (_stagearlos_)
 - crear el primer commit
 
 #### 2. Github
@@ -654,7 +652,7 @@ git log --stat
 
 #### 3. Clonar
 
-- clonar su propio repo (o el de alguien mas)
+- clonar su propio repo (o el de alguien más)
 - hacer cambios
 - publicar los nuevos commits
 
@@ -662,11 +660,11 @@ git log --stat
 
 ### Resumen
 
-Todos los comando usados en la clase ✨
+Todos los comandos usados en la clase ✨
 
-> ##### 💥 el `$` al pricipio de los comando no va en la consola,
+> ##### 💥 el `$` al principio de los comandos no va en la consola,
 >
-> ##### esta para que se entienda que se ejecutan de a uno a la vez
+> ##### está para que se entienda que se ejecutan de a uno a la vez
 
 ### crear el repo
 
@@ -686,17 +684,16 @@ $ ls
 $ git status
 ```
 
-#### preperar los cambios para el proximo commit
+#### preparar los cambios para el próximo commit
 
 ```
 $ git add README.md
 $ git status
 ```
 
-#### editar `README.md` y volver a preperar los cambios
+#### editar `README.md` y volver a praperar los cambios
 
 ```
-$ cat README.md
 $ echo "# Hola mi repo" > README.md
 $ git status
 $ git add README.md
@@ -710,7 +707,7 @@ $ git commit -m "Primer commit de mi primer repo: D"
 $ git status
 ```
 
-#### agregar _origin_ como repocitorio remoto y cambiar la rama **default** de _master_ a _main_
+#### agregar _origin_ como repositorio remoto y cambiar la rama **default** de _master_ a _main_
 
 ```
 $ git remote add origin https://github.com/tomasdisk/test-1.git
@@ -727,7 +724,7 @@ $ git status
 
 ---
 
-### Bibliografia
+### Bibliografía
 
 ### 1. [Pro Git, Capitulo 1: Inicio - Sobre el Control de Versiones](https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Acerca-del-Control-de-Versiones)
 
