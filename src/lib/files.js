@@ -29,10 +29,9 @@ export async function getLesson(lessonURL, moduleURL) {
   const lessonName = await getCompleteName(lessonURL, `academy/${moduleName}`)
 
   const mdx = await getMDX(`academy/${moduleName}/${lessonName}/readme.mdx`)
-  // const pdfURL = await getPDF(moduleName, lessonName)
+  const pdfURL = await getPDF(moduleName, lessonName)
 
-  return { ...mdx }
-  // return { ...mdx, pdfURL }
+  return { ...mdx, pdfURL }
 }
 
 export async function getLessons(moduleURL) {
@@ -84,14 +83,18 @@ export async function getMDX(url) {
 
 // Get PDF download link from GitHub repo
 export async function getPDF(moduleName, lessonName) {
+  if (!process.env.REPO_URL) {
+    throw new Error('process.env.REPO_URL not found!')
+  }
   const githubURL = `${process.env.REPO_URL}/contents/public/data/academy/${moduleName}/${lessonName}?ref=master`
 
   const githubLessonFiles = await fetch(githubURL, {
     headers: { Authorization: `token ${process.env.GITHUB_OAUTH_TOKEN}` },
   }).then((r) => r.json())
 
-  if (githubLessonFiles) {
-    console.log(githubLessonFiles, typeof githubLessonFiles)
+  console.log(githubLessonFiles, typeof githubLessonFiles)
+  // INFO: githubLessonFiles.message is an error message. Ex: 'Not found'
+  if (githubLessonFiles && !githubLessonFiles.message) {
     const pdfFile = githubLessonFiles.find(({ name }) => name.includes('.pdf'))
 
     return pdfFile ? pdfFile.download_url : null
