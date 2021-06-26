@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export const HeaderItem = ({ url, children }) => {
   const { asPath } = useRouter()
-  const color = asPath.includes(url) ? 'text-yellow-500' : 'text-white'
+  const color = asPath.includes(url) ? 'text-yellow-500' : 'text-dark dark:text-white'
   console.log('path', asPath, url)
   return (
     <motion.li
@@ -20,7 +20,7 @@ export const HeaderItem = ({ url, children }) => {
     >
       <Link href={url}>
         <a>
-          <p className={`p-2 text-xs font-bold ${color} sm:p-4`}>{children}</p>
+          <p className={`p-2 text-xs font-bold ${color} sm:p-4 font-serif`}>{children}</p>
         </a>
       </Link>
     </motion.li>

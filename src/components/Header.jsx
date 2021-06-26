@@ -30,9 +30,7 @@ export const Header = () => {
             </a>
           </Link>
           {process.env.NEXT_PUBLIC_BETA_BADGE && (
-            <span className=' p-1 ml-2 text-xs text-yellow-200 bg-yellow-500 rounded'>
-              BETA
-            </span>
+            <span className=' p-1 ml-2 text-xs text-yellow-200 bg-yellow-500 rounded'>BETA</span>
           )}
         </div>
         <nav className='flex pl-10'>

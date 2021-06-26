@@ -1,16 +1,22 @@
 import { Container } from '@/components/Container'
 import { supabase } from '@/lib/supabaseClient'
 import { useAuth } from '@/hooks/useAuth'
+import { useRouter } from 'next/router'
 
 const Profile = ({ user }) => {
   // const { user } = useAuth()
-  console.log('user', user)
+  const router = useRouter()
+  user.id = 'Epa (?'
   return (
     <>
       <Container title='profile'>
+        <pre>{JSON.stringify(user, null, 2)}</pre>
         <button
           className='block button'
-          onClick={() => supabase.auth.signOut()}
+          onClick={() => {
+            supabase.auth.signOut()
+            router.push(`/box`)
+          }}
         >
           Sign Out
         </button>
