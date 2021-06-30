@@ -9,10 +9,14 @@ import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
 import { supabase } from '@/lib/supabaseClient'
 import { getErrorMessage } from '@/lib/errors'
+import { countriesWithRegions } from '@/lib/countries'
 
 export const SignUp = ({ onComplete, onRequestSignIn }) => {
-  const [step, setStep] = useState('USERNAME')
+  const steps = ['USERNAME', 'PROFILE', 'SIGNUP']
+  const [step, setStep] = useState(0)
   const [fields, setFields] = useState({})
+
+  const currentStep = steps[step]
 
   const updateFields = (newFields) => {
     setFields((prev) => ({ ...prev, ...newFields }))
@@ -21,24 +25,34 @@ export const SignUp = ({ onComplete, onRequestSignIn }) => {
   const handleStepCompleted = (newFields) => {
     updateFields(newFields)
 
-    if (step === 'SIGNUP') {
+    if (currentStep === 'SIGNUP') {
       onComplete()
     } else {
-      setStep(step === 'USERNAME' ? 'PROFILE' : 'SIGNUP')
+      setStep(step + 1)
     }
+  }
+
+  const handleGoBack = () => {
+    setStep(step - 1)
   }
 
   const currentForm = {
     USERNAME: <UsernameForm onSubmitComplete={handleStepCompleted} />,
-    PROFILE: <ProfileForm onSubmitComplete={handleStepCompleted} />,
-    SIGNUP: <SignUpForm onSubmitComplete={handleStepCompleted} profileFields={fields} />,
-  }[step]
+    PROFILE: <ProfileForm onSubmitComplete={handleStepCompleted} onBack={handleGoBack} />,
+    SIGNUP: (
+      <SignUpForm
+        onSubmitComplete={handleStepCompleted}
+        profileFields={fields}
+        onBack={handleGoBack}
+      />
+    ),
+  }[currentStep]
 
   return (
     <div className='flex flex-col-reverse w-full h-full p-6 sm:flex-row'>
       <div className='flex flex-col items-start justify-between w-1/2'>
         <motion.div
-          className='self-start p-0 pt-10 pr-10 md:p-10 md:pt-0'
+          className='self-start p-0 pt-10 pr-10 sm:p-10 md:pt-0'
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{
@@ -52,7 +66,7 @@ export const SignUp = ({ onComplete, onRequestSignIn }) => {
         >
           <Dialog.Title
             as='h2'
-            className='inline font-serif text-4xl leading-relaxed bg-gray-200 md:text-5xl dark:bg-black'
+            className='inline font-serif text-6xl leading-relaxed bg-gray-200 md:text-6xl dark:bg-black'
           >
             Bienvenid@!
           </Dialog.Title>
@@ -155,14 +169,20 @@ const profileSquema = yup
       .string()
       .max(20, '20 caracteres es el límite')
       .required('Por favor ingresa tu nombre'),
-    gender: yup.string().required('Por favor dejanos saber como te identificás'),
+    country: yup.string().required('Por favor ingresa tu país'),
+    region: yup.string().required('Por favor ingresa tu región'),
   })
   .default(undefined)
 
-const ProfileForm = ({ onSubmitComplete }) => {
-  const { register, handleSubmit, formState } = useForm({
+const ProfileForm = ({ onSubmitComplete, onBack }) => {
+  const { register, watch, handleSubmit, formState } = useForm({
     resolver: yupResolver(profileSquema),
   })
+  const country = watch('country')
+
+  // no es muy performante recorrer todos los paises al seleccionar uno, seria mejor guardar toda la info de las regiones en el pais seleccionado quizas
+  const regions =
+    country && countriesWithRegions.find(({ countryName }) => countryName === country).regions
   const { errors } = formState
 
   const onSubmit = (fields) => {
@@ -170,19 +190,43 @@ const ProfileForm = ({ onSubmitComplete }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
       <p className='pb-2 text-xs'>Necesitamos algunos datos de tu identidad.</p>
       <Input {...register('firstname')} placeholder='Nombre' error={errors?.firstname?.message} />
       <Input {...register('lastname')} placeholder='Apellido' error={errors?.lastname?.message} />
-      <select {...register('gender')}>
-        <option value='undefined'>Prefiero no decirlo</option>
-        <option value='women'>Mujer</option>
-        <option value='man'>Hombre</option>
-        <option value='fluid'>Binario / Gender fluid</option>
+      <select
+        {...register('country')}
+        className='p-2 my-2 bg-white rounded dark:bg-gray-800 focus:outline-none focus:ring-1 dark:focus:ring-yellow-500 focus:ring-black dark:border-gray-800 hover:border-gray-500 dark:hover:border-gray-600'
+      >
+        <option disabled selected='selected' label='De que país sos?'></option>
+        {countriesWithRegions.map(({ countryName }) => (
+          <option key={countryName} value={countryName}>
+            {countryName}
+          </option>
+        ))}
       </select>
-      <Button type='submit' className='self-end mt-8'>
-        Continuar
-      </Button>
+      {regions && (
+        <select
+          {...register('region')}
+          className='p-2 my-2 bg-white rounded dark:bg-gray-800 focus:outline-none focus:ring-1 dark:focus:ring-yellow-500 focus:ring-black dark:border-gray-800 hover:border-gray-500 dark:hover:border-gray-600'
+        >
+          <option disabled selected='selected' label='De que región sos?'></option>
+          {regions.map(({ name }) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+      )}
+
+      <div className='flex justify-between'>
+        <Button className='self-end mt-8' onClick={onBack}>
+          Volver
+        </Button>
+        <Button type='submit' className='self-end mt-8'>
+          Continuar
+        </Button>
+      </div>
     </form>
   )
 }
@@ -196,7 +240,7 @@ const signupSquema = yup.object().shape({
     .matches(/[A-Z]+/g, 'Te falta al menos una mayúscula'),
 })
 
-const SignUpForm = ({ onSubmitComplete, profileFields }) => {
+const SignUpForm = ({ onSubmitComplete, onBack, profileFields }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -254,9 +298,14 @@ const SignUpForm = ({ onSubmitComplete, profileFields }) => {
         error={errors?.password?.message}
       />
       <p className='text-red-700'>{getErrorMessage(error)}</p>
-      <Button type='submit' className='self-end mt-8' loading={loading}>
-        Registrarme
-      </Button>
+      <div className='flex justify-between'>
+        <Button className='self-end mt-8' onClick={onBack}>
+          Volver
+        </Button>
+        <Button type='submit' className='self-end mt-8' loading={loading}>
+          Registrarme
+        </Button>
+      </div>
     </form>
   )
 }
