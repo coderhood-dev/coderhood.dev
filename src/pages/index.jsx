@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-
 import { Bubbles } from '@/components/Bubbles'
 import { Container } from '@/components/Container'
 import { learningBubbles } from '@/data/learningBubbles'
@@ -11,14 +9,7 @@ import { Account } from '@/components/Account'
 import { AuthModal } from '@/components/Auth'
 import { supabase } from '@/lib/supabaseClient'
 
-const CubesAnimation = dynamic(() => import('@/components/CubesAnimation'), {
-  ssr: false,
-})
-
 const Home = ({ modules }) => {
-  const { session, user } = useAuth()
-  let [isOpen, setIsOpen] = useState(false)
-
   return (
     <>
       <Container title='home' className='flex-col-reverse sm:flex-row'>
@@ -50,25 +41,17 @@ const Home = ({ modules }) => {
             </h3>
           </div>
         </section>
-
-        {/* bubbles */}
-        {/* <section className='w-full sm:w-2/5 '>
-          <Bubbles bubbles={learningBubbles} />
-        </section> */}
-        {/* {user ? <Account key={session.user.id} session={session} /> : <Auth />} */}
-
-        {/* Modal */}
-        <button
-          onClick={() => setIsOpen(true)}
-          className='absolute top-0 left-0 p-5 m-5 bg-yellow-500'
-        >
-          Modal
-        </button>
-        <AuthModal open={isOpen} onClose={() => setIsOpen(false)} />
       </Container>
-      {/* <CubesAnimation r3f /> */}
     </>
   )
 }
 
 export default Home
+
+export async function getStaticProps() {
+  return {
+    props: {
+      title: 'Coderhood',
+    },
+  }
+}
