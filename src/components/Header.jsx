@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 
 import { Head } from '@/components/Head'
 import { HeaderItem } from '@/components/HeaderItem'
@@ -18,7 +17,8 @@ export const Header = ({ className }) => {
     <>
       <Head title={title} />
       <header
-        className={`flex items-center w-full justify-between h-20 pl-10 pr-16 border-b dark:border-b-0 ${className}`}
+        className={`flex items-center w-full justify-between h-20 pl-10 pr-16 border-b  dark:border-gray-900 border-gray-300 z-10  ${className}`}
+        style={{ backdropFilter: 'saturate(180%) blur(20px)' }}
       >
         <div className='flex items-center justify-start'>
           <ThemeSwitcher />
