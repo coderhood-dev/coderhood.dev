@@ -4,20 +4,24 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 import { Head } from '@/components/Head'
 import { HeaderItem } from '@/components/HeaderItem'
+import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 import useStore from '@/lib/store'
 import { useAuth } from '@/hooks/useAuth'
 
-export const Header = () => {
+export const Header = ({ className }) => {
   const title = useStore((s) => s.title)
 
   const { user } = useAuth()
-  const profileTitle = user?.email || 'Profile'
+  const profileTitle = user?.email || 'Inicia sesión'
 
   return (
     <>
       <Head title={title} />
-      <header className='flex items-center justify-between h-20 pl-10 pr-16 border-b dark:border-b-0'>
+      <header
+        className={`flex items-center w-full justify-between h-20 pl-10 pr-16 border-b dark:border-b-0 ${className}`}
+      >
         <div className='flex items-center justify-start'>
+          <ThemeSwitcher />
           <Link href='/'>
             <a className='flex w-30 sm:w-48'>
               <Image
@@ -35,8 +39,11 @@ export const Header = () => {
         </div>
         <nav className='flex pl-10'>
           <ul className='flex'>
-            <HeaderItem url='/academy'>🎓 Academy</HeaderItem>
-            <HeaderItem url='/profile'>{`🧠 ${profileTitle}`}</HeaderItem>
+            <HeaderItem url='/academy'>Academy</HeaderItem>
+            <HeaderItem url='/teams'> Equipos</HeaderItem>
+            <HeaderItem url='/profile' type={user ? 'normal' : 'primary'}>
+              {profileTitle}
+            </HeaderItem>
           </ul>
         </nav>
       </header>

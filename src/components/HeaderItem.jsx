@@ -2,27 +2,18 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-export const HeaderItem = ({ url, children }) => {
+export const HeaderItem = ({ url, children, type = 'normal' }) => {
   const { asPath } = useRouter()
   const color = asPath.includes(url) ? 'text-yellow-500' : 'text-dark dark:text-white'
-  console.log('path', asPath, url)
+
+  const primaryStyles =
+    'bg-yellow-500 font-medium text-white dark:bg-gray-900 focus:ring-2 dark:focus:ring-1 dark:border dark:border-gray-800 focus:ring-gray-900 dark:focus:ring-yellow-500 rounded-full focus:outline-none dark:hover:border-gray-600'
+
   return (
-    <motion.li
-      className={`mr-5`} // bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50
-      // initial={{ x: 250 }}
-      // animate={{ x: 0 }}
-      // exit={{ x: 250, transition: { delay: 0.2, duration: 0.7 } }}
-      // transition={{
-      //   duration: 1,
-      //   delay: 0.5,
-      //   type: 'spring',
-      // }}
-    >
-      <Link href={url}>
-        <a>
-          <p className={`p-2 text-xs font-bold ${color} sm:p-4 font-serif`}>{children}</p>
-        </a>
-      </Link>
-    </motion.li>
+    <Link href={url}>
+      <a className={`mx-2 ${type === 'primary' && primaryStyles}`}>
+        <p className={`px-4 py-2 text-xs font-bold ${color} font-serif`}>{children}</p>
+      </a>
+    </Link>
   )
 }
