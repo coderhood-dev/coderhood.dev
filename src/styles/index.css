@@ -15,6 +15,12 @@
     margin: 0;
     padding: 0;
   }
+
+  #headlessui-portal-root {
+    position: absolute;
+    top: 0;
+    z-index: 30;
+  }
 }
 
 html[class*="dark"] .dot-background {

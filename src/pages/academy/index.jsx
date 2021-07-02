@@ -31,32 +31,24 @@ const Academy = ({ modules }) => {
             Coderhood Academy 🎓
           </h1>
           <p className='pt-5 text-xs text-gray-600 dark:text-gray-300 sm:text-sm'>
-            El material que preparamos esta pensado para que puedas aprender lo
-            necesario para ser un Desarrollador Full Stack en aproximadamente 6
-            meses. La modalidad va a ser la siguiente, dos veces por semana
-            vamos a tener clases a travez de streamings en vivo por Twitch. Cada
-            presentación de la clase va a estar en este repositorio así que si
-            no pudiste estar vas a poder ponerte al día buscando y leyendo tu
-            clase. Dos días después los streamings van a estar en nuestro canal
-            de Youtube para que los puedas ver cuando quieras. En cada clase
-            vamos a intentar dejarte ejercicios para que practiques, esforzate
-            en hacerlos porque así es como te demostras a vos que realmente
-            estas aprendiendo. Varias veces te vas a bloquear o vas a tener
-            dudas, le pasa a todo el mundo y para eso tenes la comunidad en
-            Discord. Además, la primera clase vamos a formar equipos. Tu equipo
-            van a ser otras 2 personas que van a hacer el mismo camino que vos,
-            den lo mejor para ayudarse mutuamente. Si no pudiste resolver los
-            ejercicios planteados para una clase no te preocupes, la clase
-            siguiente los vamos a resolver en vivo antes de continuar con los
-            temas.
+            El material que preparamos esta pensado para que puedas aprender lo necesario para ser
+            un Desarrollador Full Stack en aproximadamente 6 meses. La modalidad va a ser la
+            siguiente, dos veces por semana vamos a tener clases a travez de streamings en vivo por
+            Twitch. Cada presentación de la clase va a estar en este repositorio así que si no
+            pudiste estar vas a poder ponerte al día buscando y leyendo tu clase. Dos días después
+            los streamings van a estar en nuestro canal de Youtube para que los puedas ver cuando
+            quieras. En cada clase vamos a intentar dejarte ejercicios para que practiques,
+            esforzate en hacerlos porque así es como te demostras a vos que realmente estas
+            aprendiendo. Varias veces te vas a bloquear o vas a tener dudas, le pasa a todo el mundo
+            y para eso tenes la comunidad en Discord. Además, la primera clase vamos a formar
+            equipos. Tu equipo van a ser otras 2 personas que van a hacer el mismo camino que vos,
+            den lo mejor para ayudarse mutuamente. Si no pudiste resolver los ejercicios planteados
+            para una clase no te preocupes, la clase siguiente los vamos a resolver en vivo antes de
+            continuar con los temas.
           </p>
 
           <h3 className='pt-16 pb-5 text-3xl font-extrabold'>Módulos</h3>
-          <motion.ul
-            variants={listVariants}
-            initial='initial'
-            animate='animate'
-          >
+          <motion.ul variants={listVariants} initial='initial' animate='animate'>
             {modules.map((module) => (
               <motion.li key={module.name} variants={itemVariants}>
                 <Link href={`/academy/${module.name}`}>
@@ -88,6 +80,6 @@ export async function getStaticProps() {
   })
 
   return {
-    props: { modules },
+    props: { modules, title: 'Academy' },
   }
 }
