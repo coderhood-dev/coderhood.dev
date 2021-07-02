@@ -5,7 +5,7 @@ import Footer from './Footer'
 export const Container = ({ title, children, column, className }) => {
   return (
     <motion.div
-      // className={`w-full h-full flex flex-col overflow-x-hidden`}  Comente esto xq me pisaba el footer
+      // className={`w-full h-full flex flex-col overflow-x-hidden`}  Comente esto xq me pisaba el footer.
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
