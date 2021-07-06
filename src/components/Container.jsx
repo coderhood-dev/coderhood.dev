@@ -14,7 +14,8 @@ export const Container = ({ title, children, column, className }) => {
       {/* TODO: Hacksito para fixear despues, el header esta tapando la scrollbar */}
       <Header className='absolute top-0 right-5' />
       <main className={`flex-1 pt-20 flex ${className}`}>{children}</main>
-      <footer className='px-20 text-lg text-gray-100 bg-gray-900'>Footer</footer>
+      {/* <footer className='px-20 text-lg text-gray-100 bg-gray-900'>Footer</footer> */}
+      <Footer />
     </motion.div>
   )
 }

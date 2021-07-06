@@ -9,13 +9,13 @@ const Footer = () => {
         <div className="footerLinks-container flex items-end ml-36 flex-grow">
           <div className="footerLinks-subcontainer flex flex-col items-start mb-4 text-gray-500">
             <Link href="/">
-              <a className="footerLink">Inicio</a>
+              <a className="footerLink hover:text-gray-400">Inicio</a>
             </Link>
             <Link href="/academy">
-              <a className="footerLink">Academy</a>
+              <a className="footerLink hover:text-gray-400">Academy</a>
             </Link>
             <Link href="#">
-              <a className="footerLink">Equipos</a>
+              <a className="footerLink hover:text-gray-400">Equipos</a>
             </Link>
           </div>
         </div>
@@ -44,16 +44,16 @@ const Footer = () => {
           </a>
         </div>
         <div className="socialMedia-container w-60 flex justify-between mb-5">
-          <a href="https://www.youtube.com/channel/UCZiR1u5RtSYYt8qcenxr-Uw" target="_blank" className="socialMedia-link flex items-center justify-center h-12 w-12 rounded-full bg-gray-800">
+          <a href="https://www.youtube.com/channel/UCZiR1u5RtSYYt8qcenxr-Uw" target="_blank" className="socialMedia-link flex items-center justify-center h-12 w-12 rounded-full bg-gray-800 hover:bg-gray-700">
             <div className="socialMedia-logo bg-cover bg-center h-6 w-6" style={{ backgroundImage: `url(https://i.imgur.com/f0sTtvV.png)` }}></div>
           </a>
-          <a href="https://www.twitch.tv/coderhood" target="_blank" className="socialMedia-link flex items-center justify-center h-12 w-12 rounded-full bg-gray-800">
+          <a href="https://www.twitch.tv/coderhood" target="_blank" className="socialMedia-link flex items-center justify-center h-12 w-12 rounded-full bg-gray-800 hover:bg-gray-700">
             <div className="socialMedia-logo2 h-6 w-6 bg-cover" style={{ backgroundImage: `url(https://i.imgur.com/s0Fl2YX.png)` }}></div>
           </a>
-          <a href="https://twitter.com/coderhood_dev" target="_blank" className="socialMedia-link flex items-center justify-center h-12 w-12 rounded-full bg-gray-800">
+          <a href="https://twitter.com/coderhood_dev" target="_blank" className="socialMedia-link flex items-center justify-center h-12 w-12 rounded-full bg-gray-800 hover:bg-gray-700">
             <div className="socialMedia-logo3 h-6 w-6 bg-contain bg-no-repeat bg-center" style={{ backgroundImage: `url(https://i.imgur.com/NZnrCui.png)` }}></div>
           </a>
-          <a href="https://www.instagram.com/coderhood.dev/" target="_blank" className="socialMedia-link flex items-center justify-center h-12 w-12 rounded-full bg-gray-800">
+          <a href="https://www.instagram.com/coderhood.dev/" target="_blank" className="socialMedia-link flex items-center justify-center h-12 w-12 rounded-full bg-gray-800 hover:bg-gray-700">
             <div className="socialMedia-logo4 h-6 w-6 bg-cover" style={{ backgroundImage: `url(https://i.imgur.com/xKpRCg5.png)` }}></div>
           </a>
         </div>
