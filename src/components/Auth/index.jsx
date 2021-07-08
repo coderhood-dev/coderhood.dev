@@ -1,23 +1,29 @@
-import { useState } from 'react'
+import React from 'react'
 import { Dialog } from '@headlessui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { SignIn } from './SignIn'
-import { SignUp } from './SignUp'
+import { SignIn } from './SignInForm'
+import { SignUp } from './SignUpForm'
 import { Welcome } from './Welcome'
 
 const MotionOverlay = motion(Dialog.Overlay)
 
-export const AuthModal = ({ open, onClose }) => {
-  const [selectedView, setSelectedView] = useState('SIGNIN')
+export const AuthModal = ({ open, onClose, unauthorizedMessage }) => {
+  const [selectedView, setSelectedView] = React.useState('SIGNIN')
 
-  const handleClose = () => {
-    onClose()
+  const handleClose = (user) => {
+    onClose(user)
     setSelectedView('SIGNIN')
   }
 
   const view = {
-    SIGNIN: <SignIn onComplete={handleClose} onRequestSignUp={() => setSelectedView('SIGNUP')} />,
+    SIGNIN: (
+      <SignIn
+        onComplete={handleClose}
+        onRequestSignUp={() => setSelectedView('SIGNUP')}
+        unauthorizedMessage={unauthorizedMessage}
+      />
+    ),
     SIGNUP: (
       <SignUp
         onComplete={() => {
@@ -40,8 +46,7 @@ export const AuthModal = ({ open, onClose }) => {
           className='fixed inset-0 z-30 flex items-end justify-center overflow-hidden sm:items-center'
         >
           <MotionOverlay
-            className='fixed inset-0'
-            style={{ backdropFilter: 'saturate(180%) blur(20px)' }}
+            className='fixed inset-0 backdrop-filter backdrop-blur-lg'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

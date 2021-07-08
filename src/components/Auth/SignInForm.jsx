@@ -19,7 +19,7 @@ const schema = yup.object().shape({
     .matches(/[A-Z]+/g, 'Te falta al menos una mayúscula'),
 })
 
-export const SignIn = ({ onComplete, onRequestSignUp }) => {
+export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const { register, handleSubmit, formState } = useForm({
@@ -99,7 +99,7 @@ export const SignIn = ({ onComplete, onRequestSignUp }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 2 }}
           >
-            Que bueno verte de vuelta :)
+            {unauthorizedMessage || 'Que bueno verte de vuelta :)'}
           </motion.h3>
         </motion.div>
         <div className='p-2 pb-0 mb-2 bg-gray-200 dark:bg-black'>
