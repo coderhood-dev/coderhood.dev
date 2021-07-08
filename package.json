@@ -71,10 +71,10 @@
     "mdx-deck": "^4.1.1",
     "next-compose-plugins": "^2.2.1",
     "next-offline": "^5.0.5",
-    "postcss": "^8.2.14",
+    "postcss": "^8.3.5",
     "prettier": "^2.2.1",
     "raw-loader": "^4.0.2",
-    "tailwindcss": "^2.1.2",
+    "tailwindcss": "^2.2.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.36.2"
   },
