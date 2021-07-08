@@ -9,7 +9,7 @@
     "lint": "yarn prettier && yarn eslint",
     "eslint": "eslint --fix 'src/**/*.{js,jsx}' --ext jsconfig.json",
     "prettier": "prettier --list-different '**/*.{js,jsx,md}'",
-    "dev": "next dev",
+    "dev": "next dev -p 8008",
     "build": "next build",
     "export": "EXPORT=true next build && EXPORT=true next export",
     "analyze": "ANALYZE=true next build",

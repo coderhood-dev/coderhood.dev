@@ -19,20 +19,220 @@ import { themes, Image } from 'mdx-deck'
 
 1. Merging
 
-1. Merge conflictos :scream:
-
-1. Pull Request (PR)
+1. Merge con conflictos :scream
 
 ---
 
 ## ¿Qué son las ramas? (Branches)
 
+Nos permiten hacer cambios en el proyecto sin modificar los archivos existentes!
+
+Tambien facilita el trabajo en grupo, porque cada persona puede hacer su tarea en una rama separda. :twisted_rightwards_arrows:
+
+Y cuando una tarea esta lista, esa rama se fuciona con la rama base o principal.
+
+La forma en que Git usa las ramas es una de las principales razones por lo que es tan popular. :star_struck:
+
+---
+### Punteros
+
+Para git una rama es una etiqueta que apunta a un commit
+
+Por esto es super facil crear, mover y eliminar ramas en git, solo se actualiza el puntero!
+
+<Image
+  src="/images/2-git/2-git-branch/advance-testing.png"
+  atl="git branches"
+/>
+
+> ### HEAD
+> #### Es un puntero especial, apunta al commit donde estamos.
+
+---
+
 ## Branching
 
-### 
+`git branch` es el comando para gestionar las ramas de git.
+
+Por defecto lista las ramas del repocitorio local
+
+```
+* main
+```
+y marca con `*` la rama en la que estamos
+
+> ##### se sale del log apretando `q`
+
+---
+
+### Crear una rama
+
+`git branch <numbre>`
+
+vamos a crear una rama llamada `testing`
+
+```
+git branch testing
+```
+
+y ahora `git branch` muestra lo siguiente
+
+```
+* main
+  testing
+```
+
+---
+
+### Cambiar de rama
+
+`git checkout <nombre_rama>` es para moverse de una rama a otra
+
+vamos a la rama recien creada `testing`.
+
+```
+$ git checkout testing
+Switched to branch 'testing'
+```
+Mueve el puntero `HEAD` al mismo commit apuntado por la rama `testing`.
+
+`git branch` muestra lo siguiente:
+
+```
+  main
+* testing
+```
+
+---
+
+### Cambios en testing
+
+Podemos modificar archivos y crear un nuevo _commit_ con los cambios.
+
+Modificar => `git add .` => `git commit -m "test commit"`
+
+Luego, nuestro repositorio quedo asi:
+<Image
+  src="/images/2-git/2-git-branch/advance-testing.png"
+  atl="git branches"
+/>
+
+podemos ver algo similar con `git log --graph`
+
+---
+
+### Cambios en main
+
+Hay que moverse a master...
+```
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+```
+
+Modificar => `git add .` => `git commit -m "test commit"`
+
+Podemos ver como quedo el repo con `git log --graph -all`
+
+<Image
+  src="/images/2-git/2-git-branch/advance-master.png"
+  atl="git branches"
+/>
+
+---
 
 ## Merging
 
+### Basic merging
+
+Crear una nueva rama partiendo de `master`
+
+```
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+```
+
+`git checkout -b <nombre_rama>` es un atajo para crear una rama y movernos a ella automaticamente
+
+Agamos cambios y creemos un commit en `hotfix`.
+
+Modificar => `git add .` => `git commit -m "test commit"`
+
+
+<Image
+  src="/images/2-git/2-git-branch/basic-branching-4.png"
+  atl="git branches"
+/>
+---
+
+### Fast foward
+
+Para _mergear_ o fusionar los cambios de la rama `hotfix` en `master` hay que moverse a `master` con `git checkout main`.
+
+Luego hacemos el merge con ` git merge <nombre_rama>`
+
+```
+$ git merge hotfix
+Updating 4c0d929..83bb222
+Fast-forward
+ text2.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 text2.txt
+```
+
+> #### Fast-forward: significa que `master` esta en la historia de `hotfix` y solo fue necesario adelantar el puntero de `master` a su nueva poscicion
+
+
+<Image
+  src="/images/2-git/2-git-branch/basic-branching-5.png"
+  atl="git branches"
+/>
+---
+
+### Merge commit
+
+Es un _commit_ especial que tiene 2 ancestros en vez de 1
+
+y se crea cuando se fusionan 2 ramas que divergieron.
+
+<Image
+  src="/images/2-git/2-git-branch/basic-merging-2.png"
+  atl="git branches"
+/>
+
+---
+
 ## Merge conflictos :scream:
 
+Cuendo queremos fusionar 2 ramas que hicieron cambios en un mismo archivo puede haber conflictos.
+
+Estos suceden porque git no saba como mesclar el contenido de los dos archivos.
+
+Queda en nosotros solucionar los cambios y terminar el merge.
+
+---
+
+### Conflictos
+
+Para recrear esta situacion vamos crear una rama `nueva`, modificar `README.md` y crear un commit.
+
+Luego, volvemos `master`, vamos a editar otra vez `README.md` y crear un commit.
+
+Y por ultimo, queremos _mergear_ la rama `nueva` en master usando:
+
+```
+$ git merge nueva
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Nos dice que hubo un conflicto de merge en el archivo `README.md`
+
+---
+
 ## Pull Request (PR)
+
+<br />
+<br />
+<br />
