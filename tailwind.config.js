@@ -15,12 +15,14 @@ module.exports = {
       sm: '640px',
     },
     fontFamily: {
-      display: 'Poppins',
-      sans: 'Poppins',
+      serif: 'Poppins',
+      sans: 'Open Sans',
+      display: 'Open Sans',
     },
     extend: {
       colors: {
         gray: {
+          200: '#FAFAFA',
           800: '#34373A',
           900: '#141414',
         },
@@ -77,6 +79,9 @@ module.exports = {
           },
         },
       }),
+      margin: {
+        '1/2': '50%',
+      },
     },
   },
   variants: {

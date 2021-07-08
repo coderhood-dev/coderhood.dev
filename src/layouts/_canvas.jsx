@@ -12,7 +12,7 @@ const homeCanvasConfig = {
 }
 
 const LCanvas = ({ children }) => {
-  const dom = useStore((state) => state.dom)
+  // const dom = useStore((state) => state.dom)
 
   return (
     <Canvas
@@ -21,7 +21,7 @@ const LCanvas = ({ children }) => {
         position: 'absolute',
         top: 0,
       }}
-      onCreated={(state) => state.events.connect(dom.current)}
+      // onCreated={(state) => state.events.connect(dom.current)}
       {...homeCanvasConfig}
     >
       <A11yUserPreferences>

@@ -15,8 +15,8 @@ const BoxComponent = ({ route }) => {
     <>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      <mesh ref={mesh}>
-        <boxGeometry args={[2, 2, 2]} />
+      <mesh ref={mesh} position={[-3, -2, 0]}>
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color='orange' />
       </mesh>
     </>

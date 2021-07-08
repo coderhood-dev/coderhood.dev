@@ -2,46 +2,42 @@ import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import useStore from '@/lib/store'
-
 export const ThemeSwitcher = ({ className }) => {
   const [mounted, setMounted] = useState(false)
+
+  // nextTheme is a key to trigger motion animations
+  const [nextTheme, setNextTheme] = useState(undefined)
+
   const [{ scale, margin, zIndex }, setStyle] = useState({
     scale: 1,
-    margin: '1.25rem',
-    zIndex: 1,
+    zIndex: 0,
   })
-  const { resolvedTheme, setTheme } = useTheme()
-
-  const theme = useStore((state) => state.theme)
-
-  useStore.setState({
-    theme: resolvedTheme === 'dark' ? 'light' : 'dark',
-  })
+  const data = useTheme()
+  const { resolvedTheme, setTheme } = data
 
   // After mounting, we have access to the theme
   useEffect(() => setMounted(true), [])
+
+  const handlePress = () => {
+    setStyle({ scale: 1.2, zIndex: 20 })
+    setTimeout(() => {
+      setStyle({ scale: 1, zIndex: 0 })
+    }, 800)
+
+    setNextTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+
+    setTimeout(() => {
+      setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+    }, 400)
+  }
 
   return (
     <motion.button
       aria-label='Toggle Dark Mode'
       type='button'
       className={`flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded dark:bg-gray-800 focus:outline-none focus:ring-2 ring-yellow-500 ring-opacity-50 ${className}`}
-      onClick={() => {
-        setStyle({ scale: 2, margin: '3rem', zIndex: 20 })
-        setTimeout(() => {
-          setStyle({ scale: 1, margin: '1.25rem', zIndex: 1 })
-        }, 800)
-
-        useStore.setState({
-          algo: theme === 'dark' ? 'light' : 'dark',
-        })
-
-        setTimeout(() => {
-          setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-        }, 400)
-      }}
-      animate={{ scale, margin, zIndex }}
+      onClick={handlePress}
+      animate={{ scale, zIndex }}
     >
       {mounted && (
         <svg
