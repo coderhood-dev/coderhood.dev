@@ -1,10 +1,14 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+import { Button } from '@/components/Button'
 
 const Footer = () => {
+  const router = useRouter()
   return (
-    <div className='flex w-full footer-container h-72'>
+    <div className='flex w-full bg-black'>
       <div className='flex flex-col justify-between w-1/4 left-section'>
         <div className='flex items-end flex-grow footerLinks-container ml-36'>
           <div className='flex flex-col items-start mb-4 text-gray-500 footerLinks-subcontainer'>
@@ -23,7 +27,7 @@ const Footer = () => {
           <Link href='/'>
             <a className='flex w-32 sm:w-60'>
               <Image
-                src='/images/logo-full.png'
+                src='/images/logos/logo-full.png'
                 alt='Coderhood logo'
                 height={42}
                 width={192}
@@ -36,23 +40,24 @@ const Footer = () => {
 
       <div className='flex flex-col items-center justify-between w-3/5 h-full main-section'>
         <div className='flex flex-col items-center joinUs-container mt-28'>
-          <p>Sumate a nuestra comunidad!</p>
-          <a
-            href='https://discord.gg/JJpBQYJ'
-            target='_blank'
-            className='flex items-center justify-around h-12 mt-1 text-lg text-black bg-yellow-500 rounded-full joinUs-button w-80 hover:ring-4 ring-yellow-500 ring-opacity-50'
-            rel='noreferrer'
-          >
-            <div
-              className='w-10 h-10 bg-cover discord-logo'
-              style={{ backgroundImage: `url(https://i.imgur.com/Ftnujs7.png)` }}
-            ></div>
-            Unirme a coderhood
-            <div
-              className='w-10 h-8 bg-no-repeat bg-contain arrow-image'
-              style={{ backgroundImage: `url(https://i.imgur.com/rfvLNkR.png)` }}
-            ></div>
-          </a>
+          <p className='pb-5 text-xs text-center text-white prose-lg'>
+            Dentro de Discord vive nuestra comunidad. Ahí hacemos preguntas y respuestas de todo
+            tipo relacionadas a este mundo, desde consejos para buscar trabajo, preguntas técnicas
+            hasta salud y compartir espacio de trabajo escuchando música. Si todavía no estas
+            sumate!
+          </p>
+          <Button onClick={() => router.push('https://discord.gg/JJpBQYJ')} className='mb-10'>
+            <div className='flex items-center'>
+              <Image
+                src='/images/logos/discord.png'
+                alt='Coderhood logo'
+                height={16}
+                width={16}
+                quality={65}
+              />{' '}
+              <p className='ml-2'>Unirme a la comunidad</p>
+            </div>
+          </Button>
         </div>
         <div className='flex justify-between mb-5 socialMedia-container w-60'>
           <a
@@ -100,12 +105,6 @@ const Footer = () => {
             ></div>
           </a>
         </div>
-      </div>
-      <div className='relative w-1/4 h-full right-section'>
-        <div
-          className='w-full h-full bg-bottom bg-no-repeat bg-contain rounded-points'
-          style={{ backgroundImage: `url(https://i.imgur.com/3XkLCqg.png)` }}
-        ></div>
       </div>
     </div>
   )

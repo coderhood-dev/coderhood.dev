@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: {
-    enabled: true,
+    enabled: false,
     preserveHtmlElements: false,
     content: [
       './src/pages/**/*.{js,ts,jsx,tsx}',

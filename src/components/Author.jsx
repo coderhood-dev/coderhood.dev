@@ -5,7 +5,7 @@ const team = {
 }
 
 export const Author = ({ author }) => {
-  const src = team[author] || '/images/logo.png'
+  const src = team[author] || '/images/logos/logo.png'
   return (
     <Image
       src={src}

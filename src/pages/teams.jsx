@@ -107,11 +107,22 @@ const Teams = () => {
                 </div>
                 <p className='pl-10 font-serif text-xl'>#{team.id}</p>
               </div>
-              {team.lgbtiq_only && (
-                <p className='min-w-0 px-2 py-1 mb-5 font-serif text-xs text-gray-800 rounded-full bg-gradient-to-r from-red-300 via-yellow-300 to-blue-300'>
-                  lgbtiq+
-                </p>
-              )}
+              <div className='flex flex-row flex-wrap my-2'>
+                {team.interests.map((interest) => {
+                  const background =
+                    interest === 'lgbtiq+'
+                      ? 'bg-gradient-to-r from-red-300 via-yellow-300 to-blue-300'
+                      : 'bg-yellow-300'
+                  return (
+                    <p
+                      key={interest}
+                      className={`px-2 py-1 m-1 font-serif text-xs text-gray-800 rounded-full ${background}`}
+                    >
+                      {interest}
+                    </p>
+                  )
+                })}
+              </div>
               {team.description && (
                 <h3 className='mb-5 text-xs text-gray-700 dark:text-gray-300'>{`${team.description}`}</h3>
               )}
@@ -120,7 +131,7 @@ const Teams = () => {
                   {team.profiles?.map((profile) => (
                     <motion.div
                       key={profile.id}
-                      className='flex items-start w-full mb-2 row'
+                      className='flex items-start w-full pr-5 mb-2 row'
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -139,9 +150,11 @@ const Teams = () => {
                   ))}
                 </ul>
               </AnimatePresence>
-              <Button className='self-end mt-auto' onClick={() => setTeam(team)}>
-                Unirme
-              </Button>
+              {team.id !== profile.team && (
+                <Button className='self-end mt-auto' onClick={() => setTeam(team)}>
+                  Unirme
+                </Button>
+              )}
             </motion.div>
           ))}
         </motion.div>

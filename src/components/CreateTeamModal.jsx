@@ -32,7 +32,7 @@ export const CreateTeamModal = ({ className, onComplete }) => {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             />
             <motion.div
-              className='relative overflow-hidden text-left align-bottom border border-gray-800 shadow-xl dark:bg-black rounded-3xl sm:my-8 sm:align-middle backdrop-filter backdrop-blur-3xl'
+              className='relative max-w-4xl overflow-hidden overflow-y-scroll text-left align-bottom border border-gray-800 shadow-xl dark:bg-black rounded-3xl sm:my-8 sm:align-middle backdrop-filter backdrop-blur-3xl'
               initial={{ scale: 0.7, opacity: 0.5 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.7, opacity: 0 }}

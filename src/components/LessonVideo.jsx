@@ -35,12 +35,9 @@ export const LessonVideo = ({ videoURL, title }) => {
           }}
           whileHover={{ y: -2 }}
         >
-          <motion.div
-            animate={{ rotate: logoRotation }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div animate={{ rotate: logoRotation }} transition={{ duration: 0.6 }}>
             <Image
-              src='/images/logo.png'
+              src='/images/logos/logo.png'
               alt='Coderhood logo'
               height={20}
               width={20}

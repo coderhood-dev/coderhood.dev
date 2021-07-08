@@ -29,7 +29,7 @@ export const Header = ({ className }) => {
           <Link href='/'>
             <a className='flex w-30 sm:w-48'>
               <Image
-                src='/images/logo-full.png'
+                src='/images/logos/logo-full.png'
                 alt='Coderhood logo'
                 height={42}
                 width={192}
