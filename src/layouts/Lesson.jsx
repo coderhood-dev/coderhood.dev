@@ -17,7 +17,7 @@ export const LessonLayout = ({ title, frontMatter, pdfURL, lessons, children }) 
             <Sidebar title={title} items={lessons} itemSelected={asPath} />
           </div>
         </div>
-        <div className='w-3/4 h-full overflow-y-scroll'>
+        <div className='w-3/4 h-full overflow-y-auto'>
           <LessonVideo videoURL={youtubeURL} title={title} />
           {/* <div className='bg-red-300 max-w-7xl'> */}
           <div className='flex justify-between p-10'>

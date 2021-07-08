@@ -14,7 +14,7 @@ const Home = ({ modules }) => {
     <>
       <Container title='home' className='flex-col-reverse sm:flex-row'>
         {/* hero */}
-        <section className='flex items-center w-full h-full p-4 pt-0 sm:w-3/5 sm:p-20'>
+        <section className='flex items-center w-full h-screen  p-4 pt-0 sm:w-3/5 sm:p-20'>
           <div className='flex flex-col max-w-4xl gap-y-4 bg-opacity-60'>
             <div className='relative overflow-hidden'>
               <motion.h1
