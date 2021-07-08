@@ -14,14 +14,18 @@ export const Header = ({ className }) => {
   const profileTitle = user?.email || 'Inicia sesión'
 
   return (
-    <>
-      <Head title={title} />
-      <header
-        className={`flex items-center w-full justify-between h-20 pl-10 pr-16 border-b  dark:border-gray-900 border-gray-300 z-10  ${className}`}
-        style={{ backdropFilter: 'saturate(180%) blur(20px)' }}
+    <header
+      className={`h-20 w-full z-10 flex border-b items-center dark:border-gray-900 border-gray-200 bg-white dark:bg-gray-900 ${className}`}
+      // style={{
+      //   backgroundImage: 'linear-gradient(to top, rgba(255,0,0,0), rgba(255,255,255,1))',
+      // }}
+    >
+      {/* <Head title={title} /> */}
+      <div
+        className='relative flex items-center justify-between w-full h-full pl-10 pr-10'
+        // style={{ backdropFilter: 'blur(5px)' }}
       >
         <div className='flex items-center justify-start'>
-          <ThemeSwitcher />
           <Link href='/'>
             <a className='flex w-30 sm:w-48'>
               <Image
@@ -37,16 +41,17 @@ export const Header = ({ className }) => {
             <span className=' p-1 ml-2 text-xs text-yellow-200 bg-yellow-500 rounded'>BETA</span>
           )}
         </div>
-        <nav className='flex pl-10'>
-          <ul className='flex'>
+        <nav className='flex'>
+          <ul className='flex items-center'>
             <HeaderItem url='/academy'>Academy</HeaderItem>
             <HeaderItem url='/teams'> Equipos</HeaderItem>
             <HeaderItem url='/profile' type={user ? 'normal' : 'primary'}>
               {profileTitle}
             </HeaderItem>
+            <ThemeSwitcher />
           </ul>
         </nav>
-      </header>
-    </>
+      </div>
+    </header>
   )
 }
