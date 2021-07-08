@@ -1,0 +1,468 @@
+---
+title: 'Git branch'
+publishedAt: '2021-06-27'
+author: 'Tomas'
+summary: ''
+youtubeURL: ''
+---
+
+import { themes, Image } from 'mdx-deck'
+
+
+# Clase 2: `git branch`
+
+### Tabla de contenidos
+
+1. ¿Qué son las ramas? (Branches)
+
+1. Branching
+
+1. Merging
+
+1. Merge con conflictos 😱
+
+---
+
+## ¿Qué son las ramas? (Branches)
+
+¡Nos permiten hacer cambios en el proyecto, sin modificar los archivos existentes!
+
+También facilitan el trabajo en grupo, cada persona puede hacer su tarea en una rama separada. 🔀
+
+Lo fácil que es cambiar entre ramas, hace que git sea tan popular. 🤩
+
+---
+### Punteros
+
+Para git una rama es una etiqueta que "apunta" a un commit.
+
+Por esto es super fácil crear, mover y eliminar ramas en git. Solo se actualiza el puntero!
+
+<Image
+  src="/images/2-git/2-git-branch/advance-testing.png"
+  atl="git branches"
+/>
+
+> ### HEAD
+> #### Es un puntero especial. Es donde estamos parados, la versión del repositorio que estamos viendo!
+
+---
+
+## Branching
+
+`git branch` es el comando para gestionar las ramas de git.
+
+Por defecto lista las ramas del repositorio local:
+
+```
+* main
+```
+y marca con `*` la rama en la que estamos
+
+> ##### se sale del log apretando `q`
+
+---
+
+### Crear una rama
+
+`git branch <nombre>`
+
+Vamos a crear una rama llamada `testing`:
+
+```
+git branch testing
+```
+
+Ahora `git branch` muestra lo siguiente:
+
+```
+* main
+  testing
+```
+
+---
+
+### Cambiar de rama
+
+`git checkout <nombre_rama>` es para moverse de una rama a otra.
+
+Vamos a la rama recién creada `testing`:
+
+```
+$ git checkout testing
+Switched to branch 'testing'
+```
+El puntero `HEAD` se movió commit apuntado por la rama `testing`.
+
+Ahora `git branch` muestra lo siguiente:
+
+```
+  main
+* testing
+```
+
+Estamos en la rama `testing` 🧪
+
+---
+
+### Cambios en testing
+
+Los nuevos _commits_ van a quedar en la rama `testing`.
+
+Modificamos algunos archivos para crear un nuevo _commit_:
+
+1. Modificar
+1. `git add .`
+1. `git commit -m "test commit"`
+
+Nuestro repositorio quedó así:
+<Image
+  src="/images/2-git/2-git-branch/advance-testing.png"
+  atl="git branches"
+/>
+
+Podemos ver algo similar con `git log --graph`.
+
+---
+
+### Cambios en master
+
+Hay que moverse a master:
+```
+$ git checkout master 
+Switched to branch 'master'
+```
+
+1. Modificar
+1. `git add .`
+1. `git commit -m "test commit"`
+
+Podemos ver cómo está el repo con `git log --graph -all`.
+
+Algo así:
+<Image
+  src="/images/2-git/2-git-branch/advance-master.png"
+  atl="git branches"
+/>
+
+Las ramas divergieron, ya no comparten la misma historia!
+
+---
+
+## Merging
+
+Las ramas pueden fusionarse para combinar su historia de _commits_.
+
+Cuando una tarea está lista, esa rama se fusiona con la rama base o principal.
+
+### Basic merging
+
+Crear una nueva rama partiendo de `master`
+
+```
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+```
+
+`git checkout -b <nombre_rama>` es un atajo para crear una rama y movernos a ella automáticamente.
+
+Hacemos cambios y creemos un commit en `hotfix`.
+
+1. Modificar
+1. `git add .`
+1. `git commit -m "C3"`
+
+Nos queda algo asi:
+<Image
+  src="/images/2-git/2-git-branch/basic-branching-2.png"
+  atl="git branches"
+/>
+
+---
+
+### Fast foward
+
+Para _mergear_ o fusionar los cambios de la rama `hotfix` **en** `master` hay que moverse a `master` con `git checkout master`.
+
+Luego usamos `git merge <nombre_rama>` para actualizar la rama en la que estamos con los cambios de `<nombre_rama>`.
+
+Mergeamos `hotfix` en `master`:
+```
+$ git merge hotfix
+Updating 5309e6d..76fa2dc
+Fast-forward
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+```
+
+**Fast-forward:** significa que `master` está en la historia de `hotfix` y solo fue necesario adelantar el puntero de `master` a su nueva posición.
+
+
+<Image
+  src="/images/2-git/2-git-branch/basic-branching-3.png"
+  atl="git branches"
+/>
+
+---
+
+### Merge commit
+
+Un _merge commit_, es un _commit_ especial que tiene 2 ancestros en vez de 1.
+
+Se crea cuando se fusionan 2 ramas que divergieron.
+
+<Image
+  src="/images/2-git/2-git-branch/basic-merging-2.png"
+  atl="git branches"
+/>
+
+Para lograr una historia parecida a la de la imagen, hacemos los siguientes pasos:
+1. Crear rama `iss53` con `git branch iss53`
+1. Moverse a esa rama con `git checkout iss53`
+1. Crear un archivo, por ejemplo `LICENCE`
+1. Prepararlo y crear un commit: `git add LICENCE && git commit -m "C4"`
+1. Vamos a `master` con `git checkout master`
+1. Hacemos cambios y creamos un commit `git add . && git commit -m "C5"`
+
+Por último, hacemos el _merge commit_ pasándole un mensaje con `-m`:
+```
+$ git merge iss53 -m "C6"
+Merge made by the 'recursive' strategy.
+ LICENCE | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 LICENCE
+```
+
+`git log --graph` nos muestra la historia, señalando en el gráfico cada _commit_ con un `*`:
+
+```
+*   commit 2252345f8e40c3a67df81395746acfeb9daee22b (HEAD -> master)
+|\  Merge: b3b435f 9ac1dbf
+| | Author: tomasdisk <tomasdisk@coderhood.com>
+| | Date:   Thu Jul 8 01:34:35 2021 -0300
+| | 
+| |     C6
+| | 
+| * commit 9ac1dbfad0bd809d52834dcb8178ed167dd7e2d6 (iss53)
+| | Author: tomasdisk <tomasdisk@coderhood.com>
+| | Date:   Thu Jul 8 01:32:08 2021 -0300
+| | 
+| |     C4
+| | 
+* | commit b3b435f70e84cf459128028a277d5e852029a1e0
+|/  Author: tomasdisk <tomasdisk@coderhood.com>
+|   Date:   Thu Jul 8 01:33:13 2021 -0300
+|   
+|       C5
+| 
+* commit 76fa2dcd740e1667d507476d2addd42e76b328bc (hotfix)
+| Author: tomasdisk <tomasdisk@coderhood.com>
+| Date:   Thu Jul 8 01:06:11 2021 -0300
+| 
+|     C3
+```
+
+
+---
+
+## Merge conflicts 😱
+
+Cuando queremos fusionar 2 ramas que hicieron cambios en un mismo archivo puede haber conflictos.
+
+Estos suceden porque git no sabe cómo mezclar el contenido de los dos archivos.
+
+Queda en nosotros solucionar los conflictos y terminar el merge.
+
+---
+
+### Conflictos
+
+Para recrear esta situación, supongamos que en la rama `master` también habíamos creado un archivo `LICENCE`.
+
+Al querer hacer `git merge iss53 -m "C6"` el merge falla, porque las 2 ramas tienen cambios en el mismo archivo:
+```
+$ git merge iss53 -m "C6"
+CONFLICT (add/add): Merge conflict in LICENCE
+Auto-merging LICENCE
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Nos dice que hubo un **conflicto** de merge en el archivo `LICENCE`.
+
+---
+
+### Solucionar conflictos
+
+Con `git status` podemos ver como esta el repositorio:
+```
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both added:      LICENCE
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Dice que hay _paths sin mergear_.
+
+Si abrimos el archivo `LICENCE` vamos a ver algo así:
+
+```
+<<<<<<< HEAD
+# Hola mi
+=======
+# Hola mi repoo
+>>>>>>> iss53
+
+```
+
+VS Code nos lo muestra así:
+
+<Image
+  src="/images/2-git/2-git-branch/conflicts.png"
+  atl="git conflicts"
+/>
+
+Hay 3 marcadores en el texto. Fueron agregados por git para delimitar el conflicto!
+
+* `<<<<<<< HEAD`: es donde arranca el conflicto
+* `=======`: separa los cambios de la rama actual (`HEAD`) de los cambios que viene de la rama que estamos queriendo mergear (`iss53`)
+* `>>>>>>> iss53`: en donde termina el conflicto
+
+#### Nuestra tarea es:
+
+1. Editar el archivo `LICENCE` y decidir con qué cambios quedarse. Las opciones son:
+    * Nos quedamos con los cambios de `HEAD`
+    * Nos quedamos con los cambios que vienen desde la rama `iss53`
+    * Elegimos algo de ambas ramas
+1. Eliminar los marcadores para que git sepa que no hay más conflicto
+1. Preparar el archivo
+1. Hacer el commit
+
+---
+
+Editamos `LICENCE` y borramos los marcadores:
+<Image
+  src="/images/2-git/2-git-branch/conflicts-solution.png"
+  atl="git conflicts solution"
+/>
+
+Preparamos los archivos con `git add LICENCE`.
+
+Luego vemos como esta el repo:
+
+```
+$ git status
+On branch master
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+        modified:   LICENCE
+```
+
+Git ya sabe que todos los conflictos fueron solucionados, pero nos dice que el merge todavía está activo.
+
+Para terminar el merge hay que hacer el commit usando:
+
+```
+git commit -m "C6"
+```
+
+De esta forma se creó el _merge commit_ con los conflictos solucionados! 🎉
+
+---
+
+### Eliminar una rama
+
+Para borrar una rama usamos `git branch -d <nombre>`.
+
+Si queremos borrar la rama `hotfix`:
+```
+$ git branch -d hotfix
+Deleted branch hotfix (was e6ca539).
+```
+
+Si la rama tiene commits sin mergear, la eliminación falla:
+```
+$ git branch -d hotfix
+error: The branch 'hotfix' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D hotfix'.
+```
+
+Git nos dice que la rama no está completamente mergeada y si queremos eliminarla de todos modos usemos el flag `-D` en vez de `-d`.
+
+---
+
+### Ejercicios
+
+#### 1. Primeras ramas
+
+- Crear varias ramas
+- Moverse de una a otra
+- Crear commits en distintas ramas
+- Ver el gráfico de commits con `git log`
+
+#### 2. Merge
+
+- Fusionar distintas ramas en `master`
+- Crear un conflicto y solucionarlo!
+
+---
+
+### Resumen
+
+Todos los comandos usados en la clase ✨
+
+Listar ramas
+```
+git branch
+```
+
+Crear rama
+```
+git branch <nombre>
+```
+
+Moverse a otra rama
+```
+git checkout <nombre>
+```
+
+Crear una rama y moverse a ella
+```
+git checkout -b <nombre>
+```
+
+Merge: combinar la historia de `<nombre>` con la rama actual dándole un mensaje para el commit
+```
+git merge <nombre> -m "mensaje del merge commit"
+```
+
+Ver la historia del repositorio como un gráfico
+```
+git log --graph
+```
+
+Eliminar una rama
+```
+git branch -d <nombre>
+```
+
+
+---
+
+### Bibliografía
+
+### 1. [Pro Git, Capitulo 3: Ramificaciones en Git](https://git-scm.com/book/es/v2/Ramificaciones-en-Git-%C2%BFQu%C3%A9-es-una-rama%3F)
+
+
+<br />
+<br />
+<br />
