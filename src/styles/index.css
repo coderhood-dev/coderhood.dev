@@ -34,3 +34,6 @@ html[class*="light"] .dot-background {
 }
 
 
+::selection {
+  @apply bg-yellow-500 text-white dark:text-black; /* WebKit/Blink Browsers */
+}
