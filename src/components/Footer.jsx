@@ -37,7 +37,7 @@ const Footer = () => {
       <div className="main-section w-3/5 h-full flex flex-col items-center justify-between">
         <div className="joinUs-container flex flex-col items-center mt-28">
           <p>Sumate a nuestra comunidad!</p>
-          <a href="https://www.instagram.com/" target="_blank" className="joinUs-button mt-1 bg-yellow-500 flex items-center justify-around h-12 w-80 text-lg text-black rounded-full  hover:ring-4 ring-yellow-500 ring-opacity-50">
+          <a href="https://discord.gg/jk73saSWGd" target="_blank" className="joinUs-button mt-1 bg-yellow-500 flex items-center justify-around h-12 w-80 text-lg text-black rounded-full  hover:ring-4 ring-yellow-500 ring-opacity-50">
             <div className="discord-logo w-10 h-10 bg-cover" style={{ backgroundImage: `url(https://i.imgur.com/Ftnujs7.png)` }}></div>
             Unirme a coderhood
             <div className="arrow-image w-10 h-8 bg-contain bg-no-repeat" style={{ backgroundImage: `url(https://i.imgur.com/rfvLNkR.png)` }}></div>
@@ -59,10 +59,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="right-section w-1/4 h-full relative">
-        <div className="rounded-points w-full h-full bg-bottom bg-contain bg-no-repeat " style={{ backgroundImage: `url(https://i.imgur.com/3XkLCqg.png)` }}>
-        </div>
+        <div className="rounded-points w-full h-full bg-bottom bg-contain bg-no-repeat dark:hidden" style={{ backgroundImage: `url(https://i.imgur.com/IeHjBjp.png)` }}></div>
+        <div className="rounded-points w-full h-full bg-bottom bg-contain bg-no-repeat hidden dark:block" style={{ backgroundImage: `url(https://i.imgur.com/sOhyx6Q.png)` }}></div>
       </div>
-    </div>
+    </div >
   )
 }
 
