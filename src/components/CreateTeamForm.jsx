@@ -31,10 +31,19 @@ const interests = [
   'arte',
   'música',
   'finanzas',
+  'tech',
+  'geek',
+  'futbol',
+  'gaming',
   'crypto',
   'old school',
+  'vamos de a poco',
   'netflix',
   'salud',
+  'gym',
+  'running',
+  'vegateriano',
+  'vegan',
   'espiritualidad',
   'politica',
   'lgbtiq+',
@@ -46,6 +55,7 @@ const interests = [
   'cambio de carrera',
   'bien desde 0',
   'pro',
+  'poco tiempo',
 ]
 
 export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
@@ -78,8 +88,6 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
     try {
       setLoading(true)
       setError(null)
-
-      console.log('teamInterests', teamInterests)
 
       const { data, error } = await supabase
         .from('teams')
