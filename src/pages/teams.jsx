@@ -126,6 +126,9 @@ const Teams = () => {
               {team.description && (
                 <h3 className='mb-5 text-xs text-gray-700 dark:text-gray-300'>{`${team.description}`}</h3>
               )}
+              <p className='mb-2 font-serif text-xs text-gray-600 dark:text-gray-400'>
+                Integrantes {team.profiles.length}/{team.max}
+              </p>
               <AnimatePresence>
                 <ul className='mb-5'>
                   {team.profiles?.map((profile) => (
@@ -151,7 +154,11 @@ const Teams = () => {
                 </ul>
               </AnimatePresence>
               {team.id !== profile.team && (
-                <Button className='self-end mt-auto' onClick={() => setTeam(team)}>
+                <Button
+                  className='self-end mt-auto'
+                  onClick={() => setTeam(team)}
+                  disabled={team.max <= team.profiles.length}
+                >
                   Unirme
                 </Button>
               )}
