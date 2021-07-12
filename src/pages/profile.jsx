@@ -11,6 +11,7 @@ const Profile = () => {
     <>
       <Container title='profile' className='flex-col items-center'>
         {user && <pre>{JSON.stringify(user, null, 2)}</pre>}
+        <p className='p-10 font-sm'>Querés cambiar de cuenta cuenta o salir?</p>
         <Button
           onClick={() => {
             supabase.auth.signOut()
