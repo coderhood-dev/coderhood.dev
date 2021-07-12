@@ -17,7 +17,7 @@ const Profile = () => {
             supabase.auth.signOut()
           }}
         >
-          Cerrar sesión
+          Salir
         </Button>
       </Container>
     </>
