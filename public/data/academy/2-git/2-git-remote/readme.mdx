@@ -1,0 +1,257 @@
+---
+title: 'Git remote'
+publishedAt: '2021-06-27'
+author: 'Tomas'
+summary: ''
+youtubeURL: ''
+---
+
+import { themes, Image } from 'mdx-deck'
+
+
+# Clase 3: `git remote`
+
+### Tabla de contenidos
+
+1. Repositorios remotos
+
+1. Git fetch
+
+1. Git push
+
+1. Git pull
+
+1. Pull request (PR)
+
+---
+
+## Repositorios remotos
+
+Hasta ahora todo lo que hicimos con git fue hacer cambios en nuestro repositorio local. El repositorio en nuestra computadora.
+
+Vimos un breve pantallazo de repositorios remotos al final de la primera clase, para poder subir nuestros cambios a GitHub.
+
+Los repositorios en GitHub son repositorios remotos!
+
+Entonces:
+
+> ##### Los repositorios remotos son repositorios en un server y accedemos a su información usando git.
+
+---
+
+
+
+### Clonar un repositorio remoto
+
+Cuando usamos `git clone <repo_url>` para clonar un repo, `repo_url` es la URL del repositorio remoto.
+
+En este caso git agrega automáticamente un *remote* llamado `origin` con esta URL.
+
+Esto es para que nuestro repositorio local recién clonado quede vinculado con el repositorio remoto original.
+
+---
+
+
+### git remote
+
+Para ver los _remotos_ que tenemos configurados hay que ejecutar `git remote`:
+```
+$ git remote
+origin
+```
+
+O `git remote -v` para ver las URL donde está el _remote_:
+```
+$ git remote -v
+origin  git@github.com:tomasdisk/mi-repo.git (fetch)
+origin  git@github.com:tomasdisk/mi-repo.git (push)
+```
+
+* **fetch** es buscar, es la url donde git busca y lee info del _remote_
+* **push** empujar o publicar, es la url a donde git envia info desde nuestro repo local
+
+---
+
+
+### Agregar un remote
+
+Lo hicimos en la primera clase!
+
+Se hace con `git remote add <nombre> <url>`.
+
+Por ejemplo:
+```
+$ git remote add origin_copia git@github.com:tomasdisk/mi-repo.git
+$ git remote
+origin
+origin_copia
+```
+
+Ahora tenemos dos repositorios remotos (aunque los dos tengan la misma URL).
+
+---
+
+
+## Git fetch
+
+Se usa para traer información de un _remote_.
+
+```
+git fetch <nombre>
+```
+
+Si queremos traer toda la información que tiene de `origin` que aún no tenemos en el repositorio local, hacemos:
+```
+$ git fetch origin
+```
+
+Cómo origin es _remote_ por defecto, no es necesario aclararlo y podemos hacer solo `git fetch`.
+
+Esto trae todos los cambios(_commits_) del _remote_ pero no los combina(_mergea_) con nuestros cambios.
+
+---
+
+
+### ¿Dónde están esos cambios?
+
+Si hacemos `git branch` vamos a ver la ramas que tenemos:
+```
+$ git branch
+  hotfix
+* main
+```
+
+Pero si le agregamos `--all`, vamos a ver esto:
+```
+$ git branch --all
+  hotfix
+* main
+  remotes/origin/main
+  remotes/origin/testing
+```
+
+Nos esta mostrando nuestras ramas locales, pero también las ramas que conocemos del _remote_.
+
+---
+
+
+## Git push
+
+Cuando queremos compartir o publicar nuestros cambios, tenemos que enviarlos al servidor usando `git push <nombre_remoto> <nombre_rama>`.
+
+Para enviar la rama `master` al servidor `origin`, entonces ejecutamos:
+```
+$ git push origin master
+```
+
+Esto enviara todos los commits hechos en `master` al servidor.
+
+---
+
+## Git pull
+
+`git pull <nombre_remoto> <nombre_rama_remota>`.
+
+Se usa para descargar lo cambios de una rama del _remote_ y mergearlos en la rama local en un solo paso.
+
+Por ejemplo:
+```
+$ git pull origin master
+```
+
+En este caso estamos trayendo los cambios de la rama `origin/master` y haciendo el merge en la rama en la que estemos actualmente.
+
+Esto va a ser posible si no surgen conflictos en el _merge_ entre la rama remota y la local.
+
+---
+
+
+### Tracking o seguimiento de ramas
+
+Son ramas locales que tienen una relación directa con alguna rama remota.
+
+Esto facilita el uso de las ramas cuando queremos publicar y traernos cambios.
+
+Si hacemos `git remote show <nombre_remoto>`, git nos da bastantes detalles del _remote_:
+```
+$ git remote show origin
+* remote origin
+  Fetch URL: git@github.com:tomasdisk/mi-repo.git
+  Push  URL: git@github.com:tomasdisk/mi-repo.git
+  HEAD branch: main
+  Remote branches:
+    main    tracked
+    testing tracked
+  Local branch configured for 'git pull':
+    main merges with remote main
+  Local ref configured for 'git push':
+    main pushes to main (local out of date)
+```
+
+Las últimas líneas dicen que `main` esta configurada para "seguir" a `origin/main`.
+
+Si nuestra rama está configurada para hacer seguimiento a una rama remota, al hacer `git push` o `git pull` sin especificar ningun _remote_ o _rama_,
+nos va a enviar (push) o descargar (pull) los cambios de la rama que se este "siguiendo".
+
+---
+
+
+### Renombrar o eliminar remotos
+
+Renombrar `git remote rename <nombre> <nuevo_nombre>`:
+```
+$ git remote
+origin
+pb
+$ git remote rename pb paul
+$ git remote
+origin
+paul
+```
+
+Eliminar `git remote rm <nombre>`
+```
+$ git remote rm paul
+$ git remote
+origin
+```
+
+---
+
+
+## Pull request (PR)
+
+Es una herramienta de GitHub para solicitar, revisar y mergear ramas del _remote_ de forma online.
+
+---
+
+
+### Ejercicios
+
+#### 1. Publicar cambios en una rama que no sea `master` o `main`
+
+- Crear una rama, hacer un commit con cambios
+- Publicar la rama con `git push`
+
+#### 2. Crear el primer PR
+
+- Publicar una rama en GitHub y crear un PR
+- Mergear el PR 😄
+
+---
+
+### Resumen
+
+Todos los comandos usados en la clase ✨
+
+---
+
+
+### Bibliografía
+
+### 1. [Pro Git, Capitulo 2.5: Fundamentos de Git - Trabajar con Remotos](https://git-scm.com/book/es/v2/Fundamentos-de-Git-Trabajar-con-Remotos)
+### 1. [Pro Git, Capitulo 3.5: Ramificaciones en Git - Ramas Remotas](https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Ramas-Remotas)
+
+<br />
+<br />
+<br />
