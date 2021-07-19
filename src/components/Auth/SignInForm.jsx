@@ -53,18 +53,21 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
     setDiscordAuthError(null)
     setDiscordButtonLoading(true)
     try {
-      const { user, error } = await supabase.auth.signIn({
-        provider: 'discord'
-      }, {
-        redirectTo: window.location.href
-      })
+      const { user, error } = await supabase.auth.signIn(
+        {
+          provider: 'discord',
+        },
+        {
+          redirectTo: window.location.href,
+        }
+      )
 
       if (error) {
         throw error
       } else {
         onComplete(user)
       }
-    } catch(error) {
+    } catch (error) {
       setError(error.error_description || error.message)
     } finally {
       setDiscordButtonLoading(false)
@@ -73,7 +76,7 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
 
   return (
     <div className='flex flex-col-reverse w-full h-full p-6 sm:flex-row'>
-      <div className='flex flex-col justify-center w-1/2 h-full bg-white border border-black dark:bg-gray-900 rounded-2xl p-10'>
+      <div className='flex flex-col justify-center w-1/2 h-full p-10 bg-white border border-black dark:bg-gray-900 rounded-2xl'>
         <form
           className='flex flex-col items-stretch justify-center'
           onSubmit={handleSubmit(onSubmit)}
@@ -97,7 +100,7 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
           </Button>
         </form>
         <div className='my-2 border border-gray-300'></div>
-          <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center'>
           <Button loading={discordButtonLoading} onClick={discordAuth}>
             <div className='flex items-center'>
               <Image
@@ -110,8 +113,8 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
               <p className='ml-2'>Iniciar sesión con Discord</p>
             </div>
           </Button>
-          </div>
-          <p className='text-red-700'>{getErrorMessage(discordAuthError)}</p>
+        </div>
+        <p className='text-red-700'>{getErrorMessage(discordAuthError)}</p>
       </div>
       <div className='flex flex-col items-end justify-between w-1/2'>
         <motion.div

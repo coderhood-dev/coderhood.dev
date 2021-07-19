@@ -8,9 +8,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const withOffline = require('next-offline')
 
 function esbuildLoader(config, options) {
-  const jsLoader = config.module.rules.find(
-    (rule) => rule.test && rule.test.test('.js')
-  )
+  const jsLoader = config.module.rules.find((rule) => rule.test && rule.test.test('.js'))
   if (jsLoader && jsLoader.use) {
     if (jsLoader.use.length > 0) {
       jsLoader.use.forEach((e) => {
@@ -111,9 +109,7 @@ module.exports = plugins(
       withOffline,
       {
         workboxOpts: {
-          swDest: process.env.NEXT_EXPORT
-            ? 'service-worker.js'
-            : 'static/service-worker.js',
+          swDest: process.env.NEXT_EXPORT ? 'service-worker.js' : 'static/service-worker.js',
           runtimeCaching: [
             {
               urlPattern: /^https?.*/,

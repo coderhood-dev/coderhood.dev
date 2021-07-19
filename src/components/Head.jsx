@@ -2,15 +2,10 @@ import NextHead from 'next/head'
 
 const TITLE = 'Coderhood'
 const URL = 'https://coderhood.dev/'
-const DESCRIPTION =
-  'La comunidad que impulsa el aprendizaje autodidacta y colaborativo'
+const DESCRIPTION = 'La comunidad que impulsa el aprendizaje autodidacta y colaborativo'
 const author = 'Ema Lorenzo'
 
-export const Head = ({
-  title = TITLE,
-  url = URL,
-  description = DESCRIPTION,
-}) => {
+export const Head = ({ title = TITLE, url = URL, description = DESCRIPTION }) => {
   return (
     <>
       <NextHead>

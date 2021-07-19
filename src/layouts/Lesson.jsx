@@ -26,9 +26,14 @@ export const LessonLayout = ({ title, frontMatter, pdfURL, lessons, children }) 
               {/* <p className='ml-2 text-sm text-gray-700 dark:text-gray-300'>
                 {author}
               </p> */}
-              <p className='ml-2 text-sm text-gray-700 dark:text-gray-300'>
-                {publishedAt && format(parseISO(publishedAt), 'MMMM dd, yyyy')}
-              </p>
+              <div className='flex-col'>
+                <p className='ml-2 text-sm text-gray-700 dark:text-gray-300'>
+                  {publishedAt && format(parseISO(publishedAt), 'MMMM dd, yyyy')}
+                </p>
+                <p className='px-4 py-2 font-serif text-lg font-bold text-yellow-500'>
+                  {author || null}
+                </p>
+              </div>
             </div>
             {pdfURL ? (
               <a
@@ -39,7 +44,7 @@ export const LessonLayout = ({ title, frontMatter, pdfURL, lessons, children }) 
                 <p className='p-4 font-bold text-white'>⚡️ Descarga el pdf de la clase</p>
               </a>
             ) : (
-              <p className='text-xl text-gray-700'>Próximamente</p>
+              <p className='text-xl text-gray-700'>Próximamente en PDF</p>
             )}
           </div>
 
