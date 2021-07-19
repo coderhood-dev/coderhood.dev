@@ -9,6 +9,7 @@
     "lint": "yarn prettier && yarn eslint",
     "eslint": "eslint --fix 'src/**/*.{js,jsx}' --ext jsconfig.json",
     "prettier": "prettier --list-different '**/*.{js,jsx,md}'",
+    "tsc": "tsc --noEmit",
     "dev": "next dev",
     "build": "next build",
     "export": "EXPORT=true next build && EXPORT=true next export",
@@ -49,6 +50,8 @@
   "devDependencies": {
     "@babel/core": "^7.12.17",
     "@next/bundle-analyzer": "^10.0.7",
+    "@types/node": "^16.3.3",
+    "@types/react": "^17.0.14",
     "autoprefixer": "^10.2.6",
     "babel-eslint": "^10.1.0",
     "babel-plugin-glsl": "^1.0.0",
@@ -75,6 +78,7 @@
     "prettier": "^2.2.1",
     "raw-loader": "^4.0.2",
     "tailwindcss": "^2.2.4",
+    "typescript": "^4.3.5",
     "url-loader": "^4.1.1",
     "webpack": "^5.36.2"
   },
