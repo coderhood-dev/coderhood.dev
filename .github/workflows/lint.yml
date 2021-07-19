@@ -1,24 +1,22 @@
-name: Lint test
+name: Lint & Type checks
 
 on: [push]
 
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        node_version: [14]
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node_version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node_version: ${{ matrix.node_version }}
+          node_version: 14
 
-      - name: run prettier and eslintos
-      
+      - name: Run Prettier and ESlint
         run: |
           yarn install
           yarn lint
+      - name: Run Prettier and ESlint
+        run: |
+          yarn tsc
