@@ -13,9 +13,12 @@ jobs:
         with:
           node_version: 14
 
-      - name: Run Prettier and ESlint
+      - name: Install dependencies
         run: |
           yarn install
+
+      - name: Run Prettier and ESlint
+        run: |
           yarn lint
 
   types:
@@ -28,7 +31,10 @@ jobs:
         with:
           node_version: 14
 
-      - name: Run Typescript checks
+      - name: Install dependencies
         run: |
           yarn install
+
+      - name: Run Typescript checks
+        run: |
           yarn tsc
