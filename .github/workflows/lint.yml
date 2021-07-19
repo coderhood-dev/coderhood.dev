@@ -17,6 +17,18 @@ jobs:
         run: |
           yarn install
           yarn lint
-      - name: Run Prettier and ESlint
+
+  types:
+    name: Types
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node_version: 14
+
+      - name: Run Typescript checks
         run: |
+          yarn install
           yarn tsc
