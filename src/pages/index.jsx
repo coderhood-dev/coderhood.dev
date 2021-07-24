@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Bubbles } from '@/components/Bubbles'
+// import { Bubbles } from '@/components/Bubbles'
 import { Container } from '@/components/Container'
-import { learningBubbles } from '@/data/learningBubbles'
-import { useAuth } from '@/hooks/useAuth'
-import { Account } from '@/components/Account'
+// import { learningBubbles } from '@/data/learningBubbles'
+// import { useAuth } from '@/hooks/useAuth'
+// import { Account } from '@/components/Account'
 // import { Auth } from '@/components/Auth/_Signin'
-import { AuthModal } from '@/components/Auth'
-import { supabase } from '@/lib/supabaseClient'
+// import { AuthModal } from '@/components/Auth'
+// import { supabase } from '@/lib/supabaseClient'
 
 const Home = ({ modules }) => {
   return (
