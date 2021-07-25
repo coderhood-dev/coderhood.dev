@@ -1,5 +1,4 @@
-import { MDXRemote } from 'next-mdx-remote'
-
+import MDX from '@/components/MDX'
 import useStore from '@/lib/store'
 import { getFolderContent, getLesson, getLessons, getModuleTitle } from '@/lib/files'
 import { LessonLayout } from '@/layouts/Lesson'
@@ -10,13 +9,7 @@ const LessonPage = ({ title, pdfURL, mdxSource, frontMatter, lessons }) => {
   return (
     <>
       <LessonLayout frontMatter={frontMatter} lessons={lessons} pdfURL={pdfURL} title={title}>
-        <MDXRemote
-          {...mdxSource}
-          components={{
-            Steps: ({ children }) => <ul>{children}</ul>,
-            Image: ({ children, ...props }) => <img {...props}>{children}</img>,
-          }}
-        />
+        <MDX source={mdxSource} />
       </LessonLayout>
     </>
   )

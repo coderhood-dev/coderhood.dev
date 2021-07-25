@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Dialog } from '@headlessui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import Image from 'next/image'
 
 import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
@@ -22,6 +23,8 @@ const schema = yup.object().shape({
 export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [discordButtonLoading, setDiscordButtonLoading] = useState(false)
+  const [discordAuthError, setDiscordAuthError] = useState(null)
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   })
@@ -46,11 +49,36 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
     }
   }
 
+  const discordAuth = async () => {
+    setDiscordAuthError(null)
+    setDiscordButtonLoading(true)
+    try {
+      const { user, error } = await supabase.auth.signIn(
+        {
+          provider: 'discord',
+        },
+        {
+          redirectTo: window.location.href,
+        }
+      )
+
+      if (error) {
+        throw error
+      } else {
+        onComplete(user)
+      }
+    } catch (error) {
+      setError(error.error_description || error.message)
+    } finally {
+      setDiscordButtonLoading(false)
+    }
+  }
+
   return (
     <div className='flex flex-col-reverse w-full h-full p-6 sm:flex-row'>
-      <div className='flex flex-col justify-center w-1/2 h-full'>
+      <div className='flex flex-col justify-center w-1/2 h-full p-10 bg-white border border-black dark:bg-gray-900 rounded-2xl'>
         <form
-          className='flex flex-col items-stretch justify-center p-10 bg-white border border-black dark:bg-gray-900 rounded-2xl'
+          className='flex flex-col items-stretch justify-center'
           onSubmit={handleSubmit(onSubmit)}
         >
           <p className='pb-2 text-sm'>Inicia sesión con tu email y contraseña.</p>
@@ -71,6 +99,22 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
             Iniciar sesión
           </Button>
         </form>
+        <div className='my-2 border border-gray-300'></div>
+        <div className='flex flex-col items-center'>
+          <Button loading={discordButtonLoading} onClick={discordAuth}>
+            <div className='flex items-center'>
+              <Image
+                src='/images/logos/discord.png'
+                alt='Logo de Discord'
+                height={16}
+                width={16}
+                quality={65}
+              />{' '}
+              <p className='ml-2'>Iniciar sesión con Discord</p>
+            </div>
+          </Button>
+        </div>
+        <p className='text-red-700'>{getErrorMessage(discordAuthError)}</p>
       </div>
       <div className='flex flex-col items-end justify-between w-1/2'>
         <motion.div

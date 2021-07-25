@@ -43,8 +43,7 @@ const TestShader = (props) => {
       mesh.current.rotation.x = mesh.current.rotation.y += 0.01
     }
     if (mesh.current.material) {
-      mesh.current.material.uniforms.time.value +=
-        Math.sin(delta / 2) * Math.cos(delta / 2)
+      mesh.current.material.uniforms.time.value += Math.sin(delta / 2) * Math.cos(delta / 2)
     }
   })
 
