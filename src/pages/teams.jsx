@@ -25,7 +25,7 @@ const item = {
 }
 
 const Teams = () => {
-  let pepe = asdsada@@1dadsadsas12@!
+  let pepe = asdsada@@1dasas12@!
   const [teams, setTeams] = React.useState([])
   const [profile, setProfile] = React.useState(null)
 
