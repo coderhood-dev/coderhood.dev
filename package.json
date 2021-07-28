@@ -1,8 +1,9 @@
 {
-  "name": "react-three-next",
-  "version": "2.0.0",
+  "name": "coderhood",
+  "version": "1.0.0",
   "authors": [
-    "Emanuel Lorenzo <https://twitter.com/aemalorenzo>"
+    "Emanuel Lorenzo <https://twitter.com/aemalorenzo>",
+    "Tomas Discoli <https://twitter.com/tomasdisk>"
   ],
   "private": false,
   "scripts": {
