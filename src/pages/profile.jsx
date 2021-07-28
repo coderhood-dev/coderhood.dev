@@ -9,7 +9,7 @@ const Profile = () => {
 
   return (
     <>
-      <Container title='profile' className='flex-col items-center'>
+      <Container className='flex-col items-center' title='profile'>
         {user && <pre>{JSON.stringify(user, null, 2)}</pre>}
         <p className='p-10 m-10 bg-gray-900 border border-gray-700 font-sm'>
           Querés cambiar de cuenta cuenta o salir?

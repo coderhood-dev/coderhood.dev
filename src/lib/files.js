@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 
@@ -13,11 +14,13 @@ export async function getFolderContent(url) {
 
 export async function getCompleteName(shortName, folder) {
   const content = await getFolderContent(folder)
-  return content.find((m) => m.includes(shortName))
+
+  return content.find(m => m.includes(shortName))
 }
 
 export async function getModule(moduleName) {
   const url = `academy/${moduleName}/readme.mdx`
+
   console.log('url', url)
   const mdx = await getMDX(url)
 
@@ -39,6 +42,7 @@ export async function getLessons(moduleURL) {
   const lessonsNames = await getFolderContent(`academy/${moduleName}`)
 
   const lessons = []
+
   for (const lesson of lessonsNames) {
     // don't include readme.mdx
     if (lesson.includes('.')) {
@@ -50,6 +54,7 @@ export async function getLessons(moduleURL) {
 
     if (lessonContent.includes('readme.mdx')) {
       const l = buildLessonStrings(lesson, `/academy/${moduleURL}`)
+
       lessons.push(l)
     }
   }
@@ -90,7 +95,7 @@ export async function getPDF(moduleName, lessonName) {
 
   const githubLessonFiles = await fetch(githubURL, {
     headers: { Authorization: `token ${process.env.GITHUB_OAUTH_TOKEN}` },
-  }).then((r) => r.json())
+  }).then(r => r.json())
 
   console.log(githubLessonFiles, typeof githubLessonFiles)
   // INFO: githubLessonFiles.message is an error message. Ex: 'Not found'

@@ -1,17 +1,17 @@
-const securityHeaders = require('./src/lib/security')
-
 const plugins = require('next-compose-plugins')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-
 const withOffline = require('next-offline')
 
+// const securityHeaders = require('./src/lib/security')
+
 function esbuildLoader(config, options) {
-  const jsLoader = config.module.rules.find((rule) => rule.test && rule.test.test('.js'))
+  const jsLoader = config.module.rules.find(rule => rule.test && rule.test.test('.js'))
+
   if (jsLoader && jsLoader.use) {
     if (jsLoader.use.length > 0) {
-      jsLoader.use.forEach((e) => {
+      jsLoader.use.forEach(e => {
         e.loader = 'esbuild-loader'
         e.options = options
       })

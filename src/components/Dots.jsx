@@ -19,6 +19,7 @@ export const Dots = ({ waveStartPosition = { x: 200, y: 200 } }) => {
     // Precompute randomized initial positions
     const positions = [...Array(10000)].map((_, i) => {
       const position = new THREE.Vector3()
+
       // Place in a grid
       position.x = (i % 100) - 50
       position.y = Math.floor(i / 100) - 50
@@ -29,9 +30,11 @@ export const Dots = ({ waveStartPosition = { x: 200, y: 200 } }) => {
       // Add some noise
       position.x += Math.random() * 0.3
       position.y += Math.random() * 0.3
+
       return position
     })
-    const distances = positions.map((pos) => pos.length())
+    const distances = positions.map(pos => pos.length())
+
     return { vec, transform, focus, positions, distances }
   }, [])
 
@@ -53,6 +56,7 @@ export const Dots = ({ waveStartPosition = { x: 200, y: 200 } }) => {
     }
     ref.current.instanceMatrix.needsUpdate = true
   })
+
   return (
     <instancedMesh ref={ref} args={[null, null, 10000]}>
       <circleBufferGeometry args={[0.06]} />

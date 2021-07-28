@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { AuthModal } from '@/components/Auth'
 import { useAuth } from '@/hooks/useAuth'
 
-export const withProtection = (WrappedComponent, unauthorizedMessage) => (props) => {
+export const withProtection = (WrappedComponent, unauthorizedMessage) => props => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   const { user } = useAuth()
@@ -26,9 +26,9 @@ export const withProtection = (WrappedComponent, unauthorizedMessage) => (props)
     <>
       <WrappedComponent {...props} />
       <AuthModal
-        unauthorizedMessage={unauthorizedMessage}
         open={isOpen}
-        onClose={(user) => {
+        unauthorizedMessage={unauthorizedMessage}
+        onClose={user => {
           setIsOpen(false)
           if (!user) {
             router.replace('/')

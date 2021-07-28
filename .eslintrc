@@ -1,0 +1,57 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:tailwind/recommended",
+    "next", // includes eslint-plugin-react / eslint-plugin-react-hooks /eslint-plugin-next
+    "next/core-web-vitals",
+    "prettier" // deletes props with conflict with prettier
+  ],
+  "rules": {
+    "no-console": "warn",
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "react/jsx-indent-props": [2, "first"],
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
+    "no-multi-assign": "off",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "no-unused-vars": "warn",
+    "import/order": [
+      "warn",
+      {
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "noSortAlphabetically": false,
+        "reservedFirst": true
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
+    ]
+  },
+  "plugins": ["import", "@typescript-eslint"]
+}

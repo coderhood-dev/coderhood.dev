@@ -102,6 +102,7 @@ export const Bubble = ({ status, img, animate, position }) => {
         })
       }
     }
+
     doWaveAnimations()
   }, [isTalking, waveControls])
 
@@ -109,9 +110,9 @@ export const Bubble = ({ status, img, animate, position }) => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          animate={animate}
           className='absolute'
           style={position}
-          animate={animate}
           transition={{
             right: { type: 'spring', stiffness: 100, duration: 2 },
             repeat: Infinity,
@@ -123,10 +124,10 @@ export const Bubble = ({ status, img, animate, position }) => {
             <AnimatePresence exitBeforeEnter>
               {isTalking && (
                 <motion.div
-                  initial='initial'
                   animate={waveControls}
-                  variants={waveVariants}
                   className='absolute bg-yellow-500 rounded-full'
+                  initial='initial'
+                  variants={waveVariants}
                 />
               )}
             </AnimatePresence>
@@ -135,19 +136,19 @@ export const Bubble = ({ status, img, animate, position }) => {
                 width: size,
                 height: size,
               }}
-              initial={{ width: 0, height: 0 }}
-              exit={{ width: 0, height: 0 }}
-              transition={{ duration: 1 }}
               className='overflow-hidden rounded-full'
+              exit={{ width: 0, height: 0 }}
+              initial={{ width: 0, height: 0 }}
+              transition={{ duration: 1 }}
             >
               <Image
-                src={img}
+                priority
                 alt='Bubble Image'
                 height={240}
-                width={240}
-                quality={65}
                 objectFit='cover'
-                priority
+                quality={65}
+                src={img}
+                width={240}
               />
             </motion.div>
           </div>

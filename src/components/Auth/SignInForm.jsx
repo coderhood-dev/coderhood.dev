@@ -84,18 +84,18 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
           <p className='pb-2 text-sm'>Inicia sesión con tu email y contraseña.</p>
           <Input
             {...register('email')}
-            type='email'
-            placeholder='Email'
             error={errors?.email?.message}
+            placeholder='Email'
+            type='email'
           />
           <Input
             {...register('password')}
-            type='password'
-            placeholder='Password'
             error={errors?.password?.message}
+            placeholder='Password'
+            type='password'
           />
           <p className='text-red-700'>{getErrorMessage(error)}</p>
-          <Button type='submit' className='self-end mt-8' loading={loading}>
+          <Button className='self-end mt-8' loading={loading} type='submit'>
             Iniciar sesión
           </Button>
         </form>
@@ -104,11 +104,11 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
           <Button loading={discordButtonLoading} onClick={discordAuth}>
             <div className='flex items-center'>
               <Image
-                src='/images/logos/discord.png'
                 alt='Logo de Discord'
                 height={16}
-                width={16}
                 quality={65}
+                src='/images/logos/discord.png'
+                width={16}
               />{' '}
               <p className='ml-2'>Iniciar sesión con Discord</p>
             </div>
@@ -118,13 +118,13 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
       </div>
       <div className='flex flex-col items-end justify-between w-1/2'>
         <motion.div
-          className='self-start p-20'
-          initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
+          className='self-start p-20'
           exit={{
             opacity: 0,
             transition: { delay: 0 },
           }}
+          initial={{ y: 20, opacity: 0 }}
           transition={{
             delay: 1,
             duration: 0.3,
@@ -138,9 +138,9 @@ export const SignIn = ({ onComplete, onRequestSignUp, unauthorizedMessage }) => 
           </Dialog.Title>
           <br className='mb-10' />
           <motion.h3
+            animate={{ opacity: 1 }}
             className='inline text-xl bg-gray-200 dark:bg-black'
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 2 }}
           >
             {unauthorizedMessage || 'Que bueno verte de vuelta :)'}

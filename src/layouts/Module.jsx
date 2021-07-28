@@ -6,7 +6,7 @@ export const ModuleLayout = ({ frontMatter, title, lessons, children }) => {
     <Container>
       <div className='w-1/4'>
         <div className='flex justify-end h-full'>
-          <Sidebar title={title} items={lessons} itemSelected={title.url} />
+          <Sidebar itemSelected={title.url} items={lessons} title={title} />
         </div>
       </div>
       <div className='w-3/4 h-full'>

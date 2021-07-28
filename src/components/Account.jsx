@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+
 import { supabase } from '@/lib/supabaseClient'
 
 export const Account = ({ session }) => {
@@ -69,7 +70,7 @@ export const Account = ({ session }) => {
     <div className='form-widget'>
       <div>
         <label htmlFor='email'>Email</label>
-        <input id='email' type='text' value={session.user.email} disabled />
+        <input disabled id='email' type='text' value={session.user.email} />
       </div>
       <div>
         <label htmlFor='username'>Name</label>
@@ -77,7 +78,7 @@ export const Account = ({ session }) => {
           id='username'
           type='text'
           value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={e => setUsername(e.target.value)}
         />
       </div>
       <div>
@@ -86,15 +87,15 @@ export const Account = ({ session }) => {
           id='website'
           type='website'
           value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
+          onChange={e => setWebsite(e.target.value)}
         />
       </div>
 
       <div>
         <button
           className='block button primary'
-          onClick={() => updateProfile({ username, website, avatar_url })}
           disabled={loading}
+          onClick={() => updateProfile({ username, website, avatar_url })}
         >
           {loading ? 'Loading ...' : 'Update'}
         </button>

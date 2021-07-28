@@ -6,10 +6,10 @@ export const Input = React.forwardRef(({ error, label, placeholder, ...props }, 
     <AnimatePresence exitBeforeEnter>
       {error && (
         <motion.span
-          className='absolute bottom-0 p-2 pt-3 text-xs text-white bg-black rounded'
-          initial={{ y: -5, opacity: 0 }}
           animate={{ y: 28, opacity: 1 }}
+          className='absolute bottom-0 p-2 pt-3 text-xs text-white bg-black rounded'
           exit={{ y: -5, opacity: 0 }}
+          initial={{ y: -5, opacity: 0 }}
           transition={{ type: 'tween' }}
         >
           {error}

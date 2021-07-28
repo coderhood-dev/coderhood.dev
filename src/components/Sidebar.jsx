@@ -4,6 +4,7 @@ import { motion, useTransform, AnimateSharedLayout, AnimatePresence } from 'fram
 export const Sidebar = ({ title, items, itemSelected }) => {
   const titleColor =
     itemSelected === title.url ? 'text-yellow-500' : 'text-gray-900 dark:text-white'
+
   return (
     <aside className='h-full py-5 pr-10 overflow-y-auto'>
       <Link href={title.url}>
@@ -14,16 +15,17 @@ export const Sidebar = ({ title, items, itemSelected }) => {
 
       <AnimateSharedLayout>
         <ul className='flex flex-col items-start'>
-          {items.map((item) => {
+          {items.map(item => {
             const itemColor =
               itemSelected === item.url ? 'text-white' : 'text-gray-700 dark:text-gray-400'
+
             return (
               <Link key={item.url} href={item.url}>
                 <motion.li className='relative'>
                   {itemSelected === item.url && (
                     <motion.div
-                      layoutId='underline'
                       className='absolute top-0 w-full h-full bg-yellow-500 rounded'
+                      layoutId='underline'
                     />
                   )}
 
