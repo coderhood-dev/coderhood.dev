@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import Image, { ImageProps } from 'next/image'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 const MDX: React.FC<{ source: MDXRemoteSerializeResult<Record<string, unknown>> }> = ({
@@ -10,7 +10,7 @@ const MDX: React.FC<{ source: MDXRemoteSerializeResult<Record<string, unknown>> 
       {...source}
       components={{
         Steps: ({ children }) => <ul>{children}</ul>,
-        Image: (props: ImageProps) => <Image alt={props.alt} {...props} />,
+        Image: ({ alt, ...props }) => <img alt={alt} {...props} />,
       }}
     />
   )
