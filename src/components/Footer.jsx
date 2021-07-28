@@ -7,6 +7,7 @@ import { Button } from '@/components/Button'
 
 const Footer = () => {
   const router = useRouter()
+
   return (
     <div className='flex w-full bg-black'>
       <div className='flex flex-col justify-between w-1/4 left-section'>
@@ -27,11 +28,11 @@ const Footer = () => {
           <Link href='/'>
             <a className='flex w-32 sm:w-60'>
               <Image
-                src='/images/logos/logo-full.png'
                 alt='Coderhood logo'
                 height={42}
-                width={192}
                 quality={65}
+                src='/images/logos/logo-full.png'
+                width={192}
               />
             </a>
           </Link>
@@ -46,14 +47,14 @@ const Footer = () => {
             hasta salud y compartir espacio de trabajo escuchando música. Si todavía no estas
             sumate!
           </p>
-          <Button onClick={() => router.push('https://discord.gg/JJpBQYJ')} className='mb-10'>
+          <Button className='mb-10' onClick={() => router.push('https://discord.gg/JJpBQYJ')}>
             <div className='flex items-center'>
               <Image
-                src='/images/logos/discord.png'
                 alt='Coderhood logo'
                 height={16}
-                width={16}
                 quality={65}
+                src='/images/logos/discord.png'
+                width={16}
               />{' '}
               <p className='ml-2'>Unirme a la comunidad</p>
             </div>
@@ -61,10 +62,10 @@ const Footer = () => {
         </div>
         <div className='flex justify-between mb-5 socialMedia-container w-60'>
           <a
-            href='https://www.youtube.com/channel/UCZiR1u5RtSYYt8qcenxr-Uw'
-            target='_blank'
             className='flex items-center justify-center w-12 h-12 bg-gray-800 rounded-full socialMedia-link hover:bg-gray-700'
+            href='https://www.youtube.com/channel/UCZiR1u5RtSYYt8qcenxr-Uw'
             rel='noreferrer'
+            target='_blank'
           >
             <div
               className='w-6 h-6 bg-center bg-cover socialMedia-logo'
@@ -72,10 +73,10 @@ const Footer = () => {
             ></div>
           </a>
           <a
-            href='https://www.twitch.tv/coderhood'
-            target='_blank'
             className='flex items-center justify-center w-12 h-12 bg-gray-800 rounded-full socialMedia-link hover:bg-gray-700'
+            href='https://www.twitch.tv/coderhood'
             rel='noreferrer'
+            target='_blank'
           >
             <div
               className='w-6 h-6 bg-cover socialMedia-logo2'
@@ -83,10 +84,10 @@ const Footer = () => {
             ></div>
           </a>
           <a
-            href='https://twitter.com/coderhood_dev'
-            target='_blank'
             className='flex items-center justify-center w-12 h-12 bg-gray-800 rounded-full socialMedia-link hover:bg-gray-700'
+            href='https://twitter.com/coderhood_dev'
             rel='noreferrer'
+            target='_blank'
           >
             <div
               className='w-6 h-6 bg-center bg-no-repeat bg-contain socialMedia-logo3'
@@ -94,10 +95,10 @@ const Footer = () => {
             ></div>
           </a>
           <a
-            href='https://www.instagram.com/coderhood.dev/'
-            target='_blank'
             className='flex items-center justify-center w-12 h-12 bg-gray-800 rounded-full socialMedia-link hover:bg-gray-700'
+            href='https://www.instagram.com/coderhood.dev/'
             rel='noreferrer'
+            target='_blank'
           >
             <div
               className='w-6 h-6 bg-cover socialMedia-logo4'

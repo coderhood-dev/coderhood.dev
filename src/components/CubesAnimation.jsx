@@ -24,6 +24,7 @@ import { useRef } from 'react'
 const CubesAnimation = ({ route }) => {
   // This reference will give us direct access to the THREE.Mesh object
   const mesh = useRef()
+
   // Subscribe this  to the render-loop, rotate the mesh every frame
   useFrame((state, delta) => {
     if (mesh.current) {
@@ -35,6 +36,7 @@ const CubesAnimation = ({ route }) => {
       // mesh.current.rotation.y = mesh.current.rotation.y += 0.002
     }
   })
+
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <>
@@ -48,4 +50,5 @@ const CubesAnimation = ({ route }) => {
     </>
   )
 }
+
 export default CubesAnimation

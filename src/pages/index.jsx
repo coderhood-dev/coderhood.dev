@@ -1,5 +1,6 @@
 // import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+
 // import { Bubbles } from '@/components/Bubbles'
 import { Container } from '@/components/Container'
 // import { learningBubbles } from '@/data/learningBubbles'
@@ -12,15 +13,15 @@ import { Container } from '@/components/Container'
 const Home = ({ modules }) => {
   return (
     <>
-      <Container title='home' className='flex-col-reverse sm:flex-row'>
+      <Container className='flex-col-reverse sm:flex-row' title='home'>
         {/* hero */}
         <section className='flex items-center w-full h-screen  p-4 pt-0 sm:w-3/5 sm:p-20'>
           <div className='flex flex-col max-w-4xl gap-y-4 bg-opacity-60'>
             <div className='relative overflow-hidden'>
               <motion.h1
+                animate={{ y: 0 }}
                 className='font-serif text-xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600'
                 initial={{ y: 100 }}
-                animate={{ y: 0 }}
                 transition={{ duration: 0.3, delay: 0.5, ease: 'easeInOut' }}
               >
                 Compartimos conocimiento,

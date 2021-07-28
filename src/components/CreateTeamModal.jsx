@@ -20,34 +20,34 @@ export const CreateTeamModal = ({ className, onComplete }) => {
       <motion.div key={open} className={className}>
         {open ? (
           <Dialog
+            className='fixed inset-0 z-30 flex items-end justify-center overflow-hidden sm:items-center'
             open={open}
             onClose={() => setOpen(false)}
-            className='fixed inset-0 z-30 flex items-end justify-center overflow-hidden sm:items-center'
           >
             <MotionOverlay
-              className='fixed inset-0 backdrop-filter backdrop-blur-lg'
-              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              className='fixed inset-0 backdrop-filter backdrop-blur-lg'
               exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             />
             <motion.div
-              className='relative max-w-4xl overflow-hidden overflow-y-scroll text-left align-bottom border border-gray-800 shadow-xl dark:bg-black rounded-3xl sm:my-8 sm:align-middle backdrop-filter backdrop-blur-3xl'
-              initial={{ scale: 0.7, opacity: 0.5 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.7, opacity: 0 }}
-              transition={{ type: 'just' }}
               layout
+              animate={{ scale: 1, opacity: 1 }}
+              className='relative max-w-4xl overflow-hidden overflow-y-scroll text-left align-bottom border border-gray-800 shadow-xl dark:bg-black rounded-3xl sm:my-8 sm:align-middle backdrop-filter backdrop-blur-3xl'
+              exit={{ scale: 0.7, opacity: 0 }}
+              initial={{ scale: 0.7, opacity: 0.5 }}
+              transition={{ type: 'just' }}
             >
               <CreateTeamForm onComplete={handleComplete} />
             </motion.div>
           </Dialog>
         ) : (
           <motion.aside
-            className='flex flex-row items-center p-5 bg-white border border-gray-300 shadow-lg dark:border-gray-700 dark:bg-black rounded-xl'
-            initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
+            className='flex flex-row items-center p-5 bg-white border border-gray-300 shadow-lg dark:border-gray-700 dark:bg-black rounded-xl'
             exit={{ y: 100, opacity: 0, transition: { delay: 0, duration: 0.3 } }}
+            initial={{ y: 100, opacity: 0 }}
             transition={{ duration: 0.3, delay: 0.5 }}
           >
             <p className='mr-5 text-xs'>

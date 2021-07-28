@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { Preload } from '@react-three/drei'
 import { A11yUserPreferences } from '@react-three/a11y'
+
 import useStore from '@/lib/store'
 
 const homeCanvasConfig = {

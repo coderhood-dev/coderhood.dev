@@ -9,16 +9,17 @@ import { Author } from '@/components/Author'
 export const LessonLayout = ({ title, frontMatter, pdfURL, lessons, children }) => {
   const { asPath } = useRouter()
   const { publishedAt, author, summary, readingTime, youtubeURL } = frontMatter
+
   return (
     <>
       <Container className='mx-auto'>
         <div className='flex-initial w-1/4'>
           <div className='flex justify-end h-full'>
-            <Sidebar title={title} items={lessons} itemSelected={asPath} />
+            <Sidebar itemSelected={asPath} items={lessons} title={title} />
           </div>
         </div>
         <div className='w-3/4 h-full overflow-y-auto'>
-          <LessonVideo videoURL={youtubeURL} title={title} />
+          <LessonVideo title={title} videoURL={youtubeURL} />
           {/* <div className='bg-red-300 max-w-7xl'> */}
           <div className='flex justify-between p-10'>
             <div className='flex'>
@@ -37,9 +38,9 @@ export const LessonLayout = ({ title, frontMatter, pdfURL, lessons, children }) 
             </div>
             {pdfURL ? (
               <a
+                download
                 className='self-start bg-yellow-500 rounded-full hover:ring-4 ring-yellow-500 ring-opacity-50'
                 href={pdfURL}
-                download
               >
                 <p className='p-4 font-bold text-white'>⚡️ Descarga el pdf de la clase</p>
               </a>

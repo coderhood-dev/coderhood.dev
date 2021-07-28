@@ -8,7 +8,7 @@ import useStore from '@/lib/store'
 import { useAuth } from '@/hooks/useAuth'
 
 export const Header = ({ className }) => {
-  const title = useStore((s) => s.title)
+  const title = useStore(s => s.title)
 
   const { user } = useAuth()
   const profileTitle = user?.email || 'Inicia sesión'
@@ -29,11 +29,11 @@ export const Header = ({ className }) => {
           <Link href='/'>
             <a className='flex w-30 sm:w-48'>
               <Image
-                src='/images/logos/logo-full.png'
                 alt='Coderhood logo'
                 height={42}
-                width={192}
                 quality={65}
+                src='/images/logos/logo-full.png'
+                width={192}
               />
             </a>
           </Link>
@@ -45,7 +45,7 @@ export const Header = ({ className }) => {
           <ul className='flex items-center'>
             <HeaderItem url='/academy'>Academy</HeaderItem>
             <HeaderItem url='/teams'> Equipos</HeaderItem>
-            <HeaderItem url='/profile' type={user ? 'normal' : 'primary'}>
+            <HeaderItem type={user ? 'normal' : 'primary'} url='/profile'>
               {profileTitle}
             </HeaderItem>
             <ThemeSwitcher />

@@ -27,7 +27,7 @@ module.exports = {
           900: '#141414',
         },
       },
-      typography: (theme) => ({
+      typography: theme => ({
         dark: {
           css: {
             color: theme('colors.gray.300'),
