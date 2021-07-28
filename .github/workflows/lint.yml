@@ -17,9 +17,9 @@ jobs:
         run: |
           yarn install
 
-      - name: Run Prettier and ESlint
+      - name: Run Prettier and ESLint
         run: |
-          yarn lint
+          yarn eslint
 
   types:
     name: Types
