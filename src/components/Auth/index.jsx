@@ -11,7 +11,7 @@ const MotionOverlay = motion(Dialog.Overlay)
 export const AuthModal = ({ open, onClose, unauthorizedMessage }) => {
   const [selectedView, setSelectedView] = React.useState('SIGNIN')
 
-  const handleClose = (user) => {
+  const handleClose = user => {
     onClose(user)
     setSelectedView('SIGNIN')
   }
@@ -19,9 +19,9 @@ export const AuthModal = ({ open, onClose, unauthorizedMessage }) => {
   const view = {
     SIGNIN: (
       <SignIn
+        unauthorizedMessage={unauthorizedMessage}
         onComplete={handleClose}
         onRequestSignUp={() => setSelectedView('SIGNUP')}
-        unauthorizedMessage={unauthorizedMessage}
       />
     ),
     SIGNUP: (
@@ -41,33 +41,33 @@ export const AuthModal = ({ open, onClose, unauthorizedMessage }) => {
     <AnimatePresence>
       {open && (
         <Dialog
+          className='fixed inset-0 z-30 flex items-end justify-center overflow-hidden sm:items-center'
           open={open}
           onClose={handleClose}
-          className='fixed inset-0 z-30 flex items-end justify-center overflow-hidden sm:items-center'
         >
           <MotionOverlay
-            className='fixed inset-0 backdrop-filter backdrop-blur-lg'
-            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            className='fixed inset-0 backdrop-filter backdrop-blur-lg'
             exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           />
 
           <motion.div
-            className='relative overflow-hidden text-left align-bottom border border-gray-800 shadow-xl dot-background dark:bg-black rounded-3xl sm:w-4/5 sm:my-8 sm:align-middle h-2/3'
-            initial={{ scale: 0.7, opacity: 0.5 }}
             animate={{ scale: 1, opacity: 1 }}
+            className='relative overflow-hidden text-left align-bottom border border-gray-800 shadow-xl dot-background dark:bg-black rounded-3xl sm:w-4/5 sm:my-8 sm:align-middle h-2/3'
             exit={{ scale: 0.7, opacity: 0 }}
+            initial={{ scale: 0.7, opacity: 0.5 }}
             transition={{ type: 'just' }}
           >
             <AnimatePresence exitBeforeEnter>
               <motion.div key={selectedView} className='h-full'>
                 {/* Transition overlay */}
                 <motion.div
-                  className='absolute z-10 w-full h-full bg-black'
-                  initial={{ x: 0 }}
                   animate={{ x: '100vw', transitionEnd: { x: '-100vw' } }}
+                  className='absolute z-10 w-full h-full bg-black'
                   exit={{ x: 0 }}
+                  initial={{ x: 0 }}
                   transition={{ duration: 0.4, ease: 'easeInOut' }}
                 ></motion.div>
                 {view}

@@ -1,4 +1,4 @@
-export const capitalize = (string) => {
+export const capitalize = string => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
@@ -11,7 +11,7 @@ export const getTitleFromKebab = (name, prefix) => {
   return title
 }
 
-export const getTitleFromFile = (file) => {
+export const getTitleFromFile = file => {
   const name = file.split(/-(.+)/)[1]
 
   return getTitleFromKebab(name)
@@ -23,6 +23,7 @@ export const getTitleFromFile = (file) => {
 // }
 export const buildLessonStrings = (url, urlPrefix) => {
   const name = url.split(/-(.+)/)[1]
+
   return {
     url: `${urlPrefix}/${name}`,
     text: getTitleFromKebab(name),

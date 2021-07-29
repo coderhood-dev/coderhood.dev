@@ -4,10 +4,12 @@ import { useRef } from 'react'
 const BoxComponent = ({ route }) => {
   // This reference will give us direct access to the THREE.Mesh object
   const mesh = useRef()
+
   // Subscribe this  to the render-loop, rotate the mesh every frame
   useFrame((state, delta) =>
     mesh.current ? (mesh.current.rotation.y = mesh.current.rotation.x += 0.002) : null
   )
+
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <>
@@ -20,4 +22,5 @@ const BoxComponent = ({ route }) => {
     </>
   )
 }
+
 export default BoxComponent

@@ -23,6 +23,7 @@ const itemVariants = {
 
 const Academy = ({ modules }) => {
   useStore.setState({ title: 'Coderhood Academy' })
+
   return (
     <>
       <Container title='academy'>
@@ -48,8 +49,8 @@ const Academy = ({ modules }) => {
           </p>
 
           <h3 className='pt-16 pb-5 text-3xl font-extrabold'>Módulos</h3>
-          <motion.ul variants={listVariants} initial='initial' animate='animate'>
-            {modules.map((module) => (
+          <motion.ul animate='animate' initial='initial' variants={listVariants}>
+            {modules.map(module => (
               <motion.li key={module.name} variants={itemVariants}>
                 <Link href={`/academy/${module.name}`}>
                   <a>
@@ -70,7 +71,7 @@ export default Academy
 export async function getStaticProps() {
   const content = await getFolderContent('academy')
 
-  const modules = content.map((module) => {
+  const modules = content.map(module => {
     const name = module.split(/-(.+)/)[1]
     const words = name.split('-')
     const [fistWord, ...others] = words

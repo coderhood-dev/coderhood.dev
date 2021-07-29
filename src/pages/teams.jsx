@@ -37,8 +37,9 @@ const Teams = () => {
       .select('*')
       .not('team', 'is', null)
 
-    const teamsWithProfiles = rawTeam.map((team) => {
-      const teamProfiles = profiles.filter((p) => p.team === team.id)
+    const teamsWithProfiles = rawTeam.map(team => {
+      const teamProfiles = profiles.filter(p => p.team === team.id)
+
       return {
         ...team,
         profiles: teamProfiles,
@@ -48,7 +49,7 @@ const Teams = () => {
     setTeams(teamsWithProfiles)
   }
 
-  const setTeam = async (team) => {
+  const setTeam = async team => {
     const { data, error: profileTeamError } = await supabase
       .from('profiles')
       .upsert({ team: team.id, id: profile.id })
@@ -83,19 +84,19 @@ const Teams = () => {
       </p>
       {teams && teams.length > 0 && (
         <motion.div
-          className='flex flex-wrap pt-5'
-          variants={container}
-          initial='initial'
           animate='animate'
+          className='flex flex-wrap pt-5'
+          initial='initial'
+          variants={container}
         >
-          {teams.map((team) => (
+          {teams.map(team => (
             <motion.div
+              key={team.id}
               className={`flex flex-col items-start max-w-xs p-5 m-2 bg-gray-200 border ${
                 team.id === profile?.team
                   ? 'border-gray-800 dark:border-white'
                   : 'border-gray-300 dark:border-gray-900'
               } shadow-sm dark:bg-gray-800 rounded-xl`}
-              key={team.id}
               variants={item}
             >
               <div className='flex justify-between w-full row'>
@@ -108,11 +109,12 @@ const Teams = () => {
                 <p className='pl-10 font-serif text-xl'>#{team.id}</p>
               </div>
               <div className='flex flex-row flex-wrap my-2'>
-                {team.interests.map((interest) => {
+                {team.interests.map(interest => {
                   const background =
                     interest === 'lgbtiq+'
                       ? 'bg-gradient-to-r from-red-300 via-yellow-300 to-blue-300'
                       : 'bg-yellow-300'
+
                   return (
                     <p
                       key={interest}
@@ -131,13 +133,13 @@ const Teams = () => {
               </p>
               <AnimatePresence>
                 <ul className='mb-5'>
-                  {team.profiles?.map((profile) => (
+                  {team.profiles?.map(profile => (
                     <motion.div
                       key={profile.id}
-                      className='flex items-start w-full pr-5 mb-2 row'
-                      initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
+                      className='flex items-start w-full pr-5 mb-2 row'
                       exit={{ opacity: 0 }}
+                      initial={{ opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
                       <span className='w-5 h-5 mt-2 mr-2 bg-gray-900 rounded-full' />
@@ -156,8 +158,8 @@ const Teams = () => {
               {team.id !== profile.team && (
                 <Button
                   className='self-end mt-auto'
-                  onClick={() => setTeam(team)}
                   disabled={team.max <= team.profiles.length}
+                  onClick={() => setTeam(team)}
                 >
                   Unirme
                 </Button>

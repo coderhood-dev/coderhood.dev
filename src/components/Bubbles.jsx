@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { Bubble } from '@/components/Bubble'
 import { useInterval } from '@/hooks/useInterval'
 
@@ -24,7 +25,7 @@ export const Bubbles = ({ bubbles: initialState }) => {
 
   return (
     <div className='relative w-full h-full' onClick={updateBubbles}>
-      {bubbles.map((bubble) => (
+      {bubbles.map(bubble => (
         <Bubble key={bubble.img} {...bubble} />
       ))}
     </div>

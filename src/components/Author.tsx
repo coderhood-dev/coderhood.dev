@@ -11,16 +11,17 @@ const team = {
 
 export const Author: React.FC<{ author: string }> = ({ author }) => {
   const src = team[author] || '/images/logos/logo.png'
+
   return (
     <Image
-      className='rounded-full'
-      src={src}
-      alt='Bubble Image'
-      height={64}
-      width={64}
-      quality={65}
-      objectFit='cover'
       priority
+      alt='Bubble Image'
+      className='rounded-full'
+      height={64}
+      objectFit='cover'
+      quality={65}
+      src={src}
+      width={64}
     />
   )
 }

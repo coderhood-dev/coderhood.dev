@@ -73,18 +73,20 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
   const handleInterestClick = (interest, selected) => {
     if (selected) {
       const index = teamInterests.indexOf(interest)
+
       if (index !== -1) {
         const interestsCopy = [...teamInterests]
+
         interestsCopy.splice(index, 1)
 
         setInterests(interestsCopy)
       }
     } else {
-      setInterests((prev) => [...prev, interest])
+      setInterests(prev => [...prev, interest])
     }
   }
 
-  const onSubmit = async (fields) => {
+  const onSubmit = async fields => {
     try {
       setLoading(true)
       setError(null)
@@ -122,7 +124,7 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
   }
 
   return (
-    <motion.div className='flex flex-col-reverse w-full h-full p-6 sm:flex-row' layout>
+    <motion.div layout className='flex flex-col-reverse w-full h-full p-6 sm:flex-row'>
       <div className='flex flex-col justify-center w-1/2 h-full'>
         <form
           className='flex flex-col items-stretch justify-center p-10 bg-white border border-black dark:bg-gray-900 rounded-2xl'
@@ -131,37 +133,38 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
           <p className='pb-2 text-sm'>Definí tus preferencias para el equipo.</p>
           <Input
             {...register('name')}
+            error={errors?.name?.message}
             label='Nombre'
             placeholder='Equipo Rocket'
-            error={errors?.name?.message}
           />
           <label className='mt-2 mb-2 text-xs dark:text-gray-300'>Mensaje de bienvenida</label>
           <textarea
             {...register('description')}
-            placeholder='Jessie: ¡Para proteger el mundo de la devastación! James: Y unir a los pueblos dentro nuestra nación. Jessie: ¡Para denunciar los males de la verdad y el amor!'
             className='w-full max-w-md p-2 pl-5 mb-2 text-sm font-medium bg-white border border-black rounded dark:bg-gray-800 dark:border-gray-800 hover:border-gray-500 dark:hover:border-gray-600 focus:outline-none focus:ring-1 dark:focus:ring-yellow-500 focus:ring-black'
+            placeholder='Jessie: ¡Para proteger el mundo de la devastación! James: Y unir a los pueblos dentro nuestra nación. Jessie: ¡Para denunciar los males de la verdad y el amor!'
             rows={4}
           />
           <Input
             {...register('max')}
-            type='number'
+            error={errors?.max?.message}
             label='Cantidad máxima'
             placeholder='4'
-            onChange={(e) => setValue('max', parseInt(e.target.value || '0'))}
-            error={errors?.max?.message}
+            type='number'
+            onChange={e => setValue('max', parseInt(e.target.value || '0'))}
           />
           <label className='mt-2 mb-2 text-xs dark:text-gray-300'>Elegí los que te interesen</label>
           <div className='flex flex-row flex-wrap'>
-            {interests.map((interest) => {
+            {interests.map(interest => {
               const selected = teamInterests.includes(interest)
               const background = selected ? 'bg-yellow-500' : 'bg-yellow-200'
               const textColor = selected ? 'text-white' : 'text-gray-900'
               const border = selected && 'border border-black'
+
               return (
                 <div
                   key={interest}
-                  onClick={() => handleInterestClick(interest, selected)}
                   className={`px-2 py-1 m-1 text-xs ${background} rounded-full ${textColor} ${border} cursor-pointer`}
+                  onClick={() => handleInterestClick(interest, selected)}
                 >
                   {interest}
                 </div>
@@ -169,7 +172,7 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
             })}
           </div>
           <p className='text-red-700'>{getErrorMessage(error)}</p>
-          <Button type='submit' className='self-end mt-8' loading={loading}>
+          <Button className='self-end mt-8' loading={loading} type='submit'>
             Crear equipo
           </Button>
         </form>
@@ -177,13 +180,13 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
 
       <div className='flex flex-col w-1/2 max-w-2xl'>
         <motion.div
-          className='self-start p-8'
-          initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
+          className='self-start p-8'
           exit={{
             opacity: 0,
             transition: { delay: 0 },
           }}
+          initial={{ y: 20, opacity: 0 }}
           transition={{
             delay: 0.3,
             duration: 0.3,
@@ -194,26 +197,26 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
           </Dialog.Title>
           <br className='mb-10' />
           <motion.h3
+            animate={{ opacity: 1 }}
             className='inline text-sm'
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
           >
             Una vez creado, vas a sumarte automáticamente.
           </motion.h3>
           <motion.h3
+            animate={{ opacity: 1 }}
             className='inline text-sm'
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 2, duration: 1 }}
           >
             {' '}
             En los equipos somos todos compañeros.
           </motion.h3>
           <motion.h3
+            animate={{ opacity: 1 }}
             className='inline text-sm'
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 3, duration: 1 }}
           >
             {' '}
@@ -221,9 +224,9 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
             sumarse hasta completar el total.
           </motion.h3>
           <motion.h3
+            animate={{ opacity: 1 }}
             className='inline text-sm'
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 4, duration: 1 }}
           >
             {' '}
@@ -231,9 +234,9 @@ export const CreateTeamForm = ({ onComplete, onRequestSignUp }) => {
             y ubicación de les que quieran sumarse.
           </motion.h3>
           <motion.h3
+            animate={{ opacity: 1 }}
             className='inline text-sm'
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 5, duration: 1 }}
           >
             {' '}
