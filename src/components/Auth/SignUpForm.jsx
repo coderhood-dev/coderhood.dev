@@ -129,13 +129,11 @@ const UsernameForm = ({ onSubmitComplete }) => {
       }
 
       if (!usernameAvailable) {
-        console.log('entro aca')
         throw new Error('Ups ese nombre de usuario no esta disponible')
       } else {
         onSubmitComplete({ username })
       }
     } catch (error) {
-      console.log('entro catch', error)
       setError(error.error_description || error.message)
     } finally {
       setLoading(false)
