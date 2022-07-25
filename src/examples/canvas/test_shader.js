@@ -2,9 +2,10 @@ import * as THREE from 'three'
 import { useFrame, extend } from '@react-three/fiber'
 import { a, useSpring } from '@react-spring/three'
 import { useRef, useState } from 'react'
-import useStore from '@/lib/store'
 import { shaderMaterial } from '@react-three/drei'
 import glsl from 'glslify'
+
+import useStore from '@/lib/store'
 
 import vertex from './glsl/shader.vert'
 
@@ -31,10 +32,10 @@ const ColorShiftMaterial = shaderMaterial(
 
 extend({ ColorShiftMaterial })
 
-const TestShader = (props) => {
+const TestShader = props => {
   const mesh = useRef(false)
   const [hovered, setHover] = useState(false)
-  const router = useStore((state) => state.router)
+  const router = useStore(state => state.router)
 
   const { scale } = useSpring({ scale: hovered ? 7 : 5, from: { scale: 5 } })
 
@@ -50,12 +51,12 @@ const TestShader = (props) => {
   return (
     <a.mesh
       ref={mesh}
-      scale={scale.to((s) => [s, s, s])}
+      scale={scale.to(s => [s, s, s])}
       onClick={() => {
         router.push(`/box`)
       }}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}
+      onPointerOut={e => setHover(false)}
+      onPointerOver={e => setHover(true)}
       {...props}
     >
       <boxBufferGeometry args={[0.5, 0.5, 0.5]} />

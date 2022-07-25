@@ -14,7 +14,7 @@ const Module = ({ mdxSource, title, lessons, frontMatter }) => {
 
   return (
     <>
-      <ModuleLayout frontMatter={frontMatter} title={title} lessons={lessons}>
+      <ModuleLayout frontMatter={frontMatter} lessons={lessons} title={title}>
         <MDX source={mdxSource} />
       </ModuleLayout>
     </>
@@ -24,7 +24,7 @@ const Module = ({ mdxSource, title, lessons, frontMatter }) => {
 export const getStaticPaths = async () => {
   const content = await getFolderContent('academy')
 
-  const paths = content.map((m) => `/academy/${m.split(/-(.+)/)[1]}`)
+  const paths = content.map(m => `/academy/${m.split(/-(.+)/)[1]}`)
 
   return { paths, fallback: false }
 }

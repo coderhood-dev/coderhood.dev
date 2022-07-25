@@ -1,15 +1,13 @@
 {
-  "name": "react-three-next",
-  "version": "2.0.0",
+  "name": "coderhood",
+  "version": "1.0.0",
   "authors": [
-    "Emanuel Lorenzo <https://twitter.com/aemalorenzo>"
+    "Emanuel Lorenzo <https://twitter.com/aemalorenzo>",
+    "Tomas Discoli <https://twitter.com/tomasdisk>"
   ],
   "private": false,
   "scripts": {
-    "lint": "yarn prettier && yarn eslint",
-    "eslint": "eslint --max-warnings 50 'src/**/*.{js,jsx,ts,tsx}' --ext tsconfig.json",
-    "eslint-fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}' --ext tsconfig.json",
-    "prettier": "prettier --list-different '**/*.{js,jsx,md}'",
+    "eslint": "eslint --max-warnings 20 'src/**/*.{js,jsx,ts,tsx}'",
     "tsc": "tsc --noEmit",
     "dev": "next dev",
     "build": "next build",
@@ -62,6 +60,7 @@
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",
     "husky": "^7.0.1",
+    "lint-staged": "^11.1.1",
     "mdx-code": "^2.0.0",
     "mdx-deck": "^4.1.1",
     "next-compose-plugins": "^2.2.1",

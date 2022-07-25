@@ -15,16 +15,17 @@ const LessonPage = ({ title, pdfURL, mdxSource, frontMatter, lessons }) => {
   )
 }
 
-export const getStaticPaths = async (props) => {
+export const getStaticPaths = async props => {
   const content = await getFolderContent('academy')
 
   const paths = []
+
   for (const module of content) {
     const moduleName = module.split(/-(.+)/)[1]
 
     const lessons = await getFolderContent(`academy/${module}`)
 
-    lessons.forEach((lesson) => {
+    lessons.forEach(lesson => {
       // in the module folder there will be folders for lessons and one readme.mdx, we don't want it
       if (!lesson.includes('.')) {
         const lessonName = lesson.split(/-(.+)/)[1]

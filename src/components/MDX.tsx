@@ -9,7 +9,7 @@ const MDX: React.FC<{ source: MDXRemoteSerializeResult<Record<string, unknown>> 
       {...source}
       components={{
         Steps: ({ children }) => <ul>{children}</ul>,
-        Image: ({ alt, ...props }) => <img alt={alt} {...props} />,
+        // Image: ({ alt, ...props }) => <img alt={alt} {...props} />,
       }}
     />
   )

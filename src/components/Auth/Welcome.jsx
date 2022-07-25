@@ -59,18 +59,18 @@ export const Welcome = ({ onComplete }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               {...register('email')}
-              type='email'
-              placeholder='Email'
               error={errors?.email?.message}
+              placeholder='Email'
+              type='email'
             />
             <Input
               {...register('password')}
-              type='password'
-              placeholder='Password'
               error={errors?.password?.message}
+              placeholder='Password'
+              type='password'
             />
             <p className='text-red-700'>{getErrorMessage(error)}</p>
-            <Button type='submit' className='self-end mt-8' loading={loading}>
+            <Button className='self-end mt-8' loading={loading} type='submit'>
               Iniciar sesión
             </Button>
           </form>
@@ -78,13 +78,13 @@ export const Welcome = ({ onComplete }) => {
       </div>
       <div className='flex flex-col items-end justify-between w-1/2'>
         <motion.div
-          className='self-start p-20'
-          initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
+          className='self-start p-20'
           exit={{
             opacity: 0,
             transition: { delay: 0 },
           }}
+          initial={{ y: 20, opacity: 0 }}
           transition={{
             delay: 1,
             duration: 0.3,
@@ -98,9 +98,9 @@ export const Welcome = ({ onComplete }) => {
           </Dialog.Title>
           <br className='mb-10' />
           <motion.h3
+            animate={{ opacity: 1 }}
             className='inline text-xl bg-gray-200 dark:bg-black'
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 2 }}
           >
             Personaliza tu perfil, estos pasos son opcionales y lo podés hacer luego en tu perfil.

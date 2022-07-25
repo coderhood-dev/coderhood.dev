@@ -11,37 +11,37 @@ export const Head = ({ title = TITLE, url = URL, description = DESCRIPTION }) =>
       <NextHead>
         {/* Recommended Meta Tags */}
         <meta charSet='utf-8' />
-        <meta name='language' content='es' />
-        <meta httpEquiv='content-type' content='text/html' />
-        <meta name='author' content={author} />
-        <meta name='designer' content={author} />
-        <meta name='publisher' content={author} />
+        <meta content='es' name='language' />
+        <meta content='text/html' httpEquiv='content-type' />
+        <meta content={author} name='author' />
+        <meta content={author} name='designer' />
+        <meta content={author} name='publisher' />
 
         {/* Search Engine Optimization Meta Tags */}
         <title>{title}</title>
-        <meta name='description' content={description} />
+        <meta content={description} name='description' />
         <meta
-          name='keywords'
           content='Programacion, Code, Software Engineer, Aprender, Full Stack, Frontend, Backend'
+          name='keywords'
         />
-        <meta name='robots' content='index,follow' />
-        <meta name='distribution' content='web' />
+        <meta content='index,follow' name='robots' />
+        <meta content='web' name='distribution' />
         {/* 
       Facebook Open Graph meta tags
         documentation: https://developers.facebook.com/docs/sharing/opengraph */}
-        <meta name='og:title' content={title} />
-        <meta name='og:type' content='site' />
-        <meta name='og:url' content={url} />
-        <meta name='og:image' content={'/icons/logo-full.png'} />
-        <meta name='og:site_name' content={title} />
-        <meta name='og:description' content={description} />
+        <meta content={title} name='og:title' />
+        <meta content='site' name='og:type' />
+        <meta content={url} name='og:url' />
+        <meta content={'/icons/logo-full.png'} name='og:image' />
+        <meta content={title} name='og:site_name' />
+        <meta content={description} name='og:description' />
 
         {/* 
       Twitter Summary card
         documentation: https://dev.twitter.com/cards/getting-started
         Be sure validate your Twitter card markup on the documentation site. */}
-        <meta name='twitter:card' content='summary' />
-        <meta name='twitter:site' content='@onirenaud' />
+        <meta content='summary' name='twitter:card' />
+        <meta content='@onirenaud' name='twitter:site' />
       </NextHead>
     </>
   )
